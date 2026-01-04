@@ -1,0 +1,115 @@
+{% extends "base.html" %} {% block title %}So sánh Ảnh - Album System{% endblock %} {% block content %}
+<div class="max-w-7xl mx-auto space-y-10">
+  <header>
+    <h2 class="text-4xl font-black text-slate-900 tracking-tight">So sánh Thị giác</h2>
+    <p class="text-slate-500 mt-1">Phân tích đa chiều dựa trên không gian vector đặc trưng.</p>
+  </header>
+
+  <form action="/compare" method="POST" enctype="multipart/form-data" id="compare-form">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+      <div class="bg-white p-8 rounded-[3rem] shadow-sm border border-slate-100 min-h-[500px]">
+        <h3 class="font-black text-slate-400 uppercase text-[10px] tracking-widest bg-slate-100 px-3 py-1 rounded-full inline-block mb-6">Đối tượng A</h3>
+        <label class="block cursor-pointer">
+          <div class="h-96 border-4 border-dashed border-slate-50 rounded-[2.5rem] flex flex-col items-center justify-center text-slate-300 hover:border-indigo-100 transition">
+            <svg class="w-12 h-12 mb-4 opacity-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              ></path>
+            </svg>
+            <p class="text-sm font-bold">Chọn ảnh</p>
+            <input type="file" name="image_a" accept="image/*" class="hidden" required onchange="previewImage(this, 'preview-a')" />
+          </div>
+          <img aria-label="xs" id="preview-a" class="hidden mt-4 w-full h-96 object-cover rounded-[2.5rem]" />
+        </label>
+      </div>
+
+      <div class="bg-white p-8 rounded-[3rem] shadow-sm border border-slate-100 min-h-[500px]">
+        <h3 class="font-black text-slate-400 uppercase text-[10px] tracking-widest bg-slate-100 px-3 py-1 rounded-full inline-block mb-6">Đối tượng B</h3>
+        <label class="block cursor-pointer">
+          <div class="h-96 border-4 border-dashed border-slate-50 rounded-[2.5rem] flex flex-col items-center justify-center text-slate-300 hover:border-indigo-100 transition">
+            <svg class="w-12 h-12 mb-4 opacity-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              ></path>
+            </svg>
+            <p class="text-sm font-bold">Chọn ảnh</p>
+            <input type="file" name="image_b" accept="image/*" class="hidden" required onchange="previewImage(this, 'preview-b')" />
+          </div>
+          <img aria-label="xs" id="preview-b" class="hidden mt-4 w-full h-96 object-cover rounded-[2.5rem]" />
+        </label>
+      </div>
+    </div>
+
+    <div class="text-center mt-10">
+      <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white px-12 py-4 rounded-2xl font-black text-lg btn-hover">
+        <svg class="w-6 h-6 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+        Phân tích So sánh
+      </button>
+    </div>
+  </form>
+
+  {% if comparison %}
+  <div class="bg-slate-900 rounded-[4rem] p-12 text-white shadow-3xl">
+    <div class="text-center space-y-6">
+      <h3 class="text-3xl font-black tracking-tight">Hệ số Tương đồng</h3>
+      <div class="text-8xl font-black text-indigo-400 tabular-nums tracking-tighter">{{ (comparison.combined_similarity * 100) | round(1) }}<span class="text-4xl text-indigo-600">%</span></div>
+      <div class="max-w-2xl mx-auto space-y-3 pt-6">
+        <div class="space-y-1.5">
+          <div class="flex justify-between text-[10px] font-black uppercase tracking-widest text-slate-500">
+            <span>Màu sắc (HSV)</span>
+            <span class="text-white">{{ (comparison.color_similarity * 100) | round(1) }}%</span>
+          </div>
+          <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+            <div class="h-full bg-rose-500 transition-all duration-1000" style="width: {{ (comparison.color_similarity * 100) }}%"></div>
+          </div>
+        </div>
+        <div class="space-y-1.5">
+          <div class="flex justify-between text-[10px] font-black uppercase tracking-widest text-slate-500">
+            <span>Kết cấu (LBP)</span>
+            <span class="text-white">{{ (comparison.texture_similarity * 100) | round(1) }}%</span>
+          </div>
+          <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+            <div class="h-full bg-amber-500 transition-all duration-1000" style="width: {{ (comparison.texture_similarity * 100) }}%"></div>
+          </div>
+        </div>
+        <div class="space-y-1.5">
+          <div class="flex justify-between text-[10px] font-black uppercase tracking-widest text-slate-500">
+            <span>Hình dạng (HOG)</span>
+            <span class="text-white">{{ (comparison.shape_similarity * 100) | round(1) }}%</span>
+          </div>
+          <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+            <div class="h-full bg-emerald-500 transition-all duration-1000" style="width: {{ (comparison.shape_similarity * 100) }}%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+<script>
+  function previewImage(input, previewId) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const preview = document.getElementById(previewId);
+        preview.src = e.target.result;
+        preview.classList.remove("hidden");
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  document.getElementById("compare-form").onsubmit = function () {
+    showLoading();
+  };
+</script>
+{% endblock %}

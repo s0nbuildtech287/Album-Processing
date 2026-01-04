@@ -1,0 +1,85 @@
+{% extends "base.html" %} {% block title %}Dọn dẹp - Album System{% endblock %} {% block content %}
+<div class="max-w-7xl mx-auto space-y-10">
+  <header class="flex justify-between items-center">
+    <div>
+      <h2 class="text-4xl font-black text-slate-900 tracking-tight">Dọn dẹp Thông minh</h2>
+      <p class="text-slate-500 mt-1">Tự động nhận diện các nhóm ảnh trùng lặp để tối ưu hóa không gian lưu trữ.</p>
+    </div>
+    <form action="/cleanup" method="POST">
+      <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-2xl font-black btn-hover">
+        <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+        Quét trùng lặp
+      </button>
+    </form>
+  </header>
+
+  <div id="duplicates-container">
+    {% if duplicate_groups %}
+    <div class="space-y-8">
+      {% for group in duplicate_groups %}
+      <div class="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-100">
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="text-xl font-black flex items-center gap-3">
+            <span class="bg-red-100 text-red-600 w-10 h-10 rounded-full flex items-center justify-center text-sm font-black"> {{ group.size }} </span>
+            Nhóm trùng lặp #{{ loop.index }}
+          </h3>
+          <button onclick="deleteGroup({{ group.images | tojson }})" class="bg-red-50 text-red-600 px-6 py-2 rounded-xl font-bold hover:bg-red-100">Xóa nhóm</button>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+          {% for img in group.images_info %}
+          <div class="space-y-2">
+            <div class="aspect-square overflow-hidden rounded-[1.5rem] border-2 border-slate-100">
+              <img src="/uploads/{{ img.metadata.filename }}" alt="" class="w-full h-full object-cover" />
+            </div>
+            <p class="text-xs font-bold text-slate-600 truncate">{{ img.metadata.filename }}</p>
+            <button onclick="deleteImage('{{ img.id }}')" class="w-full bg-red-50 text-red-600 px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-red-100">Xóa</button>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="bg-white p-32 rounded-[3rem] border-2 border-dashed border-slate-200 flex flex-col items-center justify-center text-center">
+      <div class="w-24 h-24 bg-green-50 rounded-full flex items-center justify-center mb-8">
+        <svg class="w-12 h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+      </div>
+      <h3 class="text-2xl font-black text-slate-800">Không phát hiện ảnh trùng lặp</h3>
+      <p class="text-slate-400 mt-2 max-w-sm">Thư viện ảnh của bạn đã được tối ưu hóa tốt. Không tìm thấy nhóm ảnh trùng lặp nào.</p>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  function deleteImage(imageId) {
+    if (confirm("Bạn có chắc muốn xóa ảnh này?")) {
+      showLoading();
+      fetch(`/delete/${imageId}`, { method: "DELETE" })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            location.reload();
+          } else {
+            alert("Lỗi: " + data.error);
+            hideLoading();
+          }
+        });
+    }
+  }
+
+  function deleteGroup(imageIds) {
+    if (confirm(`Bạn có chắc muốn xóa ${imageIds.length} ảnh trong nhóm này?`)) {
+      showLoading();
+      Promise.all(imageIds.map((id) => fetch(`/delete/${id}`, { method: "DELETE" }).then((r) => r.json()))).then(() => {
+        location.reload();
+      });
+    }
+  }
+</script>
+{% endblock %}
