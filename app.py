@@ -9,7 +9,7 @@ from services.database import ImageDatabase
 from services.preprocessing import ImagePreprocessor
 from services.compression import ImageCompressor
 from services.similarity import SimilarityCalculator
-
+# bùi xuân sơn
 # Khởi tạo Flask app
 app = Flask(__name__)
 app.config.from_object(Config)
