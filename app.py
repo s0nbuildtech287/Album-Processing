@@ -44,11 +44,27 @@ def generate_safe_filename(original_filename):
 
 @app.route('/')
 def library():
-    """Trang thư viện ảnh"""
-    images = db.get_all_images()
-    return render_template('library.html', 
-                         images=images, 
-                         image_count=len(images))
+    """Trang thư viện ảnh - hiển thị theo album"""
+    # Lấy tham số album từ URL (nếu có)
+    selected_album = request.args.get('album')
+    
+    if selected_album:
+        # Hiển thị ảnh của album cụ thể
+        images = db.get_images_by_album(selected_album)
+        albums = db.get_albums()
+        return render_template('library.html', 
+                             images=images, 
+                             image_count=len(images),
+                             albums=albums,
+                             selected_album=selected_album)
+    else:
+        # Hiển thị danh sách album
+        albums = db.get_albums()
+        return render_template('library.html', 
+                             images=None,
+                             image_count=0,
+                             albums=albums,
+                             selected_album=None)
 
 @app.route('/upload', methods=['POST'])
 def upload():
@@ -58,11 +74,12 @@ def upload():
     
     files = request.files.getlist('files')
     custom_names = request.form.getlist('custom_names')  # Lấy danh sách tên tùy chỉnh
+    album_name = request.form.get('album_name', 'Uncategorized').strip()  # Lấy tên album
     uploaded_count = 0
     failed_files = []
     
     print(f"\n{'='*60}")
-    print(f"📤 Starting upload: {len(files)} files")
+    print(f"📤 Starting upload: {len(files)} files to album '{album_name}'")
     
     for idx, file in enumerate(files, 1):
         # Bỏ qua check tên file quá khắt khe, chỉ cần có file
@@ -95,8 +112,8 @@ def upload():
                 failed_files.append(f"{file.filename} (corrupted/unreadable)")
                 continue
             
-            # Thêm vào database
-            image_id = db.add_image(filepath)
+            # Thêm vào database với album
+            image_id = db.add_image(filepath, album=album_name)
             
             if image_id:
                 uploaded_count += 1
@@ -112,14 +129,36 @@ def upload():
     db.save_database()
     return redirect(url_for('library'))
 
+@app.route('/rename_album', methods=['POST'])
+def rename_album():
+    """Đổi tên album"""
+    try:
+        old_name = request.json.get('old_name')
+        new_name = request.json.get('new_name')
+        
+        if not old_name or not new_name:
+            return jsonify({'success': False, 'error': 'Missing album name'})
+        
+        success = db.rename_album(old_name, new_name)
+        
+        if success:
+            db.save_database()
+            return jsonify({'success': True, 'new_name': new_name})
+        else:
+            return jsonify({'success': False, 'error': 'Album not found'})
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)})
+
 @app.route('/delete/<image_id>', methods=['DELETE'])
 def delete_image(image_id):
     """Xóa ảnh"""
     try:
         image = db.get_image(image_id)
         if image:
-            if os.path.exists(image['path']):
-                os.remove(image['path'])
+            # Lấy absolute path để xóa file
+            absolute_path = db.get_absolute_path(image_id)
+            if absolute_path and os.path.exists(absolute_path):
+                os.remove(absolute_path)
             db.remove_image(image_id)
             db.save_database()
             return jsonify({'success': True})
@@ -166,7 +205,7 @@ def query():
             image_id = request.form.get('image_id')
             image_data = db.get_image(image_id)
             if image_data:
-                query_path = image_data['path']
+                query_path = db.get_absolute_path(image_id)
             
         if query_path and os.path.exists(query_path):
             # Thực hiện tìm kiếm
@@ -216,7 +255,7 @@ def compare():
                 print(f"Error saving A: {e}")
         elif image_id_a:
             image_data = db.get_image(image_id_a)
-            if image_data: path_a = image_data['path']
+            if image_data: path_a = db.get_absolute_path(image_id_a)
             
         # --- XỬ LÝ ẢNH B (Đã sửa lỗi tiếng Việt) ---
         if upload_b and upload_b.filename:
@@ -228,7 +267,7 @@ def compare():
                 print(f"Error saving B: {e}")
         elif image_id_b:
             image_data = db.get_image(image_id_b)
-            if image_data: path_b = image_data['path']
+            if image_data: path_b = db.get_absolute_path(image_id_b)
         
         # So sánh
         if path_a and path_b and os.path.exists(path_a) and os.path.exists(path_b):
@@ -297,9 +336,10 @@ def auto_cleanup():
                 image_data = db.get_image(image_id)
                 if image_data:
                     try:
-                        # Xóa file vật lý
-                        if os.path.exists(image_data['path']):
-                            os.remove(image_data['path'])
+                        # Xóa file vật lý - dùng absolute path
+                        absolute_path = db.get_absolute_path(image_id)
+                        if absolute_path and os.path.exists(absolute_path):
+                            os.remove(absolute_path)
                         
                         # Xóa khỏi database
                         db.remove_image(image_id)
@@ -350,7 +390,7 @@ def editor_process():
     elif image_id:
         image_data = db.get_image(image_id)
         if image_data:
-            original_path = image_data['path']
+            original_path = db.get_absolute_path(image_id)
     
     if not original_path or not os.path.exists(original_path):
         return render_template('editor.html', result=None, images=images, 

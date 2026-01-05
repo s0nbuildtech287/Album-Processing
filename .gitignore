@@ -10,3 +10,15 @@ build/
 *.log
 coverage/
 *.sqlite3
+
+# Database files - không commit database
+image_database.pkl
+metadata.json
+
+# Upload files - người dùng tự upload
+uploads/images/*
+uploads/queries/*
+
+# Giữ lại thư mục nhưng không commit nội dung
+!uploads/images/.gitkeep
+!uploads/queries/.gitkeep

@@ -1,6 +1,6 @@
 {
   "sutu1_20260105224841235236": {
-    "path": "c:\\Users\\XUAN SON\\Downloads\\Album Processing\\uploads\\images\\sutu1.png",
+    "path": "uploads\\images\\sutu1.png",
     "metadata": {
       "filename": "sutu1.png",
       "size": 356961,
@@ -11,7 +11,7 @@
     "has_features": false
   },
   "sutu2_20260105224855619544": {
-    "path": "c:\\Users\\XUAN SON\\Downloads\\Album Processing\\uploads\\images\\sutu2.jpg",
+    "path": "uploads\\images\\sutu2.jpg",
     "metadata": {
       "filename": "sutu2.jpg",
       "size": 122329,
@@ -22,7 +22,7 @@
     "has_features": false
   },
   "convoi2_20260105224921147035": {
-    "path": "c:\\Users\\XUAN SON\\Downloads\\Album Processing\\uploads\\images\\convoi2.jpg",
+    "path": "uploads\\images\\convoi2.jpg",
     "metadata": {
       "filename": "convoi2.jpg",
       "size": 118491,
@@ -33,7 +33,7 @@
     "has_features": false
   },
   "convoi1_20260105224921195019": {
-    "path": "c:\\Users\\XUAN SON\\Downloads\\Album Processing\\uploads\\images\\convoi1.jpg",
+    "path": "uploads\\images\\convoi1.jpg",
     "metadata": {
       "filename": "convoi1.jpg",
       "size": 319229,
@@ -44,7 +44,7 @@
     "has_features": false
   },
   "sutu3_20260105224921402677": {
-    "path": "c:\\Users\\XUAN SON\\Downloads\\Album Processing\\uploads\\images\\sutu3.jpg",
+    "path": "uploads\\images\\sutu3.jpg",
     "metadata": {
       "filename": "sutu3.jpg",
       "size": 1591501,
@@ -55,7 +55,7 @@
     "has_features": false
   },
   "sutu4_20260105224932514798": {
-    "path": "c:\\Users\\XUAN SON\\Downloads\\Album Processing\\uploads\\images\\sutu4.png",
+    "path": "uploads\\images\\sutu4.png",
     "metadata": {
       "filename": "sutu4.png",
       "size": 1305068,
@@ -66,7 +66,7 @@
     "has_features": false
   },
   "conga1_20260105224940152919": {
-    "path": "c:\\Users\\XUAN SON\\Downloads\\Album Processing\\uploads\\images\\conga1.jpg",
+    "path": "uploads\\images\\conga1.jpg",
     "metadata": {
       "filename": "conga1.jpg",
       "size": 108186,
@@ -77,7 +77,7 @@
     "has_features": false
   },
   "conho1_20260105225034737337": {
-    "path": "c:\\Users\\XUAN SON\\Downloads\\Album Processing\\uploads\\images\\conho1.jpg",
+    "path": "uploads\\images\\conho1.jpg",
     "metadata": {
       "filename": "conho1.jpg",
       "size": 59735,
@@ -88,7 +88,7 @@
     "has_features": false
   },
   "conngua1_20260105225034770910": {
-    "path": "c:\\Users\\XUAN SON\\Downloads\\Album Processing\\uploads\\images\\conngua1.jpg",
+    "path": "uploads\\images\\conngua1.jpg",
     "metadata": {
       "filename": "conngua1.jpg",
       "size": 185317,
@@ -99,7 +99,7 @@
     "has_features": false
   },
   "conran1_20260105225118419625": {
-    "path": "c:\\Users\\XUAN SON\\Downloads\\Album Processing\\uploads\\images\\conran1.png",
+    "path": "uploads\\images\\conran1.png",
     "metadata": {
       "filename": "conran1.png",
       "size": 3752229,
@@ -110,7 +110,7 @@
     "has_features": false
   },
   "camap1_20260105225208956561": {
-    "path": "c:\\Users\\XUAN SON\\Downloads\\Album Processing\\uploads\\images\\camap1.png",
+    "path": "uploads\\images\\camap1.png",
     "metadata": {
       "filename": "camap1.png",
       "size": 1461037,
@@ -121,7 +121,7 @@
     "has_features": false
   },
   "conga2_20260105225209000436": {
-    "path": "c:\\Users\\XUAN SON\\Downloads\\Album Processing\\uploads\\images\\conga2.png",
+    "path": "uploads\\images\\conga2.png",
     "metadata": {
       "filename": "conga2.png",
       "size": 471287,
@@ -129,6 +129,72 @@
       "channels": 3
     },
     "added_at": "2026-01-05T22:52:09.007989",
+    "has_features": false
+  },
+  "xemay3_20260105231559653197": {
+    "path": "uploads\\images\\xemay3.png",
+    "metadata": {
+      "filename": "xemay3.png",
+      "size": 432827,
+      "dimensions": "768x645",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T23:15:59.660704",
+    "has_features": false
+  },
+  "xemay2_20260105231559707045": {
+    "path": "uploads\\images\\xemay2.png",
+    "metadata": {
+      "filename": "xemay2.png",
+      "size": 1483105,
+      "dimensions": "2048x1261",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T23:15:59.735793",
+    "has_features": false
+  },
+  "xemay1_20260105231559752398": {
+    "path": "uploads\\images\\xemay1.png",
+    "metadata": {
+      "filename": "xemay1.png",
+      "size": 250090,
+      "dimensions": "619x450",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T23:15:59.756396",
+    "has_features": false
+  },
+  "oto3_20260105231559766988": {
+    "path": "uploads\\images\\oto3.jpg",
+    "metadata": {
+      "filename": "oto3.jpg",
+      "size": 9998,
+      "dimensions": "298x169",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T23:15:59.768493",
+    "has_features": false
+  },
+  "oto2_20260105231559786640": {
+    "path": "uploads\\images\\oto2.jpg",
+    "metadata": {
+      "filename": "oto2.jpg",
+      "size": 83900,
+      "dimensions": "889x500",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T23:15:59.795713",
+    "has_features": false
+  },
+  "oto1_20260105231559818480": {
+    "path": "uploads\\images\\oto1.png",
+    "metadata": {
+      "filename": "oto1.png",
+      "size": 925859,
+      "dimensions": "800x507",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T23:15:59.831523",
     "has_features": false
   }
 }

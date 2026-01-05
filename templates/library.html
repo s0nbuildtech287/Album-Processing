@@ -2,8 +2,13 @@
 <div class="max-w-7xl mx-auto space-y-8">
   <header class="flex flex-col md:flex-row md:items-center justify-between gap-6">
     <div>
-      <h2 class="text-4xl font-black text-slate-900 tracking-tight">Thư viện Ảnh</h2>
-      <p class="text-slate-500 mt-1">Hệ thống quản lý và lập chỉ mục nội dung thị giác tự động.</p>
+      <h2 class="text-4xl font-black text-slate-900 tracking-tight">
+        {% if selected_album %}
+        <a href="/" class="text-indigo-600 hover:text-indigo-700">Thư viện</a> / {{ selected_album }} {% else %} Thư viện Ảnh {% endif %}
+      </h2>
+      <p class="text-slate-500 mt-1">
+        {% if selected_album %} {{ image_count }} ảnh trong album này {% else %} {{ albums|length }} album • Hệ thống quản lý và lập chỉ mục nội dung thị giác {% endif %}
+      </p>
     </div>
     <div class="flex items-center gap-3">
       <form action="/upload" method="POST" enctype="multipart/form-data" id="upload-form">
@@ -15,6 +20,13 @@
           <input type="file" name="files" id="file-input" multiple accept="image/*" class="hidden" onchange="handleFileSelect()" />
         </label>
       </form>
+      {% if selected_album %}
+      <a aria-label="xs" href="/" class="bg-slate-600 hover:bg-slate-700 text-white px-6 py-3 rounded-2xl font-black btn-hover">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+      </a>
+      {% endif %}
       <button aria-label="xs" onclick="clearDatabase()" class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-2xl font-black btn-hover">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
@@ -28,7 +40,8 @@
     </div>
   </header>
 
-  {% if images %}
+  {% if selected_album and images %}
+  <!-- Hiển thị ảnh trong album -->
   <div id="library-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
     {% for image_id, image in images.items() %}
     <div class="bg-white rounded-[2.5rem] overflow-hidden shadow-sm border border-slate-100 card-hover">
@@ -43,6 +56,34 @@
           <button onclick="deleteImage('{{ image_id }}')" class="flex-1 bg-red-50 text-red-600 px-4 py-2 rounded-xl text-xs font-bold hover:bg-red-100">Xóa</button>
         </div>
       </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% elif albums %}
+  <!-- Hiển thị danh sách album (folder view) -->
+  <div id="album-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+    {% for album_name, album_data in albums.items() %}
+    <div class="bg-white rounded-[2.5rem] p-8 shadow-sm border border-slate-100 card-hover text-center transition-all hover:shadow-xl hover:border-indigo-200 relative">
+      <!-- Nút Edit ở góc trên phải -->
+      <button
+        onclick="editAlbumName(event, '{{ album_name }}')"
+        class="absolute top-4 right-4 bg-slate-100 hover:bg-indigo-100 text-slate-600 hover:text-indigo-600 p-2 rounded-xl transition-all"
+        title="Đổi tên album"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+        </svg>
+      </button>
+
+      <a href="/?album={{ album_name }}" class="block">
+        <div class="w-20 h-20 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-3xl flex items-center justify-center mx-auto mb-4">
+          <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-black text-slate-900">{{ album_name }}</h3>
+        <p class="text-slate-400 mt-2 text-sm">{{ album_data.count }} ảnh</p>
+      </a>
     </div>
     {% endfor %}
   </div>
@@ -86,6 +127,25 @@
         <div style="background: white; border-radius: 2rem; padding: 2rem; max-width: 600px; max-height: 80vh; overflow-y: auto; width: 90%;">
           <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">Đặt tên cho ảnh</h3>
           <p style="color: #64748b; margin-bottom: 1.5rem;">Nhập tên không dấu, viết liền. Bỏ trống để tự động đặt tên.</p>
+
+          <!-- Input chọn/tạo album -->
+          <div style="margin-bottom: 1.5rem; padding: 1rem; background: #f1f5f9; border-radius: 1rem;">
+            <label style="display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem; color: #475569;">
+              📁 Chọn Album (Thư mục)
+            </label>
+            <input
+              type="text"
+              id="album-name-input"
+              list="existing-albums"
+              placeholder="Ví dụ: Động vật, Đồ vật, Con người..."
+              style="width: 100%; padding: 0.75rem; border: 2px solid #cbd5e1; border-radius: 0.75rem; font-size: 0.875rem; font-weight: 600;"
+            />
+            <datalist id="existing-albums">
+              ${getExistingAlbums()}
+            </datalist>
+            <small style="color: #64748b; display: block; margin-top: 0.5rem;">💡 Nhập tên mới để tạo album mới, hoặc chọn từ danh sách có sẵn</small>
+          </div>
+
           <div id="file-names-container">
     `;
 
@@ -96,10 +156,10 @@
           <label style="display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem; color: #475569;">
             Ảnh ${index + 1}: ${file.name}
           </label>
-          <input 
-            type="text" 
-            id="name-${index}" 
-            placeholder="Ví dụ: anhbien, conmeo, hoasen..." 
+          <input
+            type="text"
+            id="name-${index}"
+            placeholder="Ví dụ: anhbien, conmeo, hoasen..."
             style="width: 100%; padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.875rem;"
           />
           <small style="color: #94a3b8;">(Sẽ lưu thành: tên_bạn_nhập.${ext})</small>
@@ -124,6 +184,12 @@
     document.body.insertAdjacentHTML("beforeend", modalHTML);
   }
 
+  function getExistingAlbums() {
+    // Lấy danh sách album từ server (nếu có)
+    const albums = {{ albums.keys()|list|tojson|safe if albums else '[]' }};
+    return albums.map(album => `<option value="${album}">`).join('');
+  }
+
   function cancelNaming() {
     document.getElementById("naming-modal").remove();
     document.getElementById("file-input").value = ""; // Reset input
@@ -135,6 +201,15 @@
 
     // Xóa các input custom_names cũ (nếu có)
     form.querySelectorAll('input[name="custom_names"]').forEach((input) => input.remove());
+    form.querySelectorAll('input[name="album_name"]').forEach((input) => input.remove());
+
+    // Lấy tên album
+    const albumName = document.getElementById("album-name-input").value.trim() || "Uncategorized";
+    const albumInput = document.createElement("input");
+    albumInput.type = "hidden";
+    albumInput.name = "album_name";
+    albumInput.value = albumName;
+    form.appendChild(albumInput);
 
     // Thêm tên tùy chỉnh vào form
     selectedFiles.forEach((file, index) => {
@@ -152,7 +227,7 @@
     document.getElementById("naming-modal").remove();
 
     // Hiển thị loading
-    showLoading(`Đang tải lên ${selectedFiles.length} ảnh...`);
+    showLoading(`Đang tải lên ${selectedFiles.length} ảnh vào album "${albumName}"...`);
 
     // Submit form
     form.submit();
@@ -182,6 +257,41 @@
     if (confirm("Bạn có chắc muốn xóa toàn bộ database? Hành động này không thể hoàn tác!")) {
       showLoading("Đang xóa database...");
       fetch("/clear", { method: "POST" })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            location.reload();
+          } else {
+            alert("Lỗi: " + data.error);
+            hideLoading();
+          }
+        })
+        .catch((error) => {
+          alert("Lỗi: " + error);
+          hideLoading();
+        });
+    }
+  }
+
+  function editAlbumName(event, oldName) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const newName = prompt(`Đổi tên album "${oldName}" thành:`, oldName);
+
+    if (newName && newName.trim() !== "" && newName !== oldName) {
+      showLoading("Đang đổi tên album...");
+
+      fetch("/rename_album", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          old_name: oldName,
+          new_name: newName.trim()
+        })
+      })
         .then((response) => response.json())
         .then((data) => {
           if (data.success) {

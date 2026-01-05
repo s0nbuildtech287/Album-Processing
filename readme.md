@@ -1,53 +1,137 @@
-Hệ thống Truy vấn Ảnh dựa Nội dung (CBIR System)
-📋 Tổng quan
+# Hệ thống Truy vấn Ảnh dựa Nội dung (CBIR System)
+
+## 📋 Tổng quan
+
 Hệ thống CBIR (Content-Based Image Retrieval) cho phép tìm kiếm và quản lý kho ảnh dựa trên nội dung thị giác, sử dụng các kỹ thuật trích xuất đặc trưng tiên tiến.
-✨ Tính năng chính
 
-1. Quản lý Thư viện Ảnh
+## 🚀 Cài đặt & Chạy
 
-Upload nhiều ảnh cùng lúc
-Tự động trích xuất và lập chỉ mục đặc trưng
-Xem thông tin chi tiết (kích thước, độ phân giải)
-Xóa ảnh đơn lẻ hoặc xóa toàn bộ database
+### 1. Clone repository
 
-2. Truy vấn Ảnh Tương tự
+```bash
+git clone <repository-url>
+cd "Album Processing"
+```
 
-Tìm top-K ảnh tương tự nhất với ảnh mẫu
-Hiển thị điểm tương đồng chi tiết:
+### 2. Cài đặt dependencies
 
-Màu sắc (HSV Histogram)
-Kết cấu (Local Binary Pattern - LBP)
-Hình dạng (Histogram of Oriented Gradients - HOG)
+```bash
+pip install -r requirements.txt
+```
 
-Kết quả được sắp xếp theo độ tương đồng tổng hợp
+### 3. Chạy ứng dụng
 
-3. So sánh 2 Ảnh
+```bash
+python app.py
+```
 
-Upload 2 ảnh bất kỳ để so sánh
-Hiển thị điểm tương đồng chi tiết cho từng đặc trưng
-Trực quan hóa bằng biểu đồ thanh
+Truy cập: http://localhost:5000
 
-4. Dọn dẹp Ảnh Trùng lặp
+## 📁 Cấu trúc Thư mục
 
-Tự động phát hiện nhóm ảnh trùng/gần trùng
-Hiển thị theo nhóm để dễ quản lý
-Xóa từng ảnh hoặc xóa cả nhóm
+```
+Album Processing/
+├── app.py                 # Flask application chính
+├── config.py             # Cấu hình hệ thống
+├── requirements.txt      # Dependencies
+├── services/            # Business logic
+│   ├── database.py      # Quản lý database ảnh
+│   ├── features.py      # Trích xuất đặc trưng
+│   ├── preprocessing.py # Tiền xử lý ảnh
+│   ├── compression.py   # Nén ảnh
+│   └── similarity.py    # Tính toán độ tương đồng
+├── templates/           # Giao diện HTML
+├── uploads/            # Thư mục lưu ảnh
+│   ├── images/         # Ảnh thư viện (album)
+│   └── queries/        # Ảnh truy vấn tạm
+└── static/             # CSS, JS, assets
+```
 
-5. Chỉnh sửa & Cải thiện Ảnh
+## ✨ Tính năng chính
 
-Cân bằng Histogram: Cải thiện độ tương phản
-Tăng độ tương phản: Làm rõ chi tiết
-Giảm nhiễu: 3 phương pháp (Gaussian, Median, Bilateral)
-Làm sắc nét: Tăng độ sắc nét
-Chuyển đen trắng: Binary threshold
-Nén ảnh: 3 mức chất lượng (High/Medium/Low)
+### 1. **Quản lý Thư viện Theo Album**
 
-🏗️ Cấu trúc dự án
-cbir-system/
-├── app.py # Flask application chính
-├── config.py # Cấu hình hệ thống
-├── requirements.txt # Dependencies
-├── services/
+- 📁 Tổ chức ảnh theo album/thư mục (Động vật, Đồ vật, Con người...)
+- ✏️ Đổi tên album dễ dàng
+- 📤 Upload nhiều ảnh cùng lúc với tên tùy chỉnh
+- 🗑️ Xóa ảnh đơn lẻ hoặc xóa toàn bộ database
+
+### 2. **Truy vấn Ảnh Tương tự**
+
+- 🔍 Tìm top-K ảnh tương tự nhất với ảnh mẫu
+- 📊 Hiển thị điểm tương đồng chi tiết:
+  - Màu sắc (HSV Histogram)
+  - Kết cấu (Local Binary Pattern - LBP)
+  - Hình dạng (Histogram of Oriented Gradients - HOG)
+- 🎯 Kết quả được sắp xếp theo độ tương đồng tổng hợp
+
+### 3. **So sánh 2 Ảnh**
+
+- 📸 Upload 2 ảnh bất kỳ để so sánh
+- 📈 Hiển thị điểm tương đồng chi tiết cho từng đặc trưng
+- 📊 Trực quan hóa bằng biểu đồ thanh
+
+### 4. **Dọn dẹp Ảnh Trùng lặp**
+
+- 🔎 Tự động phát hiện nhóm ảnh trùng/gần trùng
+- 📑 Hiển thị theo nhóm để dễ quản lý
+- 🗑️ Xóa từng ảnh hoặc xóa cả nhóm
+
+### 5. **Chỉnh sửa & Cải thiện Ảnh**
+
+- 🎨 Cân bằng Histogram: Cải thiện độ tương phản
+- ✨ Tăng độ tương phản: Làm rõ chi tiết
+- 🔇 Giảm nhiễu: 3 phương pháp (Gaussian, Median, Bilateral)
+- 🔪 Làm sắc nét: Tăng độ sắc nét
+- ⚫⚪ Chuyển đen trắng: Binary threshold
+- 📦 Nén ảnh: 3 mức chất lượng (High/Medium/Low)
+
+## 🔧 Cấu trúc Database
+
+Database sử dụng **relative paths** để đảm bảo tính portable:
+
+```python
+{
+  "image_id": {
+    "path": "uploads/images/conmeo.jpg",  # Relative path
+    "album": "Động vật",                   # Album name
+    "metadata": {...},                     # Thông tin ảnh
+    "features": {...}                      # Đặc trưng (lazy load)
+  }
+}
+```
+
+### Migration Tự động
+
+- ✅ Tự động convert absolute paths cũ → relative paths
+- ✅ Tự động thêm field `album` cho ảnh cũ
+- ✅ Đảm bảo backward compatibility
+
+## 🎯 Workflow Sử dụng
+
+### Upload ảnh vào album:
+
+1. Nhấn "Tải ảnh lên"
+2. Chọn file ảnh
+3. Popup hiện ra:
+   - Nhập tên album (ví dụ: "Động vật", "Đồ vật")
+   - Nhập tên từng ảnh (hoặc để trống)
+4. Nhấn "Upload"
+
+### Xem ảnh theo album:
+
+1. Màn hình chính hiển thị các folder 📁
+2. Click vào folder để xem ảnh bên trong
+3. Click breadcrumb hoặc nút "←" để quay lại
+
+### Đổi tên album:
+
+1. Click nút ✏️ ở góc album
+2. Nhập tên mới
+3. Tất cả ảnh trong album được cập nhật
+
+## 🔍 Cấu trúc dự án
+
 │ ├── preprocessing.py # Tiền xử lý ảnh
 │ ├── compression.py # Nén ảnh
 │ ├── lbp.py # LBP (TỰ CÀI ĐẶT)
@@ -120,7 +204,7 @@ Tính độ tương tự
 Cosine Similarity
 similarity = (A · B) / (||A|| _ ||B||)
 Điểm tổng hợp
-score = α _ color_sim + β _ texture_sim + γ _ shape_sim
+score = α _ color*sim + β * texture*sim + γ * shape_sim
 Với trọng số mặc định:
 
 α (Color) = 0.4

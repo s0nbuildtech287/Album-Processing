@@ -19,7 +19,7 @@ class ImageDatabase:
         self.feature_extractor = FeatureExtractor()
         self.load_database()
     
-    def add_image(self, image_path, image_id=None):
+    def add_image(self, image_path, image_id=None, album="Uncategorized"):
         """
         Thêm ảnh vào database - NHANH (không extract features)
         Returns: image_id
@@ -36,15 +36,19 @@ class ImageDatabase:
             # Chỉ lấy metadata (rất nhanh!)
             metadata = self._extract_metadata(image_path)
             
+            # Chuyển sang relative path để portable
+            relative_path = os.path.relpath(image_path, Config.BASE_DIR)
+            
             # Lưu vào database - KHÔNG trích xuất đặc trưng
             self.images[image_id] = {
-                'path': image_path,
+                'path': relative_path,  # Lưu relative path thay vì absolute
                 'features': None,  
                 'metadata': metadata,
+                'album': album,  # Thêm trường album
                 'added_at': datetime.now().isoformat()
             }
             
-            print(f"Added image {image_id} to database")
+            print(f"Added image {image_id} to database (album: {album})")
             return image_id
             
         except Exception as e:
@@ -75,9 +79,64 @@ class ImageDatabase:
         """Lấy thông tin ảnh"""
         return self.images.get(image_id)
     
+    def get_absolute_path(self, image_id):
+        """Lấy absolute path của ảnh từ relative path"""
+        image = self.images.get(image_id)
+        if not image:
+            return None
+        
+        relative_path = image['path']
+        # Nếu đã là absolute path (database cũ), trả về luôn
+        if os.path.isabs(relative_path):
+            return relative_path
+        
+        # Convert relative path sang absolute path
+        return os.path.join(Config.BASE_DIR, relative_path)
+    
     def get_all_images(self):
         """Lấy tất cả ảnh"""
         return self.images
+    
+    def get_albums(self):
+        """Lấy danh sách tất cả album với số lượng ảnh"""
+        albums = {}
+        for image_id, image_data in self.images.items():
+            album = image_data.get('album', 'Uncategorized')
+            if album not in albums:
+                albums[album] = {
+                    'name': album,
+                    'count': 0,
+                    'images': []
+                }
+            albums[album]['count'] += 1
+            albums[album]['images'].append(image_id)
+        return albums
+    
+    def get_images_by_album(self, album_name):
+        """Lấy tất cả ảnh trong một album"""
+        result = {}
+        for image_id, image_data in self.images.items():
+            if image_data.get('album', 'Uncategorized') == album_name:
+                result[image_id] = image_data
+        return result
+    
+    def rename_album(self, old_name, new_name):
+        """Đổi tên album - cập nhật tất cả ảnh trong album"""
+        if not new_name or new_name.strip() == "":
+            return False
+        
+        new_name = new_name.strip()
+        count = 0
+        
+        for image_id, image_data in self.images.items():
+            if image_data.get('album', 'Uncategorized') == old_name:
+                image_data['album'] = new_name
+                count += 1
+        
+        if count > 0:
+            print(f"Renamed album '{old_name}' to '{new_name}' ({count} images)")
+            return True
+        return False
     
     def get_features(self, image_id):
         """Lấy đặc trưng của ảnh - LAZY LOADING"""
@@ -116,8 +175,9 @@ class ImageDatabase:
             return False
         
         try:
-            image_path = self.images[image_id]['path']
-            features = self.feature_extractor.extract_all_features(image_path)
+            # Lấy absolute path để đọc file
+            absolute_path = self.get_absolute_path(image_id)
+            features = self.feature_extractor.extract_all_features(absolute_path)
             self.images[image_id]['features'] = features
             self.images[image_id]['updated_at'] = datetime.now().isoformat()
             return True
@@ -197,6 +257,7 @@ class ImageDatabase:
                 img_id: {
                     'path': img_data['path'],
                     'metadata': img_data['metadata'],
+                    'album': img_data.get('album', 'Uncategorized'),
                     'added_at': img_data.get('added_at', ''),
                     'has_features': img_data['features'] is not None
                 }
@@ -215,12 +276,36 @@ class ImageDatabase:
                 with open(self.db_path, 'rb') as f:
                     self.images = pickle.load(f)
                 print(f"Loaded {len(self.images)} images from database")
+                
+                # Migration: Convert absolute paths sang relative paths
+                self._migrate_to_relative_paths()
+                
             except Exception as e:
                 print(f"Error loading database: {e}")
                 self.images = {}
         else:
             print("No existing database found, starting fresh")
             self.images = {}
+    
+    def _migrate_to_relative_paths(self):
+        """Convert absolute paths cũ sang relative paths"""
+        migrated = 0
+        for image_id, image_data in self.images.items():
+            path = image_data['path']
+            
+            # Nếu là absolute path và nằm trong BASE_DIR
+            if os.path.isabs(path) and Config.BASE_DIR in path:
+                relative_path = os.path.relpath(path, Config.BASE_DIR)
+                image_data['path'] = relative_path
+                migrated += 1
+            
+            # Thêm album field nếu chưa có
+            if 'album' not in image_data:
+                image_data['album'] = 'Uncategorized'
+        
+        if migrated > 0:
+            print(f"Migrated {migrated} images to relative paths")
+            self.save_database()
     
     def clear_database(self):
         """Xóa toàn bộ database"""
