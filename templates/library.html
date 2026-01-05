@@ -1,4 +1,6 @@
-{% extends "base.html" %} {% block title %}Thư viện Ảnh - CBIR System{% endblock %} {% block content %}
+{% extends "base.html" %} 
+{% block title %}Thư viện Ảnh - CBIR System{% endblock %} 
+{% block content %}
 <div class="max-w-7xl mx-auto space-y-8">
   <header class="flex flex-col md:flex-row md:items-center justify-between gap-6">
     <div>
@@ -75,11 +77,8 @@
       return;
     }
 
-    showLoading();
-
-    // Update loading text
-    const loadingText = document.getElementById("loading-text");
-    loadingText.textContent = `Đang xử lý ${files.length} ảnh...`;
+    // ✅ SỬA: Truyền message rõ ràng - KHÔNG CÓ "Processing HSV • LBP • HOG"
+    showLoading(`Đang tải lên ${files.length} ảnh...`);
 
     // Submit form
     form.submit();
@@ -87,7 +86,7 @@
 
   function deleteImage(imageId) {
     if (confirm("Bạn có chắc muốn xóa ảnh này?")) {
-      showLoading();
+      showLoading("Đang xóa ảnh...");
       fetch(`/delete/${imageId}`, { method: "DELETE" })
         .then((response) => response.json())
         .then((data) => {
@@ -107,7 +106,7 @@
 
   function clearDatabase() {
     if (confirm("Bạn có chắc muốn xóa toàn bộ database? Hành động này không thể hoàn tác!")) {
-      showLoading();
+      showLoading("Đang xóa database...");
       fetch("/clear", { method: "POST" })
         .then((response) => response.json())
         .then((data) => {

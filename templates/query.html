@@ -1,76 +1,167 @@
 {% extends "base.html" %} {% block title %}Truy vấn Ảnh - Album System{% endblock %} {% block content %}
 <div class="max-w-7xl mx-auto space-y-10">
   <header>
-    <h2 class="text-4xl font-black text-slate-900 tracking-tight">Truy vấn Nội dung</h2>
-    <p class="text-slate-500 mt-1">Tìm kiếm dữ liệu dựa trên thuộc tính thị giác (Content-Based Image Retrieval).</p>
+    <h2 class="text-4xl font-black text-slate-900 tracking-tight">Truy vấn Ảnh thông minh</h2>
+    <p class="text-slate-500 mt-1">Tìm kiếm hình ảnh tương đồng dựa trên đặc trưng màu sắc, kết cấu và hình dáng.</p>
   </header>
 
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
-    <div class="bg-white p-8 rounded-[3.5rem] shadow-sm border border-slate-100">
-      <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6">Mẫu tìm kiếm (Key)</h3>
-      <div id="query-upload-area">
-        <form action="/query" method="POST" enctype="multipart/form-data" id="query-form">
-          <label
-            class="border-4 border-dashed border-slate-50 rounded-[3rem] aspect-square flex flex-col items-center justify-center bg-slate-50 cursor-pointer hover:bg-white hover:border-indigo-100 transition-all"
-          >
-            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-6 shadow-sm">
-              <svg class="w-8 h-8 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
-              </svg>
-            </div>
-            <span class="text-sm font-black text-slate-400 uppercase tracking-widest">Tải ảnh mẫu</span>
-            <input type="file" name="query_image" accept="image/*" class="hidden" onchange="performQuery()" />
-          </label>
+  <div class="grid lg:grid-cols-12 gap-8">
+    <div class="lg:col-span-4 space-y-8">
+      <div class="bg-white p-6 rounded-[2rem] shadow-sm border border-slate-100">
+        <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+          <span class="bg-indigo-100 text-indigo-600 p-2 rounded-lg">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+            </svg>
+          </span>
+          Cách 1: Upload ảnh mới
+        </h3>
+        <p class="text-slate-500 text-sm mb-4">Tải lên một bức ảnh từ máy tính của bạn để tìm các ảnh tương tự trong hệ thống.</p>
+        <form action="/query" method="POST" enctype="multipart/form-data" class="space-y-4" onsubmit="showLoading()">
+          <div class="relative group">
+            <input type="file" name="query_image" id="query_image" class="hidden" onchange="previewUpload(this)" accept="image/*" />
+            <label
+              for="query_image"
+              class="block w-full h-48 border-2 border-dashed border-indigo-200 rounded-2xl flex flex-col items-center justify-center cursor-pointer hover:bg-indigo-50 transition-colors group-hover:border-indigo-400"
+            >
+              <div id="upload-preview" class="hidden w-full h-full p-2">
+                <img aria-label="xs" id="upload-preview-img" class="w-full h-full object-contain rounded-xl" />
+              </div>
+              <div id="upload-placeholder" class="text-center p-6">
+                <svg class="w-10 h-10 text-indigo-300 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                <span class="text-sm font-medium text-slate-500">Nhấn để chọn ảnh</span>
+              </div>
+            </label>
+          </div>
+          <button type="submit" class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-indigo-200">Tìm kiếm bằng Upload</button>
         </form>
       </div>
     </div>
 
-    <div class="lg:col-span-2 bg-white p-10 rounded-[4rem] shadow-xl border border-slate-100 min-h-[600px]">
-      <h3 class="text-xl font-black mb-8 flex items-center gap-3">
-        <svg class="w-6 h-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-        </svg>
-        Top 10 Kết quả tương đồng
-      </h3>
-      <div id="query-results" class="grid grid-cols-2 sm:grid-cols-3 gap-8">
-        {% if results %} {% for result in results %}
-        <div class="space-y-3">
-          <div class="aspect-square overflow-hidden rounded-[2rem] border-2 border-slate-100">
-            <img src="/uploads/{{ result.metadata.filename }}" alt="" class="w-full h-full object-cover" />
+    <div class="lg:col-span-8">
+      {% if results %}
+      <div class="space-y-6">
+        <div class="flex items-center justify-between">
+          <h3 class="text-2xl font-black text-slate-800">Kết quả tìm kiếm</h3>
+          <a href="/query" class="text-sm font-bold text-indigo-600 hover:text-indigo-800">Quay lại</a>
+        </div>
+
+        <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex items-center gap-6">
+          <div class="w-24 h-24 rounded-2xl overflow-hidden border-2 border-indigo-100 flex-shrink-0">
+            <img aria-label="xs" src="{{ query_image }}" class="w-full h-full object-cover" />
           </div>
-          <div class="space-y-1">
-            <p class="text-xs font-bold text-slate-600 truncate">{{ result.metadata.filename }}</p>
-            <div class="flex items-center gap-2">
-              <div class="flex-1 h-1.5 bg-slate-100 rounded-full overflow-hidden">
-                <div class="h-full bg-indigo-500" style="width: {{ (result.combined_similarity * 100) | round }}%"></div>
+          <div>
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Ảnh truy vấn</p>
+            <p class="font-medium text-slate-700 mt-1">Đang tìm các ảnh tương đồng nhất với ảnh này...</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+          {% for result in results %}
+          <div class="group bg-white p-4 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl transition-all duration-300">
+            <div class="aspect-square rounded-2xl overflow-hidden mb-4 relative">
+              <img aria-label="xs" src="/uploads/{{ result.metadata.filename }}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                <p class="text-white font-bold text-sm">{{ (result.combined_similarity * 100)|round(1) }}% Match</p>
               </div>
-              <span class="text-xs font-black text-indigo-600">{{ (result.combined_similarity * 100) | round(1) }}%</span>
             </div>
-            <div class="text-[10px] text-slate-400 space-y-0.5">
-              <div>Màu: {{ (result.color_similarity * 100) | round(1) }}%</div>
-              <div>Kết cấu: {{ (result.texture_similarity * 100) | round(1) }}%</div>
-              <div>Hình dạng: {{ (result.shape_similarity * 100) | round(1) }}%</div>
+            <div class="space-y-3">
+              <div class="space-y-1">
+                <div class="flex justify-between items-center text-xs">
+                  <span class="font-bold text-slate-500">Màu sắc</span>
+                  <span class="font-bold text-pink-600">{{ (result.color_similarity * 100)|round(0)|int }}%</span>
+                </div>
+                <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                  <div class="h-full bg-pink-500" style="width: {{ result.color_similarity * 100 }}%"></div>
+                </div>
+              </div>
+
+              <div class="space-y-1">
+                <div class="flex justify-between items-center text-xs">
+                  <span class="font-bold text-slate-500">Kết cấu</span>
+                  <span class="font-bold text-cyan-600">{{ (result.texture_similarity * 100)|round(0)|int }}%</span>
+                </div>
+                <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                  <div aria-label="xs" class="h-full bg-cyan-500" style="width: {{ result.texture_similarity * 100 }}%"></div>
+                </div>
+              </div>
+
+              <div class="space-y-1">
+                <div class="flex justify-between items-center text-xs">
+                  <span class="font-bold text-slate-500">Hình dáng</span>
+                  <span class="font-bold text-violet-600">{{ (result.shape_similarity * 100)|round(0)|int }}%</span>
+                </div>
+                <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                  <div aria-label="xs" class="h-full bg-violet-500" style="width: {{ result.shape_similarity * 100 }}%"></div>
+                </div>
+              </div>
             </div>
           </div>
+          {% endfor %}
         </div>
-        {% endfor %} {% else %}
-        <div class="col-span-3 text-center py-20">
-          <svg class="w-16 h-16 text-slate-200 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-          </svg>
-          <p class="text-slate-400 font-bold">Chưa có kết quả tìm kiếm</p>
-          <p class="text-slate-300 text-sm mt-1">Tải ảnh mẫu lên để bắt đầu</p>
-        </div>
-        {% endif %}
       </div>
+
+      {% else %}
+
+      <div>
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+            <span class="bg-indigo-100 text-indigo-600 p-2 rounded-lg">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                ></path>
+              </svg>
+            </span>
+            Cách 2: Chọn từ Thư viện ({{ image_count }})
+          </h3>
+          <span class="text-xs font-bold text-indigo-500 bg-indigo-50 px-3 py-1 rounded-full uppercase tracking-wider">Chọn ảnh bên dưới 👇</span>
+        </div>
+
+        <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 max-h-[800px] overflow-y-auto pr-2 custom-scrollbar">
+          {% for id, img in images.items() %}
+          <form action="/query" method="POST" id="form-{{ id }}" onsubmit="showLoading()">
+            <input type="hidden" name="image_id" value="{{ id }}" />
+            <button type="submit" class="w-full group relative aspect-square rounded-2xl overflow-hidden cursor-pointer focus:outline-none focus:ring-4 focus:ring-indigo-500/30">
+              <img aria-label="xs" src="/uploads/{{ img.metadata.filename }}" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+              <div class="absolute inset-0 bg-indigo-600/0 group-hover:bg-indigo-600/20 transition-colors duration-300 flex items-center justify-center">
+                <span
+                  class="bg-white/90 text-indigo-700 px-3 py-1 rounded-lg text-xs font-bold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all shadow-lg"
+                >
+                  Chọn
+                </span>
+              </div>
+            </button>
+          </form>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
     </div>
   </div>
 </div>
 
 <script>
-  function performQuery() {
-    showLoading();
-    document.getElementById("query-form").submit();
+  function previewUpload(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        document.getElementById("upload-preview-img").src = e.target.result;
+        document.getElementById("upload-preview").classList.remove("hidden");
+        document.getElementById("upload-placeholder").classList.add("hidden");
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
   }
 </script>
 {% endblock %}
