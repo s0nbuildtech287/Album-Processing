@@ -7,6 +7,7 @@
       "dimensions": "612x408",
       "channels": 3
     },
+    "album": "Animals",
     "added_at": "2026-01-05T22:48:41.240753",
     "has_features": false
   },
@@ -18,6 +19,7 @@
       "dimensions": "640x335",
       "channels": 3
     },
+    "album": "Animals",
     "added_at": "2026-01-05T22:48:55.627207",
     "has_features": false
   },
@@ -29,6 +31,7 @@
       "dimensions": "960x864",
       "channels": 3
     },
+    "album": "Animals",
     "added_at": "2026-01-05T22:49:21.165695",
     "has_features": false
   },
@@ -40,6 +43,7 @@
       "dimensions": "800x635",
       "channels": 3
     },
+    "album": "Animals",
     "added_at": "2026-01-05T22:49:21.212837",
     "has_features": false
   },
@@ -51,6 +55,7 @@
       "dimensions": "3840x2160",
       "channels": 3
     },
+    "album": "Animals",
     "added_at": "2026-01-05T22:49:21.609301",
     "has_features": false
   },
@@ -62,6 +67,7 @@
       "dimensions": "2500x2500",
       "channels": 3
     },
+    "album": "Animals",
     "added_at": "2026-01-05T22:49:32.569647",
     "has_features": false
   },
@@ -73,6 +79,7 @@
       "dimensions": "800x450",
       "channels": 3
     },
+    "album": "Animals",
     "added_at": "2026-01-05T22:49:40.157232",
     "has_features": false
   },
@@ -84,6 +91,7 @@
       "dimensions": "600x338",
       "channels": 3
     },
+    "album": "Animals",
     "added_at": "2026-01-05T22:50:34.741334",
     "has_features": false
   },
@@ -95,6 +103,7 @@
       "dimensions": "1200x801",
       "channels": 3
     },
+    "album": "Animals",
     "added_at": "2026-01-05T22:50:34.788024",
     "has_features": false
   },
@@ -106,6 +115,7 @@
       "dimensions": "2500x2500",
       "channels": 3
     },
+    "album": "Animals",
     "added_at": "2026-01-05T22:51:18.501128",
     "has_features": false
   },
@@ -117,6 +127,7 @@
       "dimensions": "1280x720",
       "channels": 3
     },
+    "album": "Animals",
     "added_at": "2026-01-05T22:52:08.979348",
     "has_features": false
   },
@@ -128,6 +139,7 @@
       "dimensions": "600x427",
       "channels": 3
     },
+    "album": "Animals",
     "added_at": "2026-01-05T22:52:09.007989",
     "has_features": false
   },
@@ -139,6 +151,7 @@
       "dimensions": "768x645",
       "channels": 3
     },
+    "album": "Vehicles",
     "added_at": "2026-01-05T23:15:59.660704",
     "has_features": false
   },
@@ -150,6 +163,7 @@
       "dimensions": "2048x1261",
       "channels": 3
     },
+    "album": "Vehicles",
     "added_at": "2026-01-05T23:15:59.735793",
     "has_features": false
   },
@@ -161,6 +175,7 @@
       "dimensions": "619x450",
       "channels": 3
     },
+    "album": "Vehicles",
     "added_at": "2026-01-05T23:15:59.756396",
     "has_features": false
   },
@@ -172,6 +187,7 @@
       "dimensions": "298x169",
       "channels": 3
     },
+    "album": "Vehicles",
     "added_at": "2026-01-05T23:15:59.768493",
     "has_features": false
   },
@@ -183,6 +199,7 @@
       "dimensions": "889x500",
       "channels": 3
     },
+    "album": "Vehicles",
     "added_at": "2026-01-05T23:15:59.795713",
     "has_features": false
   },
@@ -194,7 +211,200 @@
       "dimensions": "800x507",
       "channels": 3
     },
+    "album": "Vehicles",
     "added_at": "2026-01-05T23:15:59.831523",
+    "has_features": false
+  },
+  "rung2_20260105232516491952": {
+    "path": "uploads\\images\\rung2.jpg",
+    "metadata": {
+      "filename": "rung2.jpg",
+      "size": 14517,
+      "dimensions": "300x168",
+      "channels": 3
+    },
+    "album": "Naturals",
+    "added_at": "2026-01-05T23:25:16.492964",
+    "has_features": false
+  },
+  "rung1_20260105232516956588": {
+    "path": "uploads\\images\\rung1.jpg",
+    "metadata": {
+      "filename": "rung1.jpg",
+      "size": 20253392,
+      "dimensions": "4928x3264",
+      "channels": 3
+    },
+    "album": "Naturals",
+    "added_at": "2026-01-05T23:25:17.388620",
+    "has_features": false
+  },
+  "nuilua_20260105232517408578": {
+    "path": "uploads\\images\\nuilua.jpg",
+    "metadata": {
+      "filename": "nuilua.jpg",
+      "size": 19367,
+      "dimensions": "800x450",
+      "channels": 3
+    },
+    "album": "Naturals",
+    "added_at": "2026-01-05T23:25:17.415664",
+    "has_features": false
+  },
+  "nui2_20260105232517441305": {
+    "path": "uploads\\images\\nui2.png",
+    "metadata": {
+      "filename": "nui2.png",
+      "size": 727483,
+      "dimensions": "770x433",
+      "channels": 3
+    },
+    "album": "Naturals",
+    "added_at": "2026-01-05T23:25:17.453045",
+    "has_features": false
+  },
+  "nui1_20260105232517466480": {
+    "path": "uploads\\images\\nui1.jpg",
+    "metadata": {
+      "filename": "nui1.jpg",
+      "size": 32856,
+      "dimensions": "800x534",
+      "channels": 3
+    },
+    "album": "Naturals",
+    "added_at": "2026-01-05T23:25:17.472115",
+    "has_features": false
+  },
+  "bien3_20260105232517507995": {
+    "path": "uploads\\images\\bien3.png",
+    "metadata": {
+      "filename": "bien3.png",
+      "size": 879638,
+      "dimensions": "800x450",
+      "channels": 3
+    },
+    "album": "Naturals",
+    "added_at": "2026-01-05T23:25:17.526233",
+    "has_features": false
+  },
+  "bien2_20260105232517698651": {
+    "path": "uploads\\images\\bien2.png",
+    "metadata": {
+      "filename": "bien2.png",
+      "size": 6997111,
+      "dimensions": "2560x1707",
+      "channels": 3
+    },
+    "album": "Naturals",
+    "added_at": "2026-01-05T23:25:17.836213",
+    "has_features": false
+  },
+  "bien1_20260105232517903935": {
+    "path": "uploads\\images\\bien1.png",
+    "metadata": {
+      "filename": "bien1.png",
+      "size": 3467295,
+      "dimensions": "1624x1080",
+      "channels": 3
+    },
+    "album": "Naturals",
+    "added_at": "2026-01-05T23:25:17.953494",
+    "has_features": false
+  },
+  "trecon2_20260105233002667829": {
+    "path": "uploads\\images\\trecon2.jpg",
+    "metadata": {
+      "filename": "trecon2.jpg",
+      "size": 54961,
+      "dimensions": "1000x600",
+      "channels": 3
+    },
+    "album": "Humans",
+    "added_at": "2026-01-05T23:30:02.681592",
+    "has_features": false
+  },
+  "trecon1_20260105233002699109": {
+    "path": "uploads\\images\\trecon1.jpg",
+    "metadata": {
+      "filename": "trecon1.jpg",
+      "size": 114759,
+      "dimensions": "850x567",
+      "channels": 3
+    },
+    "album": "Humans",
+    "added_at": "2026-01-05T23:30:02.705220",
+    "has_features": false
+  },
+  "nguoigia2_20260105233002717058": {
+    "path": "uploads\\images\\nguoigia2.jpg",
+    "metadata": {
+      "filename": "nguoigia2.jpg",
+      "size": 48730,
+      "dimensions": "500x397",
+      "channels": 3
+    },
+    "album": "Humans",
+    "added_at": "2026-01-05T23:30:02.720121",
+    "has_features": false
+  },
+  "nguoigia1_20260105233002738143": {
+    "path": "uploads\\images\\nguoigia1.jpg",
+    "metadata": {
+      "filename": "nguoigia1.jpg",
+      "size": 109141,
+      "dimensions": "1111x737",
+      "channels": 3
+    },
+    "album": "Humans",
+    "added_at": "2026-01-05T23:30:02.747321",
+    "has_features": false
+  },
+  "bodoi2_20260105233002847452": {
+    "path": "uploads\\images\\bodoi2.png",
+    "metadata": {
+      "filename": "bodoi2.png",
+      "size": 6583079,
+      "dimensions": "2047x1365",
+      "channels": 3
+    },
+    "album": "Humans",
+    "added_at": "2026-01-05T23:30:02.931099",
+    "has_features": false
+  },
+  "bodoi1_20260105233002960240": {
+    "path": "uploads\\images\\bodoi1.png",
+    "metadata": {
+      "filename": "bodoi1.png",
+      "size": 1091479,
+      "dimensions": "820x565",
+      "channels": 3
+    },
+    "album": "Humans",
+    "added_at": "2026-01-05T23:30:02.975298",
+    "has_features": false
+  },
+  "bacsy2_20260105233003036559": {
+    "path": "uploads\\images\\bacsy2.png",
+    "metadata": {
+      "filename": "bacsy2.png",
+      "size": 2050584,
+      "dimensions": "1707x2560",
+      "channels": 3
+    },
+    "album": "Humans",
+    "added_at": "2026-01-05T23:30:03.085074",
+    "has_features": false
+  },
+  "bacsy1_20260105233003109080": {
+    "path": "uploads\\images\\bacsy1.png",
+    "metadata": {
+      "filename": "bacsy1.png",
+      "size": 628176,
+      "dimensions": "800x600",
+      "channels": 3
+    },
+    "album": "Humans",
+    "added_at": "2026-01-05T23:30:03.121158",
     "has_features": false
   }
 }

@@ -41,7 +41,7 @@ class Config:
     
     # Flask config
     SECRET_KEY = 'your-secret-key-here'
-    MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16MB max file size
+    MAX_CONTENT_LENGTH = 100 * 1024 * 1024  # 100MB max file size (cho phép upload nhiều ảnh cùng lúc)
     
     @staticmethod
     def init_app():
