@@ -1,68 +1,134 @@
 {
-  "sunflower-6515860_1280_20260105150125249628": {
-    "path": "D:\\THDPT\\Album-Processing\\uploads\\sunflower-6515860_1280.jpg",
+  "img_20260105_180249147610_20260105180249223174": {
+    "path": "D:\\THDPT\\Album-Processing\\uploads\\img_20260105_180249147610.jpg",
     "metadata": {
-      "filename": "sunflower-6515860_1280.jpg",
+      "filename": "img_20260105_180249147610.jpg",
       "size": 165095,
       "dimensions": "1280x853",
       "channels": 3
     },
-    "added_at": "2026-01-05T15:01:25.272153",
+    "added_at": "2026-01-05T18:02:49.245174",
     "has_features": true
   },
-  "cc7e2c569bd457143ba8a33a4e879d4f_20260105150125275155": {
-    "path": "D:\\THDPT\\Album-Processing\\uploads\\cc7e2c569bd457143ba8a33a4e879d4f.jpg",
+  "img_20260105_180249245174_20260105180249293691": {
+    "path": "D:\\THDPT\\Album-Processing\\uploads\\img_20260105_180249245174.jpg",
     "metadata": {
-      "filename": "cc7e2c569bd457143ba8a33a4e879d4f.jpg",
+      "filename": "img_20260105_180249245174.jpg",
       "size": 232390,
       "dimensions": "736x736",
       "channels": 3
     },
-    "added_at": "2026-01-05T15:01:25.317163",
+    "added_at": "2026-01-05T18:02:49.320706",
     "has_features": true
   },
-  "hinh-anh-dep-ve-canh-binh-yen-o-chon-nui-rung_20260105150125320155": {
-    "path": "D:\\THDPT\\Album-Processing\\uploads\\hinh-anh-dep-ve-canh-binh-yen-o-chon-nui-rung.jpg",
+  "img_20260105_180249320706_20260105180249359776": {
+    "path": "D:\\THDPT\\Album-Processing\\uploads\\img_20260105_180249320706.webp",
     "metadata": {
-      "filename": "hinh-anh-dep-ve-canh-binh-yen-o-chon-nui-rung.jpg",
+      "filename": "img_20260105_180249320706.webp",
+      "size": 44010,
+      "dimensions": "474x266",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T18:02:49.364774",
+    "has_features": true
+  },
+  "img_20260105_180249365783_20260105180249403825": {
+    "path": "D:\\THDPT\\Album-Processing\\uploads\\img_20260105_180249365783.jpg",
+    "metadata": {
+      "filename": "img_20260105_180249365783.jpg",
       "size": 117787,
       "dimensions": "900x599",
       "channels": 3
     },
-    "added_at": "2026-01-05T15:01:25.353688",
+    "added_at": "2026-01-05T18:02:49.417820",
     "has_features": true
   },
-  "cc7e2c569bd457143ba8a33a4e879d4f_20260105_150534843109_20260105150534926642": {
-    "path": "D:\\THDPT\\Album-Processing\\uploads\\cc7e2c569bd457143ba8a33a4e879d4f_20260105_150534843109.jpg",
+  "img_20260105_180249417820_20260105180249435903": {
+    "path": "D:\\THDPT\\Album-Processing\\uploads\\img_20260105_180249417820.webp",
     "metadata": {
-      "filename": "cc7e2c569bd457143ba8a33a4e879d4f_20260105_150534843109.jpg",
-      "size": 232390,
-      "dimensions": "736x736",
+      "filename": "img_20260105_180249417820.webp",
+      "size": 14544,
+      "dimensions": "331x164",
       "channels": 3
     },
-    "added_at": "2026-01-05T15:05:34.952657",
+    "added_at": "2026-01-05T18:02:49.437905",
     "has_features": true
   },
-  "hinh-anh-dep-ve-canh-binh-yen-o-chon-nui-rung_20260105_150534954665_20260105150535013667": {
-    "path": "D:\\THDPT\\Album-Processing\\uploads\\hinh-anh-dep-ve-canh-binh-yen-o-chon-nui-rung_20260105_150534954665.jpg",
+  "img_20260105_180249437905_20260105180249468429": {
+    "path": "D:\\THDPT\\Album-Processing\\uploads\\img_20260105_180249437905.webp",
     "metadata": {
-      "filename": "hinh-anh-dep-ve-canh-binh-yen-o-chon-nui-rung_20260105_150534954665.jpg",
-      "size": 117787,
-      "dimensions": "900x599",
+      "filename": "img_20260105_180249437905.webp",
+      "size": 12266,
+      "dimensions": "331x235",
       "channels": 3
     },
-    "added_at": "2026-01-05T15:05:35.033220",
+    "added_at": "2026-01-05T18:02:49.470450",
     "has_features": true
   },
-  "img_20260105_170206441528_20260105170206520120": {
-    "path": "D:\\THDPT\\Album-Processing\\uploads\\img_20260105_170206441528.jfif",
+  "img_20260105_180249470450_20260105180249535450": {
+    "path": "D:\\THDPT\\Album-Processing\\uploads\\img_20260105_180249470450.jfif",
     "metadata": {
-      "filename": "img_20260105_170206441528.jfif",
+      "filename": "img_20260105_180249470450.jfif",
+      "size": 2420501,
+      "dimensions": "1858x1200",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T18:02:49.565455",
+    "has_features": true
+  },
+  "img_20260105_180249565455_20260105180249587816": {
+    "path": "D:\\THDPT\\Album-Processing\\uploads\\img_20260105_180249565455.webp",
+    "metadata": {
+      "filename": "img_20260105_180249565455.webp",
+      "size": 44588,
+      "dimensions": "331x411",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T18:02:49.593802",
+    "has_features": true
+  },
+  "img_20260105_180249594801_20260105180249624804": {
+    "path": "D:\\THDPT\\Album-Processing\\uploads\\img_20260105_180249594801.webp",
+    "metadata": {
+      "filename": "img_20260105_180249594801.webp",
+      "size": 22232,
+      "dimensions": "299x532",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T18:02:49.629806",
+    "has_features": true
+  },
+  "img_20260105_180249630804_20260105180249669361": {
+    "path": "D:\\THDPT\\Album-Processing\\uploads\\img_20260105_180249630804.jfif",
+    "metadata": {
+      "filename": "img_20260105_180249630804.jfif",
       "size": 630075,
       "dimensions": "1600x1051",
       "channels": 3
     },
-    "added_at": "2026-01-05T17:02:06.539113",
+    "added_at": "2026-01-05T18:02:49.686373",
+    "has_features": true
+  },
+  "img_20260105_180734014698_20260105180734048684": {
+    "path": "D:\\THDPT\\Album-Processing\\uploads\\img_20260105_180734014698.webp",
+    "metadata": {
+      "filename": "img_20260105_180734014698.webp",
+      "size": 44010,
+      "dimensions": "474x266",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T18:07:34.056680",
+    "has_features": false
+  },
+  "img_20260105_180739497301_20260105180739555838": {
+    "path": "D:\\THDPT\\Album-Processing\\uploads\\img_20260105_180739497301.jfif",
+    "metadata": {
+      "filename": "img_20260105_180739497301.jfif",
+      "size": 630075,
+      "dimensions": "1600x1051",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T18:07:39.595855",
     "has_features": false
   }
 }
