@@ -77,12 +77,23 @@
 
     showLoading();
 
-    // Update loading text
-    const loadingText = document.getElementById("loading-text");
-    loadingText.textContent = `Đang xử lý ${files.length} ảnh...`;
-
-    // Submit form
-    form.submit();
+    // Use fetch instead of form.submit() for better compatibility
+    fetch("/upload", {
+      method: "POST",
+      body: formData
+    })
+    .then(response => {
+      if (response.ok || response.redirected) {
+        location.reload();
+      } else {
+        throw new Error("Upload failed: " + response.status);
+      }
+    })
+    .catch(error => {
+      console.error("Upload error:", error);
+      alert("Lỗi upload: " + error.message);
+      hideLoading();
+    });
   }
 
   function deleteImage(imageId) {
