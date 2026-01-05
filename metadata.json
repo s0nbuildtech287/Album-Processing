@@ -1,134 +1,222 @@
 {
-  "img_20260105_180249147610_20260105180249223174": {
-    "path": "D:\\THDPT\\Album-Processing\\uploads\\img_20260105_180249147610.jpg",
+  "img_20260105_213234093397_20260105213234123735": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album-Processing2\\Album-Processing\\uploads\\img_20260105_213234093397.jpg",
     "metadata": {
-      "filename": "img_20260105_180249147610.jpg",
+      "filename": "img_20260105_213234093397.jpg",
+      "size": 32442,
+      "dimensions": "563x409",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T21:32:34.125736",
+    "has_features": false
+  },
+  "img_20260105_213234125736_20260105213234140948": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album-Processing2\\Album-Processing\\uploads\\img_20260105_213234125736.jpg",
+    "metadata": {
+      "filename": "img_20260105_213234125736.jpg",
+      "size": 27127,
+      "dimensions": "563x409",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T21:32:34.143133",
+    "has_features": false
+  },
+  "img_20260105_213234144134_20260105213234155423": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album-Processing2\\Album-Processing\\uploads\\img_20260105_213234144134.jpg",
+    "metadata": {
+      "filename": "img_20260105_213234144134.jpg",
+      "size": 26784,
+      "dimensions": "563x409",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T21:32:34.156422",
+    "has_features": false
+  },
+  "img_20260105_213234157419_20260105213234171799": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album-Processing2\\Album-Processing\\uploads\\img_20260105_213234157419.jpg",
+    "metadata": {
+      "filename": "img_20260105_213234157419.jpg",
+      "size": 51000,
+      "dimensions": "563x570",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T21:32:34.176408",
+    "has_features": false
+  },
+  "img_20260105_213318200154_20260105213318240961": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album-Processing2\\Album-Processing\\uploads\\img_20260105_213318200154.jfif",
+    "metadata": {
+      "filename": "img_20260105_213318200154.jfif",
+      "size": 630075,
+      "dimensions": "1600x1051",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T21:33:18.266931",
+    "has_features": false
+  },
+  "img_20260105_213318266931_20260105213318288646": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album-Processing2\\Album-Processing\\uploads\\img_20260105_213318266931.webp",
+    "metadata": {
+      "filename": "img_20260105_213318266931.webp",
+      "size": 44010,
+      "dimensions": "474x266",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T21:33:18.292163",
+    "has_features": false
+  },
+  "img_20260105_213318292163_20260105213318307471": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album-Processing2\\Album-Processing\\uploads\\img_20260105_213318292163.jpg",
+    "metadata": {
+      "filename": "img_20260105_213318292163.jpg",
+      "size": 132410,
+      "dimensions": "900x599",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T21:33:18.313559",
+    "has_features": false
+  },
+  "img_20260105_213318313559_20260105213318333230": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album-Processing2\\Album-Processing\\uploads\\img_20260105_213318313559.jpg",
+    "metadata": {
+      "filename": "img_20260105_213318313559.jpg",
       "size": 165095,
       "dimensions": "1280x853",
       "channels": 3
     },
-    "added_at": "2026-01-05T18:02:49.245174",
-    "has_features": true
+    "added_at": "2026-01-05T21:33:18.344817",
+    "has_features": false
   },
-  "img_20260105_180249245174_20260105180249293691": {
-    "path": "D:\\THDPT\\Album-Processing\\uploads\\img_20260105_180249245174.jpg",
+  "img_20260105_213318344817_20260105213318368770": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album-Processing2\\Album-Processing\\uploads\\img_20260105_213318344817.jpg",
     "metadata": {
-      "filename": "img_20260105_180249245174.jpg",
+      "filename": "img_20260105_213318344817.jpg",
       "size": 232390,
       "dimensions": "736x736",
       "channels": 3
     },
-    "added_at": "2026-01-05T18:02:49.320706",
-    "has_features": true
+    "added_at": "2026-01-05T21:33:18.385443",
+    "has_features": false
   },
-  "img_20260105_180249320706_20260105180249359776": {
-    "path": "D:\\THDPT\\Album-Processing\\uploads\\img_20260105_180249320706.webp",
+  "img_20260105_213318385443_20260105213318398456": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album-Processing2\\Album-Processing\\uploads\\img_20260105_213318385443.webp",
     "metadata": {
-      "filename": "img_20260105_180249320706.webp",
+      "filename": "img_20260105_213318385443.webp",
       "size": 44010,
       "dimensions": "474x266",
       "channels": 3
     },
-    "added_at": "2026-01-05T18:02:49.364774",
-    "has_features": true
+    "added_at": "2026-01-05T21:33:18.402970",
+    "has_features": false
   },
-  "img_20260105_180249365783_20260105180249403825": {
-    "path": "D:\\THDPT\\Album-Processing\\uploads\\img_20260105_180249365783.jpg",
+  "img_20260105_213318402970_20260105213318423752": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album-Processing2\\Album-Processing\\uploads\\img_20260105_213318402970.jpg",
     "metadata": {
-      "filename": "img_20260105_180249365783.jpg",
+      "filename": "img_20260105_213318402970.jpg",
       "size": 117787,
       "dimensions": "900x599",
       "channels": 3
     },
-    "added_at": "2026-01-05T18:02:49.417820",
-    "has_features": true
+    "added_at": "2026-01-05T21:33:18.435468",
+    "has_features": false
   },
-  "img_20260105_180249417820_20260105180249435903": {
-    "path": "D:\\THDPT\\Album-Processing\\uploads\\img_20260105_180249417820.webp",
+  "img_20260105_213318435468_20260105213318446116": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album-Processing2\\Album-Processing\\uploads\\img_20260105_213318435468.webp",
     "metadata": {
-      "filename": "img_20260105_180249417820.webp",
+      "filename": "img_20260105_213318435468.webp",
       "size": 14544,
       "dimensions": "331x164",
       "channels": 3
     },
-    "added_at": "2026-01-05T18:02:49.437905",
-    "has_features": true
+    "added_at": "2026-01-05T21:33:18.448114",
+    "has_features": false
   },
-  "img_20260105_180249437905_20260105180249468429": {
-    "path": "D:\\THDPT\\Album-Processing\\uploads\\img_20260105_180249437905.webp",
+  "img_20260105_213318448114_20260105213318457847": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album-Processing2\\Album-Processing\\uploads\\img_20260105_213318448114.webp",
     "metadata": {
-      "filename": "img_20260105_180249437905.webp",
+      "filename": "img_20260105_213318448114.webp",
       "size": 12266,
       "dimensions": "331x235",
       "channels": 3
     },
-    "added_at": "2026-01-05T18:02:49.470450",
-    "has_features": true
+    "added_at": "2026-01-05T21:33:18.458853",
+    "has_features": false
   },
-  "img_20260105_180249470450_20260105180249535450": {
-    "path": "D:\\THDPT\\Album-Processing\\uploads\\img_20260105_180249470450.jfif",
+  "img_20260105_213318458853_20260105213318520332": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album-Processing2\\Album-Processing\\uploads\\img_20260105_213318458853.jfif",
     "metadata": {
-      "filename": "img_20260105_180249470450.jfif",
+      "filename": "img_20260105_213318458853.jfif",
       "size": 2420501,
       "dimensions": "1858x1200",
       "channels": 3
     },
-    "added_at": "2026-01-05T18:02:49.565455",
-    "has_features": true
+    "added_at": "2026-01-05T21:33:18.566267",
+    "has_features": false
   },
-  "img_20260105_180249565455_20260105180249587816": {
-    "path": "D:\\THDPT\\Album-Processing\\uploads\\img_20260105_180249565455.webp",
+  "img_20260105_213318567262_20260105213318582641": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album-Processing2\\Album-Processing\\uploads\\img_20260105_213318567262.webp",
     "metadata": {
-      "filename": "img_20260105_180249565455.webp",
+      "filename": "img_20260105_213318567262.webp",
       "size": 44588,
       "dimensions": "331x411",
       "channels": 3
     },
-    "added_at": "2026-01-05T18:02:49.593802",
-    "has_features": true
+    "added_at": "2026-01-05T21:33:18.586629",
+    "has_features": false
   },
-  "img_20260105_180249594801_20260105180249624804": {
-    "path": "D:\\THDPT\\Album-Processing\\uploads\\img_20260105_180249594801.webp",
+  "img_20260105_213318586629_20260105213318599351": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album-Processing2\\Album-Processing\\uploads\\img_20260105_213318586629.webp",
     "metadata": {
-      "filename": "img_20260105_180249594801.webp",
+      "filename": "img_20260105_213318586629.webp",
       "size": 22232,
       "dimensions": "299x532",
       "channels": 3
     },
-    "added_at": "2026-01-05T18:02:49.629806",
-    "has_features": true
-  },
-  "img_20260105_180249630804_20260105180249669361": {
-    "path": "D:\\THDPT\\Album-Processing\\uploads\\img_20260105_180249630804.jfif",
-    "metadata": {
-      "filename": "img_20260105_180249630804.jfif",
-      "size": 630075,
-      "dimensions": "1600x1051",
-      "channels": 3
-    },
-    "added_at": "2026-01-05T18:02:49.686373",
-    "has_features": true
-  },
-  "img_20260105_180734014698_20260105180734048684": {
-    "path": "D:\\THDPT\\Album-Processing\\uploads\\img_20260105_180734014698.webp",
-    "metadata": {
-      "filename": "img_20260105_180734014698.webp",
-      "size": 44010,
-      "dimensions": "474x266",
-      "channels": 3
-    },
-    "added_at": "2026-01-05T18:07:34.056680",
+    "added_at": "2026-01-05T21:33:18.602742",
     "has_features": false
   },
-  "img_20260105_180739497301_20260105180739555838": {
-    "path": "D:\\THDPT\\Album-Processing\\uploads\\img_20260105_180739497301.jfif",
+  "img_20260105_213318602742_20260105213318640504": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album-Processing2\\Album-Processing\\uploads\\img_20260105_213318602742.jfif",
     "metadata": {
-      "filename": "img_20260105_180739497301.jfif",
+      "filename": "img_20260105_213318602742.jfif",
       "size": 630075,
       "dimensions": "1600x1051",
       "channels": 3
     },
-    "added_at": "2026-01-05T18:07:39.595855",
+    "added_at": "2026-01-05T21:33:18.661934",
+    "has_features": false
+  },
+  "img_20260105_213333814543_20260105213333824053": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album-Processing2\\Album-Processing\\uploads\\img_20260105_213333814543.jpg",
+    "metadata": {
+      "filename": "img_20260105_213333814543.jpg",
+      "size": 14607,
+      "dimensions": "207x243",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T21:33:33.825188",
+    "has_features": false
+  },
+  "img_20260105_213337821814_20260105213337832898": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album-Processing2\\Album-Processing\\uploads\\img_20260105_213337821814.jpg",
+    "metadata": {
+      "filename": "img_20260105_213337821814.jpg",
+      "size": 33216,
+      "dimensions": "300x578",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T21:33:37.834898",
+    "has_features": false
+  },
+  "img_20260105_213345594690_20260105213345611791": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album-Processing2\\Album-Processing\\uploads\\img_20260105_213345594690.jpg",
+    "metadata": {
+      "filename": "img_20260105_213345594690.jpg",
+      "size": 25903,
+      "dimensions": "480x270",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T21:33:45.615798",
     "has_features": false
   }
 }
