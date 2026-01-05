@@ -1,0 +1,68 @@
+{
+  "sunflower-6515860_1280_20260105150125249628": {
+    "path": "D:\\THDPT\\Album-Processing\\uploads\\sunflower-6515860_1280.jpg",
+    "metadata": {
+      "filename": "sunflower-6515860_1280.jpg",
+      "size": 165095,
+      "dimensions": "1280x853",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T15:01:25.272153",
+    "has_features": true
+  },
+  "cc7e2c569bd457143ba8a33a4e879d4f_20260105150125275155": {
+    "path": "D:\\THDPT\\Album-Processing\\uploads\\cc7e2c569bd457143ba8a33a4e879d4f.jpg",
+    "metadata": {
+      "filename": "cc7e2c569bd457143ba8a33a4e879d4f.jpg",
+      "size": 232390,
+      "dimensions": "736x736",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T15:01:25.317163",
+    "has_features": true
+  },
+  "hinh-anh-dep-ve-canh-binh-yen-o-chon-nui-rung_20260105150125320155": {
+    "path": "D:\\THDPT\\Album-Processing\\uploads\\hinh-anh-dep-ve-canh-binh-yen-o-chon-nui-rung.jpg",
+    "metadata": {
+      "filename": "hinh-anh-dep-ve-canh-binh-yen-o-chon-nui-rung.jpg",
+      "size": 117787,
+      "dimensions": "900x599",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T15:01:25.353688",
+    "has_features": true
+  },
+  "cc7e2c569bd457143ba8a33a4e879d4f_20260105_150534843109_20260105150534926642": {
+    "path": "D:\\THDPT\\Album-Processing\\uploads\\cc7e2c569bd457143ba8a33a4e879d4f_20260105_150534843109.jpg",
+    "metadata": {
+      "filename": "cc7e2c569bd457143ba8a33a4e879d4f_20260105_150534843109.jpg",
+      "size": 232390,
+      "dimensions": "736x736",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T15:05:34.952657",
+    "has_features": true
+  },
+  "hinh-anh-dep-ve-canh-binh-yen-o-chon-nui-rung_20260105_150534954665_20260105150535013667": {
+    "path": "D:\\THDPT\\Album-Processing\\uploads\\hinh-anh-dep-ve-canh-binh-yen-o-chon-nui-rung_20260105_150534954665.jpg",
+    "metadata": {
+      "filename": "hinh-anh-dep-ve-canh-binh-yen-o-chon-nui-rung_20260105_150534954665.jpg",
+      "size": 117787,
+      "dimensions": "900x599",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T15:05:35.033220",
+    "has_features": true
+  },
+  "img_20260105_170206441528_20260105170206520120": {
+    "path": "D:\\THDPT\\Album-Processing\\uploads\\img_20260105_170206441528.jfif",
+    "metadata": {
+      "filename": "img_20260105_170206441528.jfif",
+      "size": 630075,
+      "dimensions": "1600x1051",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T17:02:06.539113",
+    "has_features": false
+  }
+}

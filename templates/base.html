@@ -59,7 +59,7 @@
     </style>
   </head>
   <body class="bg-gray-50">
-    <!-- Loading Overlay -->
+    <!-- Loading Overlay - FIXED -->
     <div id="loading-overlay" class="hidden fixed inset-0 bg-slate-900/40 z-50 flex flex-col items-center justify-center">
       <div class="relative">
         <div class="w-24 h-24 border-8 border-indigo-500/20 border-t-indigo-500 rounded-full animate-spin"></div>
@@ -72,8 +72,8 @@
           ></path>
         </svg>
       </div>
-      <p class="mt-6 text-white font-black text-2xl tracking-tight">Đang xử lý...</p>
-      <p class="text-slate-300 mt-2 text-sm">Processing HSV • LBP • HOG</p>
+      <p id="loading-text" class="mt-6 text-white font-black text-2xl tracking-tight">Đang xử lý...</p>
+      <p id="loading-subtext" class="text-slate-300 mt-2 text-sm"></p>
     </div>
 
     <div class="flex h-screen overflow-hidden">
@@ -155,8 +155,15 @@
     </div>
 
     <script>
-      function showLoading() {
-        document.getElementById("loading-overlay").classList.remove("hidden");
+      // ✅ FIXED: Nhận tham số text và subtext
+      function showLoading(text = "Đang xử lý...", subtext = "") {
+        const overlay = document.getElementById("loading-overlay");
+        const textEl = document.getElementById("loading-text");
+        const subtextEl = document.getElementById("loading-subtext");
+        
+        textEl.textContent = text;
+        subtextEl.textContent = subtext;
+        overlay.classList.remove("hidden");
       }
 
       function hideLoading() {

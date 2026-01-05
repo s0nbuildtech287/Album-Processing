@@ -1,41 +1,91 @@
 {% extends "base.html" %} {% block title %}Dọn dẹp - Album System{% endblock %} {% block content %}
 <div class="max-w-7xl mx-auto space-y-10">
-  <header class="flex justify-between items-center">
+  <header class="flex flex-col md:flex-row justify-between items-center gap-4">
     <div>
       <h2 class="text-4xl font-black text-slate-900 tracking-tight">Dọn dẹp Thông minh</h2>
       <p class="text-slate-500 mt-1">Tự động nhận diện các nhóm ảnh trùng lặp để tối ưu hóa không gian lưu trữ.</p>
     </div>
-    <form action="/cleanup" method="POST">
-      <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-2xl font-black btn-hover">
-        <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-        </svg>
-        Quét trùng lặp
-      </button>
-    </form>
+    
+    <div class="flex gap-3">
+        <form action="/cleanup" method="POST">
+          <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-2xl font-black btn-hover flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            Quét trùng lặp
+          </button>
+        </form>
+
+        {% if duplicate_groups %}
+        <button onclick="confirmAutoCleanup()" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-2xl font-black btn-hover flex items-center gap-2 shadow-lg shadow-orange-200">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+            Tự động dọn dẹp
+        </button>
+        {% endif %}
+    </div>
   </header>
 
   <div id="duplicates-container">
     {% if duplicate_groups %}
+    
+    <div class="bg-orange-50 border-l-4 border-orange-500 p-4 mb-8 rounded-r-xl">
+        <div class="flex">
+            <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-orange-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm text-orange-700">
+                    Phát hiện <span class="font-bold">{{ duplicate_groups|length }}</span> nhóm ảnh trùng lặp. 
+                    Nút "Tự động dọn dẹp" sẽ giữ lại 1 ảnh duy nhất trong mỗi nhóm và xóa các bản sao còn lại.
+                </p>
+            </div>
+        </div>
+    </div>
+
     <div class="space-y-8">
       {% for group in duplicate_groups %}
-      <div class="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-100">
-        <div class="flex items-center justify-between mb-6">
-          <h3 class="text-xl font-black flex items-center gap-3">
-            <span class="bg-red-100 text-red-600 w-10 h-10 rounded-full flex items-center justify-center text-sm font-black"> {{ group.size }} </span>
-            Nhóm trùng lặp #{{ loop.index }}
+      <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 relative overflow-hidden">
+        <div class="absolute top-0 left-0 bg-slate-100 px-4 py-2 rounded-br-2xl text-xs font-bold text-slate-500">
+            Nhóm #{{ loop.index }}
+        </div>
+
+        <div class="flex flex-col md:flex-row items-center justify-between mb-6 mt-4">
+          <h3 class="text-xl font-black flex items-center gap-3 text-slate-800">
+            <span class="bg-red-100 text-red-600 w-8 h-8 rounded-full flex items-center justify-center text-sm font-black"> {{ group.size }} </span>
+            bản sao được tìm thấy
           </h3>
-          <button onclick="deleteGroup({{ group.images | tojson }})" class="bg-red-50 text-red-600 px-6 py-2 rounded-xl font-bold hover:bg-red-100">Xóa nhóm</button>
+          <button onclick="deleteGroup({{ group.images | tojson }})" class="text-red-600 hover:bg-red-50 px-4 py-2 rounded-xl font-bold text-sm transition-colors">
+              Xóa thủ công nhóm này
+          </button>
         </div>
 
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
           {% for img in group.images_info %}
-          <div class="space-y-2">
-            <div class="aspect-square overflow-hidden rounded-[1.5rem] border-2 border-slate-100">
-              <img src="/uploads/{{ img.metadata.filename }}" alt="" class="w-full h-full object-cover" />
+          <div class="space-y-3 group relative">
+            <div class="aspect-square overflow-hidden rounded-2xl border-2 {% if loop.first %}border-emerald-400 shadow-emerald-100 shadow-lg{% else %}border-slate-100{% endif %}">
+              <img src="/uploads/{{ img.metadata.filename }}" class="w-full h-full object-cover" />
+              
+              {% if loop.first %}
+              <div class="absolute top-2 left-2 bg-emerald-500 text-white text-[10px] font-bold px-2 py-1 rounded-lg shadow-sm">
+                  GIỮ LẠI
+              </div>
+              {% else %}
+              <div class="absolute top-2 left-2 bg-slate-900/50 text-white text-[10px] font-bold px-2 py-1 rounded-lg backdrop-blur-sm">
+                  BẢN SAO
+              </div>
+              {% endif %}
             </div>
-            <p class="text-xs font-bold text-slate-600 truncate">{{ img.metadata.filename }}</p>
-            <button onclick="deleteImage('{{ img.id }}')" class="w-full bg-red-50 text-red-600 px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-red-100">Xóa</button>
+            
+            <div class="flex justify-between items-center">
+                <p class="text-[10px] font-bold text-slate-400 truncate w-20">{{ img.metadata.filename }}</p>
+                {% if not loop.first %}
+                <button onclick="deleteImage('{{ img.id }}')" class="text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 p-1.5 rounded-lg transition-colors" title="Xóa ảnh này">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                </button>
+                {% endif %}
+            </div>
           </div>
           {% endfor %}
         </div>
@@ -44,27 +94,57 @@
     </div>
     {% else %}
     <div class="bg-white p-32 rounded-[3rem] border-2 border-dashed border-slate-200 flex flex-col items-center justify-center text-center">
-      <div class="w-24 h-24 bg-green-50 rounded-full flex items-center justify-center mb-8">
-        <svg class="w-12 h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="w-24 h-24 bg-emerald-50 rounded-full flex items-center justify-center mb-8">
+        <svg class="w-12 h-12 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
         </svg>
       </div>
-      <h3 class="text-2xl font-black text-slate-800">Không phát hiện ảnh trùng lặp</h3>
-      <p class="text-slate-400 mt-2 max-w-sm">Thư viện ảnh của bạn đã được tối ưu hóa tốt. Không tìm thấy nhóm ảnh trùng lặp nào.</p>
+      <h3 class="text-2xl font-black text-slate-800">Tuyệt vời!</h3>
+      <p class="text-slate-400 mt-2 max-w-sm">Không tìm thấy ảnh trùng lặp nào trong hệ thống.</p>
     </div>
     {% endif %}
   </div>
 </div>
 
 <script>
+  // Hàm xử lý Xóa tự động với xác nhận toàn cục
+  function confirmAutoCleanup() {
+      // Xác nhận lần 1
+      if (confirm("⚠️ CẢNH BÁO TOÀN CỤC:\n\nBạn sắp kích hoạt chế độ TỰ ĐỘNG DỌN DẸP.\n\nHệ thống sẽ:\n1. Giữ lại 1 ảnh duy nhất trong mỗi nhóm trùng lặp.\n2. XÓA VĨNH VIỄN tất cả các bản sao thừa còn lại.\n\nHành động này KHÔNG THỂ hoàn tác!")) {
+          
+          // Xác nhận lần 2 (cho chắc chắn)
+          if (confirm("Bạn có chắc chắn 100% muốn thực hiện không?")) {
+              showLoading("Đang tự động dọn dẹp...", "Vui lòng không tắt trình duyệt");
+              
+              fetch('/cleanup/auto', { method: 'POST' })
+                  .then(response => response.json())
+                  .then(data => {
+                      if (data.success) {
+                          alert(`✅ Hoàn tất!\nĐã xóa thành công ${data.deleted} ảnh trùng lặp.`);
+                          // Tự động submit lại form để refresh danh sách
+                          document.querySelector('form[action="/cleanup"]').submit();
+                      } else {
+                          alert("❌ Lỗi: " + data.error);
+                          hideLoading();
+                      }
+                  })
+                  .catch(err => {
+                      alert("Lỗi kết nối server");
+                      hideLoading();
+                  });
+          }
+      }
+  }
+
   function deleteImage(imageId) {
-    if (confirm("Bạn có chắc muốn xóa ảnh này?")) {
+    if (confirm("Xóa ảnh bản sao này?")) {
       showLoading();
       fetch(`/delete/${imageId}`, { method: "DELETE" })
         .then((response) => response.json())
         .then((data) => {
           if (data.success) {
-            location.reload();
+            // Refresh lại trang cleanup
+            document.querySelector('form[action="/cleanup"]').submit();
           } else {
             alert("Lỗi: " + data.error);
             hideLoading();
@@ -74,10 +154,10 @@
   }
 
   function deleteGroup(imageIds) {
-    if (confirm(`Bạn có chắc muốn xóa ${imageIds.length} ảnh trong nhóm này?`)) {
+    if (confirm(`Bạn có chắc muốn xóa TOÀN BỘ ${imageIds.length} ảnh trong nhóm này?`)) {
       showLoading();
       Promise.all(imageIds.map((id) => fetch(`/delete/${id}`, { method: "DELETE" }).then((r) => r.json()))).then(() => {
-        location.reload();
+        document.querySelector('form[action="/cleanup"]').submit();
       });
     }
   }

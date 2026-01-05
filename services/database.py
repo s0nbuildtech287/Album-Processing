@@ -9,9 +9,8 @@ from config import Config
 from services.features import FeatureExtractor
 
 
-
 class ImageDatabase:
-    """Quản lý cơ sở dữ liệu ảnh và đặc trưng"""
+    """Quản lý cơ sở dữ liệu ảnh và đặc trưng - LAZY LOADING"""
     
     def __init__(self, db_path='image_database.pkl'):
         self.db_path = os.path.join(Config.BASE_DIR, db_path)
@@ -22,7 +21,7 @@ class ImageDatabase:
     
     def add_image(self, image_path, image_id=None):
         """
-        Thêm ảnh vào database
+        Thêm ảnh vào database - NHANH (không extract features)
         Returns: image_id
         """
         if image_id is None:
@@ -34,16 +33,13 @@ class ImageDatabase:
             return image_id
         
         try:
-            # Trích xuất đặc trưng
-            features = self.feature_extractor.extract_all_features(image_path)
-            
-            # Lấy metadata
+            # Chỉ lấy metadata (rất nhanh!)
             metadata = self._extract_metadata(image_path)
             
-            # Lưu vào database
+            # Lưu vào database - KHÔNG trích xuất đặc trưng
             self.images[image_id] = {
                 'path': image_path,
-                'features': features,
+                'features': None,  
                 'metadata': metadata,
                 'added_at': datetime.now().isoformat()
             }
@@ -57,7 +53,7 @@ class ImageDatabase:
     
     def add_images_batch(self, image_paths):
         """
-        Thêm nhiều ảnh cùng lúc
+        Thêm nhiều ảnh cùng lúc - CỰC NHANH
         Returns: list of image_ids
         """
         image_ids = []
@@ -84,19 +80,35 @@ class ImageDatabase:
         return self.images
     
     def get_features(self, image_id):
-        """Lấy đặc trưng của ảnh"""
+        """Lấy đặc trưng của ảnh - LAZY LOADING"""
         image = self.images.get(image_id)
-        return image['features'] if image else None
+        if not image:
+            return None
+        
+        # Nếu chưa có features, trích xuất ngay
+        if image['features'] is None:
+            print(f"Extracting features for {image_id}...")
+            self.update_features(image_id)
+        
+        return image['features']
     
     def get_all_features(self):
         """
-        Lấy đặc trưng của tất cả ảnh
+        Lấy đặc trưng của tất cả ảnh - LAZY LOADING
         Returns: dict {image_id: features}
         """
-        return {
-            img_id: img_data['features'] 
-            for img_id, img_data in self.images.items()
-        }
+        features_dict = {}
+        total = len(self.images)
+        
+        for idx, (img_id, img_data) in enumerate(self.images.items(), 1):
+            # Lazy load nếu chưa có
+            if img_data['features'] is None:
+                print(f"[{idx}/{total}] Extracting features for {img_id}...")
+                self.update_features(img_id)
+            
+            features_dict[img_id] = img_data['features']
+        
+        return features_dict
     
     def update_features(self, image_id):
         """Cập nhật lại đặc trưng của ảnh"""
@@ -115,14 +127,14 @@ class ImageDatabase:
     
     def search(self, query_path, top_k=Config.TOP_K_RESULTS):
         """
-        Tìm kiếm ảnh tương tự
+        Tìm kiếm ảnh tương tự - ĐÂY MỚI LÀ LÚC EXTRACT!
         """
         from services.similarity import SimilarityCalculator
         
         # Trích xuất đặc trưng của query
         query_features = self.feature_extractor.extract_all_features(query_path)
         
-        # Lấy đặc trưng của tất cả ảnh trong database
+        # Lấy đặc trưng của tất cả ảnh (sẽ tự động extract nếu chưa có)
         db_features = self.get_all_features()
         
         # Tìm ảnh tương tự
@@ -159,6 +171,20 @@ class ImageDatabase:
         
         return groups
     
+    def extract_all_features_now(self):
+        """
+        Force extract tất cả features ngay
+        (Dùng cho background processing)
+        """
+        print("Force extracting all features...")
+        count = 0
+        for img_id, img_data in self.images.items():
+            if img_data['features'] is None:
+                self.update_features(img_id)
+                count += 1
+        print(f"Extracted features for {count} images")
+        return count
+    
     def save_database(self):
         """Lưu database ra file"""
         try:
@@ -171,7 +197,8 @@ class ImageDatabase:
                 img_id: {
                     'path': img_data['path'],
                     'metadata': img_data['metadata'],
-                    'added_at': img_data.get('added_at', '')
+                    'added_at': img_data.get('added_at', ''),
+                    'has_features': img_data['features'] is not None
                 }
                 for img_id, img_data in self.images.items()
             }
@@ -206,8 +233,13 @@ class ImageDatabase:
     
     def get_statistics(self):
         """Lấy thống kê database"""
+        with_features = sum(1 for img in self.images.values() if img['features'] is not None)
+        without_features = len(self.images) - with_features
+        
         return {
             'total_images': len(self.images),
+            'with_features': with_features,
+            'without_features': without_features,
             'database_size': os.path.getsize(self.db_path) if os.path.exists(self.db_path) else 0,
             'images': list(self.images.keys())
         }
@@ -219,9 +251,10 @@ class ImageDatabase:
         return f"{os.path.splitext(filename)[0]}_{timestamp}"
     
     def _extract_metadata(self, image_path):
-        """Trích xuất metadata của ảnh"""
+        """Trích xuất metadata của ảnh - NHANH"""
         import cv2
         
+        # Chỉ đọc để lấy thông tin cơ bản
         img = cv2.imread(image_path)
         
         return {
