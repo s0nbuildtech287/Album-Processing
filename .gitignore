@@ -15,10 +15,9 @@ coverage/
 image_database.pkl
 metadata.json
 
-# Upload files - người dùng tự upload
-uploads/images/*
+# Upload files queries - người dùng tự upload
 uploads/queries/*
-
-# Giữ lại thư mục nhưng không commit nội dung
-!uploads/images/.gitkeep
 !uploads/queries/.gitkeep
+
+# Images folder - COMMIT tất cả ảnh mẫu
+# (Không ignore uploads/images/*)
