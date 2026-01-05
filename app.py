@@ -52,11 +52,12 @@ def library():
 
 @app.route('/upload', methods=['POST'])
 def upload():
-    """Upload nhiều ảnh vào thư viện"""
+    """Upload nhiều ảnh vào thư viện với tên tùy chỉnh"""
     if 'files' not in request.files:
         return redirect(url_for('library'))
     
     files = request.files.getlist('files')
+    custom_names = request.form.getlist('custom_names')  # Lấy danh sách tên tùy chỉnh
     uploaded_count = 0
     failed_files = []
     
@@ -69,9 +70,17 @@ def upload():
             continue
             
         try:
-            # Dùng hàm tạo tên file an toàn mới
-            safe_filename = generate_safe_filename(file.filename)
-            filepath = os.path.join(Config.UPLOAD_FOLDER, safe_filename)
+            # Lấy tên tùy chỉnh từ form, nếu không có thì tự động tạo
+            if idx <= len(custom_names) and custom_names[idx-1].strip():
+                custom_name = custom_names[idx-1].strip()
+                # Lấy extension từ file gốc
+                ext = file.filename.rsplit('.', 1)[1].lower() if '.' in file.filename else 'jpg'
+                safe_filename = f"{custom_name}.{ext}"
+            else:
+                # Tạo tên tự động nếu không có tên tùy chỉnh
+                safe_filename = generate_safe_filename(file.filename)
+            
+            filepath = os.path.join(Config.IMAGES_FOLDER, safe_filename)
             
             print(f"📥 [{idx}/{len(files)}] Saving: {file.filename} -> {safe_filename}")
             
@@ -79,7 +88,6 @@ def upload():
             file.save(filepath)
             
             # Kiểm tra file có đọc được không bằng OpenCV
-            # (Bước này quan trọng để đảm bảo preprocessing.py không bị lỗi sau này)
             test_img = cv2.imread(filepath)
             if test_img is None:
                 print(f"   ❌ Cannot read image with cv2.imread()")
@@ -146,9 +154,9 @@ def query():
         
         if file and file.filename:
             try:
-                # Tạo tên file query an toàn
+                # Tạo tên file query an toàn và lưu vào QUERIES_FOLDER
                 filename = 'query_' + generate_safe_filename(file.filename)
-                query_path = os.path.join(Config.UPLOAD_FOLDER, filename)
+                query_path = os.path.join(Config.QUERIES_FOLDER, filename)
                 file.save(query_path)
             except Exception as e:
                 print(f"Query upload error: {e}")
@@ -165,7 +173,13 @@ def query():
             results = db.search(query_path, top_k=Config.TOP_K_RESULTS)
             
             # Chuẩn bị đường dẫn hiển thị
-            display_query = '/uploads/' + os.path.basename(query_path)
+            # Xác định xem ảnh nằm trong thư mục nào
+            if 'images' in query_path:
+                display_query = '/uploads/images/' + os.path.basename(query_path)
+            elif 'queries' in query_path:
+                display_query = '/uploads/queries/' + os.path.basename(query_path)
+            else:
+                display_query = '/uploads/' + os.path.basename(query_path)
             
             return render_template('query.html', 
                                  results=results,
@@ -196,7 +210,7 @@ def compare():
         if upload_a and upload_a.filename:
             try:
                 filename = 'compare_a_' + generate_safe_filename(upload_a.filename)
-                path_a = os.path.join(Config.UPLOAD_FOLDER, filename)
+                path_a = os.path.join(Config.QUERIES_FOLDER, filename)
                 upload_a.save(path_a)
             except Exception as e:
                 print(f"Error saving A: {e}")
@@ -208,7 +222,7 @@ def compare():
         if upload_b and upload_b.filename:
             try:
                 filename = 'compare_b_' + generate_safe_filename(upload_b.filename)
-                path_b = os.path.join(Config.UPLOAD_FOLDER, filename)
+                path_b = os.path.join(Config.QUERIES_FOLDER, filename)
                 upload_b.save(path_b)
             except Exception as e:
                 print(f"Error saving B: {e}")
@@ -220,12 +234,27 @@ def compare():
         if path_a and path_b and os.path.exists(path_a) and os.path.exists(path_b):
             comparison = SimilarityCalculator.compare_images(path_a, path_b)
             
+            # Xác định đường dẫn hiển thị
+            if 'images' in path_a:
+                display_a = '/uploads/images/' + os.path.basename(path_a)
+            elif 'queries' in path_a:
+                display_a = '/uploads/queries/' + os.path.basename(path_a)
+            else:
+                display_a = '/uploads/' + os.path.basename(path_a)
+                
+            if 'images' in path_b:
+                display_b = '/uploads/images/' + os.path.basename(path_b)
+            elif 'queries' in path_b:
+                display_b = '/uploads/queries/' + os.path.basename(path_b)
+            else:
+                display_b = '/uploads/' + os.path.basename(path_b)
+            
             return render_template('compare.html', 
                                  comparison=comparison,
                                  images=images,
                                  image_count=len(images),
-                                 img_a='/uploads/' + os.path.basename(path_a),
-                                 img_b='/uploads/' + os.path.basename(path_b))
+                                 img_a=display_a,
+                                 img_b=display_b)
         else:
              return render_template('compare.html', 
                                  comparison=None,
@@ -394,10 +423,26 @@ def editor_process():
         return render_template('editor.html', result=None, images=images, 
                              image_count=len(images), error=f"Lỗi xử lý: {str(e)}")
 
-@app.route('/uploads/<filename>')
+@app.route('/uploads/<path:filename>')
 def uploaded_file(filename):
-    """Serve uploaded files"""
-    return send_from_directory(Config.UPLOAD_FOLDER, filename)
+    """Serve uploaded files từ cả 2 thư mục"""
+    # Nếu filename chứa 'images/' hoặc 'queries/', serve từ thư mục tương ứng
+    if filename.startswith('images/'):
+        return send_from_directory(Config.IMAGES_FOLDER, filename[7:])
+    elif filename.startswith('queries/'):
+        return send_from_directory(Config.QUERIES_FOLDER, filename[8:])
+    else:
+        # Fallback: tìm kiếm trong cả 2 thư mục
+        images_path = os.path.join(Config.IMAGES_FOLDER, filename)
+        queries_path = os.path.join(Config.QUERIES_FOLDER, filename)
+        upload_path = os.path.join(Config.UPLOAD_FOLDER, filename)
+        
+        if os.path.exists(images_path):
+            return send_from_directory(Config.IMAGES_FOLDER, filename)
+        elif os.path.exists(queries_path):
+            return send_from_directory(Config.QUERIES_FOLDER, filename)
+        else:
+            return send_from_directory(Config.UPLOAD_FOLDER, filename)
 
 @app.route('/api/stats')
 def api_stats():

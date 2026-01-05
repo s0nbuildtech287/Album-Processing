@@ -6,6 +6,8 @@ class Config:
     # Thư mục
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     UPLOAD_FOLDER = os.path.join(BASE_DIR, 'uploads')
+    IMAGES_FOLDER = os.path.join(BASE_DIR, 'uploads', 'images')  # Ảnh thư viện
+    QUERIES_FOLDER = os.path.join(BASE_DIR, 'uploads', 'queries')  # Ảnh truy vấn
     STATIC_FOLDER = os.path.join(BASE_DIR, 'static')
     TEMPLATE_FOLDER = os.path.join(BASE_DIR, 'templates')
     
@@ -45,5 +47,7 @@ class Config:
     def init_app():
         """Khởi tạo các thư mục cần thiết"""
         os.makedirs(Config.UPLOAD_FOLDER, exist_ok=True)
+        os.makedirs(Config.IMAGES_FOLDER, exist_ok=True)
+        os.makedirs(Config.QUERIES_FOLDER, exist_ok=True)
         os.makedirs(Config.STATIC_FOLDER, exist_ok=True)
         os.makedirs(Config.TEMPLATE_FOLDER, exist_ok=True)

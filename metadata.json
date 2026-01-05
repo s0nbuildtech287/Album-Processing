@@ -1,1 +1,134 @@
-{}
+{
+  "sutu1_20260105224841235236": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album Processing\\uploads\\images\\sutu1.png",
+    "metadata": {
+      "filename": "sutu1.png",
+      "size": 356961,
+      "dimensions": "612x408",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T22:48:41.240753",
+    "has_features": false
+  },
+  "sutu2_20260105224855619544": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album Processing\\uploads\\images\\sutu2.jpg",
+    "metadata": {
+      "filename": "sutu2.jpg",
+      "size": 122329,
+      "dimensions": "640x335",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T22:48:55.627207",
+    "has_features": false
+  },
+  "convoi2_20260105224921147035": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album Processing\\uploads\\images\\convoi2.jpg",
+    "metadata": {
+      "filename": "convoi2.jpg",
+      "size": 118491,
+      "dimensions": "960x864",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T22:49:21.165695",
+    "has_features": false
+  },
+  "convoi1_20260105224921195019": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album Processing\\uploads\\images\\convoi1.jpg",
+    "metadata": {
+      "filename": "convoi1.jpg",
+      "size": 319229,
+      "dimensions": "800x635",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T22:49:21.212837",
+    "has_features": false
+  },
+  "sutu3_20260105224921402677": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album Processing\\uploads\\images\\sutu3.jpg",
+    "metadata": {
+      "filename": "sutu3.jpg",
+      "size": 1591501,
+      "dimensions": "3840x2160",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T22:49:21.609301",
+    "has_features": false
+  },
+  "sutu4_20260105224932514798": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album Processing\\uploads\\images\\sutu4.png",
+    "metadata": {
+      "filename": "sutu4.png",
+      "size": 1305068,
+      "dimensions": "2500x2500",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T22:49:32.569647",
+    "has_features": false
+  },
+  "conga1_20260105224940152919": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album Processing\\uploads\\images\\conga1.jpg",
+    "metadata": {
+      "filename": "conga1.jpg",
+      "size": 108186,
+      "dimensions": "800x450",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T22:49:40.157232",
+    "has_features": false
+  },
+  "conho1_20260105225034737337": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album Processing\\uploads\\images\\conho1.jpg",
+    "metadata": {
+      "filename": "conho1.jpg",
+      "size": 59735,
+      "dimensions": "600x338",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T22:50:34.741334",
+    "has_features": false
+  },
+  "conngua1_20260105225034770910": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album Processing\\uploads\\images\\conngua1.jpg",
+    "metadata": {
+      "filename": "conngua1.jpg",
+      "size": 185317,
+      "dimensions": "1200x801",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T22:50:34.788024",
+    "has_features": false
+  },
+  "conran1_20260105225118419625": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album Processing\\uploads\\images\\conran1.png",
+    "metadata": {
+      "filename": "conran1.png",
+      "size": 3752229,
+      "dimensions": "2500x2500",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T22:51:18.501128",
+    "has_features": false
+  },
+  "camap1_20260105225208956561": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album Processing\\uploads\\images\\camap1.png",
+    "metadata": {
+      "filename": "camap1.png",
+      "size": 1461037,
+      "dimensions": "1280x720",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T22:52:08.979348",
+    "has_features": false
+  },
+  "conga2_20260105225209000436": {
+    "path": "c:\\Users\\XUAN SON\\Downloads\\Album Processing\\uploads\\images\\conga2.png",
+    "metadata": {
+      "filename": "conga2.png",
+      "size": 471287,
+      "dimensions": "600x427",
+      "channels": 3
+    },
+    "added_at": "2026-01-05T22:52:09.007989",
+    "has_features": false
+  }
+}

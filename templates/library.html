@@ -1,6 +1,4 @@
-{% extends "base.html" %} 
-{% block title %}Thư viện Ảnh - CBIR System{% endblock %} 
-{% block content %}
+{% extends "base.html" %} {% block title %}Thư viện Ảnh - CBIR System{% endblock %} {% block content %}
 <div class="max-w-7xl mx-auto space-y-8">
   <header class="flex flex-col md:flex-row md:items-center justify-between gap-6">
     <div>
@@ -14,7 +12,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
           </svg>
           Tải ảnh lên
-          <input type="file" name="files" multiple accept="image/*" class="hidden" onchange="uploadImages()" />
+          <input type="file" name="files" id="file-input" multiple accept="image/*" class="hidden" onchange="handleFileSelect()" />
         </label>
       </form>
       <button aria-label="xs" onclick="clearDatabase()" class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-2xl font-black btn-hover">
@@ -35,7 +33,7 @@
     {% for image_id, image in images.items() %}
     <div class="bg-white rounded-[2.5rem] overflow-hidden shadow-sm border border-slate-100 card-hover">
       <div class="aspect-square overflow-hidden">
-        <img src="/uploads/{{ image.metadata.filename }}" alt="{{ image.metadata.filename }}" class="w-full h-full object-cover" />
+        <img src="/uploads/images/{{ image.metadata.filename }}" alt="{{ image.metadata.filename }}" class="w-full h-full object-cover" />
       </div>
       <div class="p-6">
         <p class="text-sm font-bold text-slate-900 truncate">{{ image.metadata.filename }}</p>
@@ -67,18 +65,94 @@
 </div>
 
 <script>
-  function uploadImages() {
-    const form = document.getElementById("upload-form");
-    const formData = new FormData(form);
-    const files = formData.getAll("files");
+  let selectedFiles = [];
 
-    if (files.length === 0 || !files[0].name) {
-      alert("Vui lòng chọn ảnh để upload!");
+  function handleFileSelect() {
+    const input = document.getElementById("file-input");
+    selectedFiles = Array.from(input.files);
+
+    if (selectedFiles.length === 0) {
       return;
     }
 
-    // ✅ SỬA: Truyền message rõ ràng - KHÔNG CÓ "Processing HSV • LBP • HOG"
-    showLoading(`Đang tải lên ${files.length} ảnh...`);
+    // Hiển thị modal để nhập tên cho từng file
+    showNamingModal();
+  }
+
+  function showNamingModal() {
+    // Tạo HTML cho modal
+    let modalHTML = `
+      <div id="naming-modal" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 9999; display: flex; align-items: center; justify-content: center;">
+        <div style="background: white; border-radius: 2rem; padding: 2rem; max-width: 600px; max-height: 80vh; overflow-y: auto; width: 90%;">
+          <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">Đặt tên cho ảnh</h3>
+          <p style="color: #64748b; margin-bottom: 1.5rem;">Nhập tên không dấu, viết liền. Bỏ trống để tự động đặt tên.</p>
+          <div id="file-names-container">
+    `;
+
+    selectedFiles.forEach((file, index) => {
+      const ext = file.name.split(".").pop();
+      modalHTML += `
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem; color: #475569;">
+            Ảnh ${index + 1}: ${file.name}
+          </label>
+          <input 
+            type="text" 
+            id="name-${index}" 
+            placeholder="Ví dụ: anhbien, conmeo, hoasen..." 
+            style="width: 100%; padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.875rem;"
+          />
+          <small style="color: #94a3b8;">(Sẽ lưu thành: tên_bạn_nhập.${ext})</small>
+        </div>
+      `;
+    });
+
+    modalHTML += `
+          </div>
+          <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem;">
+            <button onclick="cancelNaming()" style="flex: 1; padding: 0.75rem; background: #e2e8f0; color: #475569; border: none; border-radius: 0.75rem; font-weight: bold; cursor: pointer;">
+              Hủy
+            </button>
+            <button onclick="confirmNaming()" style="flex: 1; padding: 0.75rem; background: #6366f1; color: white; border: none; border-radius: 0.75rem; font-weight: bold; cursor: pointer;">
+              Upload
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.body.insertAdjacentHTML("beforeend", modalHTML);
+  }
+
+  function cancelNaming() {
+    document.getElementById("naming-modal").remove();
+    document.getElementById("file-input").value = ""; // Reset input
+    selectedFiles = [];
+  }
+
+  function confirmNaming() {
+    const form = document.getElementById("upload-form");
+
+    // Xóa các input custom_names cũ (nếu có)
+    form.querySelectorAll('input[name="custom_names"]').forEach((input) => input.remove());
+
+    // Thêm tên tùy chỉnh vào form
+    selectedFiles.forEach((file, index) => {
+      const nameInput = document.getElementById(`name-${index}`);
+      const customName = nameInput.value.trim();
+
+      const hiddenInput = document.createElement("input");
+      hiddenInput.type = "hidden";
+      hiddenInput.name = "custom_names";
+      hiddenInput.value = customName;
+      form.appendChild(hiddenInput);
+    });
+
+    // Đóng modal
+    document.getElementById("naming-modal").remove();
+
+    // Hiển thị loading
+    showLoading(`Đang tải lên ${selectedFiles.length} ảnh...`);
 
     // Submit form
     form.submit();
