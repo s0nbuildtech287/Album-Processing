@@ -406,5 +406,17 @@
     "album": "Humans",
     "added_at": "2026-01-05T23:30:03.121158",
     "has_features": false
+  },
+  "cauthu1_20260106194013747279": {
+    "path": "uploads\\images\\cauthu1.jpg",
+    "metadata": {
+      "filename": "cauthu1.jpg",
+      "size": 76435,
+      "dimensions": "960x640",
+      "channels": 3
+    },
+    "album": "Humans",
+    "added_at": "2026-01-06T19:40:13.758390",
+    "has_features": false
   }
 }

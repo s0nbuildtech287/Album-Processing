@@ -13,20 +13,25 @@ class FeatureExtractor:
     def detect_foreground_mask(self, image):
         """
         PHÁT HIỆN VẬT THỂ CHÍNH - Loại bỏ nền
-        Sử dụng: GrabCut + Edge detection + Saliency
+        Sử dụng: Edge detection + Center-weighted mask (không cần opencv-contrib)
         """
         h, w = image.shape[:2]
         
-        # Method 1: Saliency Map (phát hiện vùng quan trọng)
-        saliency = cv2.saliency.StaticSaliencyFineGrained_create()
-        (success, saliency_map) = saliency.computeSaliency(image)
-        saliency_map = (saliency_map * 255).astype("uint8")
+        # Method: Edge Detection + Center-weighted approach
+        # Convert sang grayscale
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         
-        # Threshold để tạo mask
-        _, mask = cv2.threshold(saliency_map, 100, 255, cv2.THRESH_BINARY)
+        # Sử dụng Canny edge detection
+        edges = cv2.Canny(gray, 50, 150)
+        
+        # Dilate edges để tạo vùng
+        kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (15, 15))
+        dilated = cv2.dilate(edges, kernel, iterations=2)
+        
+        # Tạo mask ban đầu từ edges
+        mask = cv2.threshold(dilated, 1, 255, cv2.THRESH_BINARY)[1]
         
         # Morphology để làm mịn mask
-        kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (15, 15))
         mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
         mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
         
