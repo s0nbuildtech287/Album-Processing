@@ -9,7 +9,7 @@ from services.database import ImageDatabase
 from services.preprocessing import ImagePreprocessor
 from services.compression import ImageCompressor
 from services.similarity import SimilarityCalculator
-# bùi xuân sơn
+
 # Khởi tạo Flask app
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -60,9 +60,13 @@ def library():
     else:
         # Hiển thị danh sách album
         albums = db.get_albums()
+        
+        # ✅ TÍNH TỔNG SỐ ẢNH TRONG TẤT CẢ ALBUMS
+        total_images = sum(album['count'] for album in albums.values())
+        
         return render_template('library.html', 
                              images=None,
-                             image_count=0,
+                             image_count=total_images,  
                              albums=albums,
                              selected_album=None)
 
@@ -127,6 +131,10 @@ def upload():
     
     # Lưu database
     db.save_database()
+    
+    # Redirect về đúng album vừa upload (nếu có)
+    if album_name and album_name != 'Uncategorized':
+        return redirect(url_for('library', album=album_name))
     return redirect(url_for('library'))
 
 @app.route('/rename_album', methods=['POST'])
@@ -146,6 +154,26 @@ def rename_album():
             return jsonify({'success': True, 'new_name': new_name})
         else:
             return jsonify({'success': False, 'error': 'Album not found'})
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)})
+
+@app.route('/delete_album', methods=['POST'])
+def delete_album():
+    """API Xóa toàn bộ album"""
+    try:
+        data = request.json
+        album_name = data.get('album_name')
+        
+        if not album_name:
+            return jsonify({'success': False, 'error': 'Tên album không hợp lệ'})
+            
+        # Gọi hàm xóa trong database
+        if db.delete_album(album_name):
+            db.save_database() # Lưu lại thay đổi
+            return jsonify({'success': True})
+        else:
+            return jsonify({'success': False, 'error': 'Album không tồn tại hoặc đã trống'})
+            
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)})
 
@@ -313,8 +341,6 @@ def cleanup():
     return render_template('cleanup.html', 
                          duplicate_groups=duplicate_groups,
                          image_count=len(db.get_all_images()))
-
-# --- Thêm vào app.py ---
 
 @app.route('/cleanup/auto', methods=['POST'])
 def auto_cleanup():
