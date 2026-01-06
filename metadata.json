@@ -417,7 +417,7 @@
     },
     "album": "Animals",
     "added_at": "2026-01-06T23:28:44.716976",
-    "has_features": false
+    "has_features": true
   },
   "conga8_20260106232844732502": {
     "path": "uploads\\images\\conga8.jpg",
@@ -429,6 +429,6 @@
     },
     "album": "Animals",
     "added_at": "2026-01-06T23:28:44.735015",
-    "has_features": false
+    "has_features": true
   }
 }

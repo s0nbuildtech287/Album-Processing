@@ -35,7 +35,7 @@ class Config:
     
     # Cấu hình truy vấn
     TOP_K_RESULTS = 4
-    DUPLICATE_THRESHOLD = 0.95  # Ngưỡng phát hiện trùng lặp
+    DUPLICATE_THRESHOLD = 0.85  # Giảm từ 0.95 để deep features phát huy tác dụng - phân biệt voi vs sư tử
     
     # Cấu hình nén ảnh
     COMPRESSION_QUALITY = {
