@@ -489,6 +489,81 @@ def api_stats():
     """API lấy thống kê"""
     return jsonify(db.get_statistics())
 
+@app.route('/admin/rebuild-features')
+def rebuild_features():
+    """
+    Force rebuild tất cả features với deep learning
+    Hiển thị tiến trình chi tiết
+    """
+    print("\n" + "="*60)
+    print("🔄 REBUILDING ALL FEATURES WITH DEEP LEARNING")
+    print("="*60)
+    
+    images = db.get_all_images()
+    total = len(images)
+    
+    results = {
+        'total': total,
+        'updated': 0,
+        'failed': 0,
+        'details': []
+    }
+    
+    for idx, (image_id, image_data) in enumerate(images.items(), 1):
+        try:
+            abs_path = db.get_absolute_path(image_id)
+            
+            # Kiểm tra có deep features chưa
+            has_deep = image_data.get('features') and 'deep' in image_data['features']
+            status = "✓ Has deep" if has_deep else "✗ Missing deep"
+            
+            print(f"\n[{idx}/{total}] {image_id}")
+            print(f"  Status: {status}")
+            print(f"  Path: {abs_path}")
+            
+            # Force extract lại
+            print(f"  🔍 Extracting features...")
+            success = db.update_features(image_id)
+            
+            if success:
+                results['updated'] += 1
+                print(f"  ✅ Updated successfully!")
+                results['details'].append({
+                    'id': image_id,
+                    'status': 'success',
+                    'had_deep': has_deep
+                })
+            else:
+                results['failed'] += 1
+                print(f"  ❌ Failed to update!")
+                results['details'].append({
+                    'id': image_id,
+                    'status': 'failed',
+                    'had_deep': has_deep
+                })
+                
+        except Exception as e:
+            results['failed'] += 1
+            print(f"  ❌ Error: {e}")
+            results['details'].append({
+                'id': image_id,
+                'status': 'error',
+                'error': str(e)
+            })
+    
+    # Lưu database
+    print("\n" + "="*60)
+    print("💾 Saving database...")
+    db.save_database()
+    
+    print("\n📊 SUMMARY:")
+    print(f"  Total images: {results['total']}")
+    print(f"  ✅ Updated: {results['updated']}")
+    print(f"  ❌ Failed: {results['failed']}")
+    print("="*60 + "\n")
+    
+    return jsonify(results)
+
 # ==================== ERROR HANDLERS ====================
 
 @app.errorhandler(404)

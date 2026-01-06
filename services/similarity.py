@@ -41,7 +41,7 @@ class SimilarityCalculator:
     @staticmethod
     def compare_features(features1, features2):
         """
-        So sánh các đặc trưng giữa 2 ảnh
+        So sánh các đặc trưng giữa 2 ảnh (bao gồm deep features)
         Returns: dict with individual and combined similarities
         """
         # Tính similarity cho từng loại đặc trưng
@@ -60,18 +60,28 @@ class SimilarityCalculator:
             features2['shape']
         )
         
+        # Tính deep similarity nếu có
+        deep_sim = 0.0
+        if 'deep' in features1 and 'deep' in features2:
+            deep_sim = SimilarityCalculator.cosine_similarity(
+                features1['deep'], 
+                features2['deep']
+            )
+        
         # Tính điểm tổng hợp
-        # score = α * color + β * texture + γ * shape
+        # score = α * color + β * texture + γ * shape + δ * deep
         combined_score = (
             Config.WEIGHT_COLOR * color_sim +
             Config.WEIGHT_TEXTURE * texture_sim +
-            Config.WEIGHT_SHAPE * shape_sim
+            Config.WEIGHT_SHAPE * shape_sim +
+            Config.WEIGHT_DEEP * deep_sim
         )
         
         return {
             'color_similarity': float(color_sim),
             'texture_similarity': float(texture_sim),
             'shape_similarity': float(shape_sim),
+            'deep_similarity': float(deep_sim),
             'combined_similarity': float(combined_score)
         }
     
@@ -82,7 +92,7 @@ class SimilarityCalculator:
         """
         from services.features import FeatureExtractor
         
-        extractor = FeatureExtractor()
+        extractor = FeatureExtractor(use_deep_features=Config.USE_DEEP_FEATURES)
         
         # Trích xuất đặc trưng
         features1 = extractor.extract_all_features(image_path1)

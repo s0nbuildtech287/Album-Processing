@@ -23,13 +23,18 @@ class Config:
     HOG_PIXELS_PER_CELL = (16, 16)  # Tăng cell size để nhanh hơn
     HOG_CELLS_PER_BLOCK = (2, 2)
     
-    # Trọng số tính similarity
-    WEIGHT_COLOR = 0.4  # α
-    WEIGHT_TEXTURE = 0.3  # β
-    WEIGHT_SHAPE = 0.3  # γ
+    # Cấu hình Deep Learning
+    USE_DEEP_FEATURES = True  # Bật/tắt deep learning features
+    DEEP_MODEL = 'resnet50'  # Model sử dụng (hiện tại chỉ hỗ trợ resnet50)
+    
+    # Trọng số tính similarity (CẬP NHẬT cho deep learning)
+    WEIGHT_COLOR = 0.15     # α - Giảm trọng số màu
+    WEIGHT_TEXTURE = 0.15   # β - Giảm trọng số texture
+    WEIGHT_SHAPE = 0.15     # γ - Giảm trọng số shape
+    WEIGHT_DEEP = 0.55      # δ - Tăng trọng số deep features (quan trọng nhất!)
     
     # Cấu hình truy vấn
-    TOP_K_RESULTS = 10
+    TOP_K_RESULTS = 4
     DUPLICATE_THRESHOLD = 0.95  # Ngưỡng phát hiện trùng lặp
     
     # Cấu hình nén ảnh

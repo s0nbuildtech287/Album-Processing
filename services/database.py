@@ -16,7 +16,7 @@ class ImageDatabase:
         self.db_path = os.path.join(Config.BASE_DIR, db_path)
         self.metadata_path = os.path.join(Config.BASE_DIR, 'metadata.json')
         self.images = {}  # {image_id: {'path': ..., 'features': ..., 'metadata': ...}}
-        self.feature_extractor = FeatureExtractor()
+        self.feature_extractor = FeatureExtractor(use_deep_features=Config.USE_DEEP_FEATURES)
         self.load_database()
     
     def add_image(self, image_path, image_id=None, album="Uncategorized"):
@@ -177,7 +177,10 @@ class ImageDatabase:
         try:
             # Lấy absolute path để đọc file
             absolute_path = self.get_absolute_path(image_id)
-            features = self.feature_extractor.extract_all_features(absolute_path)
+            
+            # Extract với verbose logging
+            features = self.feature_extractor.extract_all_features(absolute_path, verbose=True)
+            
             self.images[image_id]['features'] = features
             self.images[image_id]['updated_at'] = datetime.now().isoformat()
             return True
