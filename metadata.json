@@ -9,7 +9,7 @@
     },
     "album": "Animals",
     "added_at": "2026-01-05T22:48:41.240753",
-    "has_features": false
+    "has_features": true
   },
   "sutu2_20260105224855619544": {
     "path": "uploads\\images\\sutu2.jpg",
@@ -21,7 +21,7 @@
     },
     "album": "Animals",
     "added_at": "2026-01-05T22:48:55.627207",
-    "has_features": false
+    "has_features": true
   },
   "convoi2_20260105224921147035": {
     "path": "uploads\\images\\convoi2.jpg",
@@ -33,19 +33,7 @@
     },
     "album": "Animals",
     "added_at": "2026-01-05T22:49:21.165695",
-    "has_features": false
-  },
-  "convoi1_20260105224921195019": {
-    "path": "uploads\\images\\convoi1.jpg",
-    "metadata": {
-      "filename": "convoi1.jpg",
-      "size": 319229,
-      "dimensions": "800x635",
-      "channels": 3
-    },
-    "album": "Animals",
-    "added_at": "2026-01-05T22:49:21.212837",
-    "has_features": false
+    "has_features": true
   },
   "sutu3_20260105224921402677": {
     "path": "uploads\\images\\sutu3.jpg",
@@ -57,7 +45,7 @@
     },
     "album": "Animals",
     "added_at": "2026-01-05T22:49:21.609301",
-    "has_features": false
+    "has_features": true
   },
   "sutu4_20260105224932514798": {
     "path": "uploads\\images\\sutu4.png",
@@ -69,7 +57,7 @@
     },
     "album": "Animals",
     "added_at": "2026-01-05T22:49:32.569647",
-    "has_features": false
+    "has_features": true
   },
   "conga1_20260105224940152919": {
     "path": "uploads\\images\\conga1.jpg",
@@ -81,7 +69,7 @@
     },
     "album": "Animals",
     "added_at": "2026-01-05T22:49:40.157232",
-    "has_features": false
+    "has_features": true
   },
   "conho1_20260105225034737337": {
     "path": "uploads\\images\\conho1.jpg",
@@ -93,7 +81,7 @@
     },
     "album": "Animals",
     "added_at": "2026-01-05T22:50:34.741334",
-    "has_features": false
+    "has_features": true
   },
   "conngua1_20260105225034770910": {
     "path": "uploads\\images\\conngua1.jpg",
@@ -105,7 +93,7 @@
     },
     "album": "Animals",
     "added_at": "2026-01-05T22:50:34.788024",
-    "has_features": false
+    "has_features": true
   },
   "camap1_20260105225208956561": {
     "path": "uploads\\images\\camap1.png",
@@ -117,7 +105,7 @@
     },
     "album": "Animals",
     "added_at": "2026-01-05T22:52:08.979348",
-    "has_features": false
+    "has_features": true
   },
   "conga2_20260105225209000436": {
     "path": "uploads\\images\\conga2.png",
@@ -129,7 +117,7 @@
     },
     "album": "Animals",
     "added_at": "2026-01-05T22:52:09.007989",
-    "has_features": false
+    "has_features": true
   },
   "trecon2_20260105233705522347": {
     "path": "uploads\\images\\trecon2.jpg",
@@ -141,7 +129,7 @@
     },
     "album": "Humans",
     "added_at": "2026-01-05T23:37:05.536537",
-    "has_features": false
+    "has_features": true
   },
   "trecon1_20260105233705551559": {
     "path": "uploads\\images\\trecon1.jpg",
@@ -153,7 +141,7 @@
     },
     "album": "Humans",
     "added_at": "2026-01-05T23:37:05.558588",
-    "has_features": false
+    "has_features": true
   },
   "nguoigia2_20260105233705570195": {
     "path": "uploads\\images\\nguoigia2.jpg",
@@ -165,7 +153,7 @@
     },
     "album": "Humans",
     "added_at": "2026-01-05T23:37:05.573238",
-    "has_features": false
+    "has_features": true
   },
   "nguoigia1_20260105233705592880": {
     "path": "uploads\\images\\nguoigia1.jpg",
@@ -177,7 +165,7 @@
     },
     "album": "Humans",
     "added_at": "2026-01-05T23:37:05.602396",
-    "has_features": false
+    "has_features": true
   },
   "bodoi2_20260105233705707662": {
     "path": "uploads\\images\\bodoi2.png",
@@ -189,7 +177,7 @@
     },
     "album": "Humans",
     "added_at": "2026-01-05T23:37:05.793322",
-    "has_features": false
+    "has_features": true
   },
   "bodoi1_20260105233705821411": {
     "path": "uploads\\images\\bodoi1.png",
@@ -201,7 +189,7 @@
     },
     "album": "Humans",
     "added_at": "2026-01-05T23:37:05.836180",
-    "has_features": false
+    "has_features": true
   },
   "bacsy2_20260105233705898501": {
     "path": "uploads\\images\\bacsy2.png",
@@ -213,7 +201,7 @@
     },
     "album": "Humans",
     "added_at": "2026-01-05T23:37:05.948996",
-    "has_features": false
+    "has_features": true
   },
   "bacsy1_20260105233705970199": {
     "path": "uploads\\images\\bacsy1.png",
@@ -225,7 +213,7 @@
     },
     "album": "Humans",
     "added_at": "2026-01-05T23:37:05.981732",
-    "has_features": false
+    "has_features": true
   },
   "rung2_20260105233946965514": {
     "path": "uploads\\images\\rung2.jpg",
@@ -237,7 +225,7 @@
     },
     "album": "Naturals",
     "added_at": "2026-01-05T23:39:46.966475",
-    "has_features": false
+    "has_features": true
   },
   "rung1_20260105233947429333": {
     "path": "uploads\\images\\rung1.jpg",
@@ -249,7 +237,7 @@
     },
     "album": "Naturals",
     "added_at": "2026-01-05T23:39:47.844461",
-    "has_features": false
+    "has_features": true
   },
   "nui2_20260105233947889729": {
     "path": "uploads\\images\\nui2.png",
@@ -261,7 +249,7 @@
     },
     "album": "Naturals",
     "added_at": "2026-01-05T23:39:47.901801",
-    "has_features": false
+    "has_features": true
   },
   "nui1_20260105233947913987": {
     "path": "uploads\\images\\nui1.jpg",
@@ -273,7 +261,7 @@
     },
     "album": "Naturals",
     "added_at": "2026-01-05T23:39:47.918986",
-    "has_features": false
+    "has_features": true
   },
   "bien3_20260105233947944177": {
     "path": "uploads\\images\\bien3.png",
@@ -285,7 +273,7 @@
     },
     "album": "Naturals",
     "added_at": "2026-01-05T23:39:47.955789",
-    "has_features": false
+    "has_features": true
   },
   "bien2_20260105233948080395": {
     "path": "uploads\\images\\bien2.png",
@@ -297,7 +285,7 @@
     },
     "album": "Naturals",
     "added_at": "2026-01-05T23:39:48.186559",
-    "has_features": false
+    "has_features": true
   },
   "bien1_20260105233948248084": {
     "path": "uploads\\images\\bien1.png",
@@ -309,7 +297,7 @@
     },
     "album": "Naturals",
     "added_at": "2026-01-05T23:39:48.292572",
-    "has_features": false
+    "has_features": true
   },
   "xemay3_20260105234024630637": {
     "path": "uploads\\images\\xemay3.png",
@@ -321,7 +309,7 @@
     },
     "album": "Vehicles",
     "added_at": "2026-01-05T23:40:24.640805",
-    "has_features": false
+    "has_features": true
   },
   "xemay2_20260105234024683915": {
     "path": "uploads\\images\\xemay2.png",
@@ -333,7 +321,7 @@
     },
     "album": "Vehicles",
     "added_at": "2026-01-05T23:40:24.715056",
-    "has_features": false
+    "has_features": true
   },
   "xemay1_20260105234024729859": {
     "path": "uploads\\images\\xemay1.png",
@@ -345,7 +333,7 @@
     },
     "album": "Vehicles",
     "added_at": "2026-01-05T23:40:24.735210",
-    "has_features": false
+    "has_features": true
   },
   "oto3_20260105234024744356": {
     "path": "uploads\\images\\oto3.jpg",
@@ -357,7 +345,7 @@
     },
     "album": "Vehicles",
     "added_at": "2026-01-05T23:40:24.745356",
-    "has_features": false
+    "has_features": true
   },
   "oto2_20260105234024762192": {
     "path": "uploads\\images\\oto2.jpg",
@@ -369,7 +357,7 @@
     },
     "album": "Vehicles",
     "added_at": "2026-01-05T23:40:24.769734",
-    "has_features": false
+    "has_features": true
   },
   "oto1_20260105234024798947": {
     "path": "uploads\\images\\oto1.png",
@@ -381,7 +369,7 @@
     },
     "album": "Vehicles",
     "added_at": "2026-01-05T23:40:24.814722",
-    "has_features": false
+    "has_features": true
   },
   "sutu7_20260106223700472782": {
     "path": "uploads\\images\\sutu7.png",
@@ -393,7 +381,7 @@
     },
     "album": "Animals",
     "added_at": "2026-01-06T22:37:00.478498",
-    "has_features": false
+    "has_features": true
   },
   "sutu6_20260106223700494536": {
     "path": "uploads\\images\\sutu6.jpeg",
@@ -405,7 +393,7 @@
     },
     "album": "Animals",
     "added_at": "2026-01-06T22:37:00.499046",
-    "has_features": false
+    "has_features": true
   },
   "sutu4_20260106223721745576": {
     "path": "uploads\\images\\sutu4.png",
@@ -417,6 +405,6 @@
     },
     "album": "Animals",
     "added_at": "2026-01-06T22:37:21.796954",
-    "has_features": false
+    "has_features": true
   }
 }
