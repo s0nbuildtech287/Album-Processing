@@ -406,5 +406,29 @@
     "album": "Animals",
     "added_at": "2026-01-06T22:37:21.796954",
     "has_features": true
+  },
+  "conga7_20260106232844711333": {
+    "path": "uploads\\images\\conga7.jpg",
+    "metadata": {
+      "filename": "conga7.jpg",
+      "size": 35420,
+      "dimensions": "655x600",
+      "channels": 3
+    },
+    "album": "Animals",
+    "added_at": "2026-01-06T23:28:44.716976",
+    "has_features": false
+  },
+  "conga8_20260106232844732502": {
+    "path": "uploads\\images\\conga8.jpg",
+    "metadata": {
+      "filename": "conga8.jpg",
+      "size": 22907,
+      "dimensions": "612x408",
+      "channels": 3
+    },
+    "album": "Animals",
+    "added_at": "2026-01-06T23:28:44.735015",
+    "has_features": false
   }
 }
