@@ -41,22 +41,27 @@ class FeatureExtractor:
         """
         Trích xuất đặc trưng HOG - tối ưu
         """
-        # Resize nhỏ hơn để nhanh hơn
-        small = cv2.resize(gray_image, (128, 128))
-        
-        features = hog(
-            small,
-            orientations=9,
-            pixels_per_cell=(16, 16),  # Tăng cell size để nhanh hơn
-            cells_per_block=(2, 2),
-            visualize=False,
-            feature_vector=True
-        )
-        
-        # Chuẩn hóa
-        features = features / (np.linalg.norm(features) + 1e-7)
-        
-        return features
+        try:
+            # Resize nhỏ hơn để nhanh hơn - đảm bảo kích thước cố định
+            small = cv2.resize(gray_image, (128, 128), interpolation=cv2.INTER_AREA)
+            
+            features = hog(
+                small,
+                orientations=9,
+                pixels_per_cell=(16, 16),  # Tăng cell size để nhanh hơn
+                cells_per_block=(2, 2),
+                visualize=False,
+                feature_vector=True
+            )
+            
+            # Chuẩn hóa
+            features = features / (np.linalg.norm(features) + 1e-7)
+            
+            return features
+        except Exception as e:
+            print(f"Error extracting HOG features: {e}")
+            # Trả về vector dummy với kích thước cố định
+            return np.zeros(324)
     
     def extract_all_features(self, image_path):
         """

@@ -1,8 +1,15 @@
 {% extends "base.html" %} {% block title %}So sánh - Album System{% endblock %} {% block content %}
 <div class="max-w-7xl mx-auto space-y-8">
-  <header>
-    <h2 class="text-4xl font-black text-slate-900 tracking-tight">So sánh Thị giác</h2>
-    <p class="text-slate-500 mt-1">Phân tích đa chiều dựa trên không gian vector đặc trưng.</p>
+  <header class="flex items-center gap-4">
+    <button onclick="window.location.href='/compare'" class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 transition-colors flex-shrink-0" title="Làm mới">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+      </svg>
+    </button>
+    <div>
+      <h2 class="text-4xl font-black text-slate-900 tracking-tight">So sánh Thị giác</h2>
+      <p class="text-slate-500 mt-1">Phân tích đa chiều dựa trên không gian vector đặc trưng.</p>
+    </div>
   </header>
   
   {% if error %}

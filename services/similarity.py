@@ -10,6 +10,17 @@ class SimilarityCalculator:
         Tính Cosine Similarity giữa 2 vector
         similarity = (A · B) / (||A|| * ||B||)
         """
+        # Kiểm tra kích thước vector
+        if vec1.shape != vec2.shape:
+            # Nếu kích thước khác nhau, resize về kích thước nhỏ hơn
+            min_len = min(len(vec1), len(vec2))
+            vec1 = vec1[:min_len]
+            vec2 = vec2[:min_len]
+            
+            # Nếu không có dữ liệu, trả về 0
+            if min_len == 0:
+                return 0.0
+        
         dot_product = np.dot(vec1, vec2)
         norm1 = np.linalg.norm(vec1)
         norm2 = np.linalg.norm(vec2)
@@ -44,36 +55,62 @@ class SimilarityCalculator:
         So sánh các đặc trưng giữa 2 ảnh
         Returns: dict with individual and combined similarities
         """
-        # Tính similarity cho từng loại đặc trưng
-        color_sim = SimilarityCalculator.cosine_similarity(
-            features1['color'], 
-            features2['color']
-        )
-        
-        texture_sim = SimilarityCalculator.cosine_similarity(
-            features1['texture'], 
-            features2['texture']
-        )
-        
-        shape_sim = SimilarityCalculator.cosine_similarity(
-            features1['shape'], 
-            features2['shape']
-        )
-        
-        # Tính điểm tổng hợp
-        # score = α * color + β * texture + γ * shape
-        combined_score = (
-            Config.WEIGHT_COLOR * color_sim +
-            Config.WEIGHT_TEXTURE * texture_sim +
-            Config.WEIGHT_SHAPE * shape_sim
-        )
-        
-        return {
-            'color_similarity': float(color_sim),
-            'texture_similarity': float(texture_sim),
-            'shape_similarity': float(shape_sim),
-            'combined_similarity': float(combined_score)
-        }
+        try:
+            # Kiểm tra features hợp lệ
+            if not all(k in features1 for k in ['color', 'texture', 'shape']):
+                return {
+                    'color_similarity': 0.0,
+                    'texture_similarity': 0.0,
+                    'shape_similarity': 0.0,
+                    'combined_similarity': 0.0
+                }
+            
+            if not all(k in features2 for k in ['color', 'texture', 'shape']):
+                return {
+                    'color_similarity': 0.0,
+                    'texture_similarity': 0.0,
+                    'shape_similarity': 0.0,
+                    'combined_similarity': 0.0
+                }
+            
+            # Tính similarity cho từng loại đặc trưng
+            color_sim = SimilarityCalculator.cosine_similarity(
+                features1['color'], 
+                features2['color']
+            )
+            
+            texture_sim = SimilarityCalculator.cosine_similarity(
+                features1['texture'], 
+                features2['texture']
+            )
+            
+            shape_sim = SimilarityCalculator.cosine_similarity(
+                features1['shape'], 
+                features2['shape']
+            )
+            
+            # Tính điểm tổng hợp
+            # score = α * color + β * texture + γ * shape
+            combined_score = (
+                Config.WEIGHT_COLOR * color_sim +
+                Config.WEIGHT_TEXTURE * texture_sim +
+                Config.WEIGHT_SHAPE * shape_sim
+            )
+            
+            return {
+                'color_similarity': float(color_sim),
+                'texture_similarity': float(texture_sim),
+                'shape_similarity': float(shape_sim),
+                'combined_similarity': float(combined_score)
+            }
+        except Exception as e:
+            print(f"Error comparing features: {e}")
+            return {
+                'color_similarity': 0.0,
+                'texture_similarity': 0.0,
+                'shape_similarity': 0.0,
+                'combined_similarity': 0.0
+            }
     
     @staticmethod
     def compare_images(image_path1, image_path2):
@@ -121,43 +158,65 @@ class SimilarityCalculator:
         Phát hiện các nhóm ảnh trùng/gần trùng
         Returns: list of duplicate groups
         """
-        image_ids = list(database_features.keys())
-        n = len(image_ids)
-        
-        # Ma trận similarity
-        similarity_matrix = np.zeros((n, n))
-        
-        for i in range(n):
-            for j in range(i + 1, n):
-                sim = SimilarityCalculator.compare_features(
-                    database_features[image_ids[i]],
-                    database_features[image_ids[j]]
-                )
-                similarity_matrix[i, j] = sim['combined_similarity']
-                similarity_matrix[j, i] = sim['combined_similarity']
-        
-        # Tìm các nhóm trùng lặp
-        visited = set()
-        duplicate_groups = []
-        
-        for i in range(n):
-            if i in visited:
-                continue
+        try:
+            # Lọc các ảnh có features hợp lệ
+            valid_features = {}
+            for img_id, features in database_features.items():
+                if features and all(k in features for k in ['color', 'texture', 'shape']):
+                    # Kiểm tra không phải là dummy features (all zeros)
+                    if (np.any(features['color']) or 
+                        np.any(features['texture']) or 
+                        np.any(features['shape'])):
+                        valid_features[img_id] = features
             
-            # Tìm các ảnh tương tự với ảnh i
-            group = [image_ids[i]]
-            for j in range(i + 1, n):
-                if similarity_matrix[i, j] >= threshold:
-                    group.append(image_ids[j])
-                    visited.add(j)
+            image_ids = list(valid_features.keys())
+            n = len(image_ids)
             
-            # Chỉ thêm nhóm nếu có >= 2 ảnh
-            if len(group) >= 2:
-                duplicate_groups.append({
-                    'images': group,
-                    'size': len(group)
-                })
+            if n < 2:
+                return []  # Không đủ ảnh để so sánh
             
-            visited.add(i)
-        
-        return duplicate_groups
+            # Ma trận similarity
+            similarity_matrix = np.zeros((n, n))
+            
+            for i in range(n):
+                for j in range(i + 1, n):
+                    try:
+                        sim = SimilarityCalculator.compare_features(
+                            valid_features[image_ids[i]],
+                            valid_features[image_ids[j]]
+                        )
+                        similarity_matrix[i, j] = sim['combined_similarity']
+                        similarity_matrix[j, i] = sim['combined_similarity']
+                    except Exception as e:
+                        print(f"Error comparing {image_ids[i]} and {image_ids[j]}: {e}")
+                        similarity_matrix[i, j] = 0.0
+                        similarity_matrix[j, i] = 0.0
+            
+            # Tìm các nhóm trùng lặp
+            visited = set()
+            duplicate_groups = []
+            
+            for i in range(n):
+                if i in visited:
+                    continue
+                
+                # Tìm các ảnh tương tự với ảnh i
+                group = [image_ids[i]]
+                for j in range(i + 1, n):
+                    if similarity_matrix[i, j] >= threshold:
+                        group.append(image_ids[j])
+                        visited.add(j)
+                
+                # Chỉ thêm nhóm nếu có >= 2 ảnh
+                if len(group) >= 2:
+                    duplicate_groups.append({
+                        'images': group,
+                        'size': len(group)
+                    })
+                
+                visited.add(i)
+            
+            return duplicate_groups
+        except Exception as e:
+            print(f"Error in find_duplicates: {e}")
+            return []
