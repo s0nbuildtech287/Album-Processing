@@ -1,410 +1,410 @@
 {
-  "sutu1_20260105224841235236": {
-    "path": "uploads\\images\\sutu1.png",
+  "img_20260106_152628564374_20260106152628619979": {
+    "path": "uploads\\images\\img_20260106_152628564374.png",
     "metadata": {
-      "filename": "sutu1.png",
-      "size": 356961,
-      "dimensions": "612x408",
-      "channels": 3
-    },
-    "album": "Animals",
-    "added_at": "2026-01-05T22:48:41.240753",
-    "has_features": false
-  },
-  "sutu2_20260105224855619544": {
-    "path": "uploads\\images\\sutu2.jpg",
-    "metadata": {
-      "filename": "sutu2.jpg",
-      "size": 122329,
-      "dimensions": "640x335",
-      "channels": 3
-    },
-    "album": "Animals",
-    "added_at": "2026-01-05T22:48:55.627207",
-    "has_features": false
-  },
-  "convoi2_20260105224921147035": {
-    "path": "uploads\\images\\convoi2.jpg",
-    "metadata": {
-      "filename": "convoi2.jpg",
-      "size": 118491,
-      "dimensions": "960x864",
-      "channels": 3
-    },
-    "album": "Animals",
-    "added_at": "2026-01-05T22:49:21.165695",
-    "has_features": false
-  },
-  "convoi1_20260105224921195019": {
-    "path": "uploads\\images\\convoi1.jpg",
-    "metadata": {
-      "filename": "convoi1.jpg",
-      "size": 319229,
-      "dimensions": "800x635",
-      "channels": 3
-    },
-    "album": "Animals",
-    "added_at": "2026-01-05T22:49:21.212837",
-    "has_features": false
-  },
-  "sutu3_20260105224921402677": {
-    "path": "uploads\\images\\sutu3.jpg",
-    "metadata": {
-      "filename": "sutu3.jpg",
-      "size": 1591501,
-      "dimensions": "3840x2160",
-      "channels": 3
-    },
-    "album": "Animals",
-    "added_at": "2026-01-05T22:49:21.609301",
-    "has_features": false
-  },
-  "sutu4_20260105224932514798": {
-    "path": "uploads\\images\\sutu4.png",
-    "metadata": {
-      "filename": "sutu4.png",
-      "size": 1305068,
-      "dimensions": "2500x2500",
-      "channels": 3
-    },
-    "album": "Animals",
-    "added_at": "2026-01-05T22:49:32.569647",
-    "has_features": false
-  },
-  "conga1_20260105224940152919": {
-    "path": "uploads\\images\\conga1.jpg",
-    "metadata": {
-      "filename": "conga1.jpg",
-      "size": 108186,
-      "dimensions": "800x450",
-      "channels": 3
-    },
-    "album": "Animals",
-    "added_at": "2026-01-05T22:49:40.157232",
-    "has_features": false
-  },
-  "conho1_20260105225034737337": {
-    "path": "uploads\\images\\conho1.jpg",
-    "metadata": {
-      "filename": "conho1.jpg",
-      "size": 59735,
-      "dimensions": "600x338",
-      "channels": 3
-    },
-    "album": "Animals",
-    "added_at": "2026-01-05T22:50:34.741334",
-    "has_features": false
-  },
-  "conngua1_20260105225034770910": {
-    "path": "uploads\\images\\conngua1.jpg",
-    "metadata": {
-      "filename": "conngua1.jpg",
-      "size": 185317,
-      "dimensions": "1200x801",
-      "channels": 3
-    },
-    "album": "Animals",
-    "added_at": "2026-01-05T22:50:34.788024",
-    "has_features": false
-  },
-  "conran1_20260105225118419625": {
-    "path": "uploads\\images\\conran1.png",
-    "metadata": {
-      "filename": "conran1.png",
-      "size": 3752229,
-      "dimensions": "2500x2500",
-      "channels": 3
-    },
-    "album": "Animals",
-    "added_at": "2026-01-05T22:51:18.501128",
-    "has_features": false
-  },
-  "camap1_20260105225208956561": {
-    "path": "uploads\\images\\camap1.png",
-    "metadata": {
-      "filename": "camap1.png",
+      "filename": "img_20260106_152628564374.png",
       "size": 1461037,
       "dimensions": "1280x720",
       "channels": 3
     },
-    "album": "Animals",
-    "added_at": "2026-01-05T22:52:08.979348",
-    "has_features": false
+    "album": "Động vật",
+    "added_at": "2026-01-06T15:26:28.640923",
+    "has_features": true
   },
-  "conga2_20260105225209000436": {
-    "path": "uploads\\images\\conga2.png",
+  "img_20260106_152628641929_20260106152628665158": {
+    "path": "uploads\\images\\img_20260106_152628641929.jpg",
     "metadata": {
-      "filename": "conga2.png",
+      "filename": "img_20260106_152628641929.jpg",
+      "size": 108186,
+      "dimensions": "800x450",
+      "channels": 3
+    },
+    "album": "Động vật",
+    "added_at": "2026-01-06T15:26:28.672168",
+    "has_features": true
+  },
+  "img_20260106_152628673169_20260106152628720945": {
+    "path": "uploads\\images\\img_20260106_152628673169.png",
+    "metadata": {
+      "filename": "img_20260106_152628673169.png",
       "size": 471287,
       "dimensions": "600x427",
       "channels": 3
     },
-    "album": "Animals",
-    "added_at": "2026-01-05T22:52:09.007989",
-    "has_features": false
+    "album": "Động vật",
+    "added_at": "2026-01-06T15:26:28.727466",
+    "has_features": true
   },
-  "xemay3_20260105231559653197": {
-    "path": "uploads\\images\\xemay3.png",
+  "img_20260106_152628727466_20260106152628743388": {
+    "path": "uploads\\images\\img_20260106_152628727466.jpg",
     "metadata": {
-      "filename": "xemay3.png",
-      "size": 432827,
-      "dimensions": "768x645",
+      "filename": "img_20260106_152628727466.jpg",
+      "size": 59735,
+      "dimensions": "600x338",
       "channels": 3
     },
-    "album": "Vehicles",
-    "added_at": "2026-01-05T23:15:59.660704",
-    "has_features": false
+    "album": "Động vật",
+    "added_at": "2026-01-06T15:26:28.749962",
+    "has_features": true
   },
-  "xemay2_20260105231559707045": {
-    "path": "uploads\\images\\xemay2.png",
+  "img_20260106_152628750975_20260106152628812274": {
+    "path": "uploads\\images\\img_20260106_152628750975.jpg",
     "metadata": {
-      "filename": "xemay2.png",
-      "size": 1483105,
-      "dimensions": "2048x1261",
+      "filename": "img_20260106_152628750975.jpg",
+      "size": 185317,
+      "dimensions": "1200x801",
       "channels": 3
     },
-    "album": "Vehicles",
-    "added_at": "2026-01-05T23:15:59.735793",
-    "has_features": false
+    "album": "Động vật",
+    "added_at": "2026-01-06T15:26:28.826354",
+    "has_features": true
   },
-  "xemay1_20260105231559752398": {
-    "path": "uploads\\images\\xemay1.png",
+  "img_20260106_152628827365_20260106152628942755": {
+    "path": "uploads\\images\\img_20260106_152628827365.png",
     "metadata": {
-      "filename": "xemay1.png",
-      "size": 250090,
-      "dimensions": "619x450",
+      "filename": "img_20260106_152628827365.png",
+      "size": 3752229,
+      "dimensions": "2500x2500",
       "channels": 3
     },
-    "album": "Vehicles",
-    "added_at": "2026-01-05T23:15:59.756396",
-    "has_features": false
+    "album": "Động vật",
+    "added_at": "2026-01-06T15:26:29.026094",
+    "has_features": true
   },
-  "oto3_20260105231559766988": {
-    "path": "uploads\\images\\oto3.jpg",
+  "img_20260106_152629027101_20260106152629064394": {
+    "path": "uploads\\images\\img_20260106_152629027101.jpg",
     "metadata": {
-      "filename": "oto3.jpg",
-      "size": 9998,
-      "dimensions": "298x169",
+      "filename": "img_20260106_152629027101.jpg",
+      "size": 319229,
+      "dimensions": "800x635",
       "channels": 3
     },
-    "album": "Vehicles",
-    "added_at": "2026-01-05T23:15:59.768493",
-    "has_features": false
+    "album": "Động vật",
+    "added_at": "2026-01-06T15:26:29.083481",
+    "has_features": true
   },
-  "oto2_20260105231559786640": {
-    "path": "uploads\\images\\oto2.jpg",
+  "img_20260106_152629083481_20260106152629108597": {
+    "path": "uploads\\images\\img_20260106_152629083481.jpg",
     "metadata": {
-      "filename": "oto2.jpg",
-      "size": 83900,
-      "dimensions": "889x500",
+      "filename": "img_20260106_152629083481.jpg",
+      "size": 118491,
+      "dimensions": "960x864",
       "channels": 3
     },
-    "album": "Vehicles",
-    "added_at": "2026-01-05T23:15:59.795713",
-    "has_features": false
+    "album": "Động vật",
+    "added_at": "2026-01-06T15:26:29.126674",
+    "has_features": true
   },
-  "oto1_20260105231559818480": {
-    "path": "uploads\\images\\oto1.png",
+  "img_20260106_152629127665_20260106152629158655": {
+    "path": "uploads\\images\\img_20260106_152629127665.png",
     "metadata": {
-      "filename": "oto1.png",
-      "size": 925859,
-      "dimensions": "800x507",
+      "filename": "img_20260106_152629127665.png",
+      "size": 356961,
+      "dimensions": "612x408",
       "channels": 3
     },
-    "album": "Vehicles",
-    "added_at": "2026-01-05T23:15:59.831523",
-    "has_features": false
+    "album": "Động vật",
+    "added_at": "2026-01-06T15:26:29.164641",
+    "has_features": true
   },
-  "rung2_20260105232516491952": {
-    "path": "uploads\\images\\rung2.jpg",
+  "img_20260106_152629165639_20260106152629186813": {
+    "path": "uploads\\images\\img_20260106_152629165639.jpg",
     "metadata": {
-      "filename": "rung2.jpg",
-      "size": 14517,
-      "dimensions": "300x168",
+      "filename": "img_20260106_152629165639.jpg",
+      "size": 122329,
+      "dimensions": "640x335",
       "channels": 3
     },
-    "album": "Naturals",
-    "added_at": "2026-01-05T23:25:16.492964",
-    "has_features": false
+    "album": "Động vật",
+    "added_at": "2026-01-06T15:26:29.193890",
+    "has_features": true
   },
-  "rung1_20260105232516956588": {
-    "path": "uploads\\images\\rung1.jpg",
+  "img_20260106_152629194886_20260106152629413210": {
+    "path": "uploads\\images\\img_20260106_152629194886.jpg",
     "metadata": {
-      "filename": "rung1.jpg",
-      "size": 20253392,
-      "dimensions": "4928x3264",
+      "filename": "img_20260106_152629194886.jpg",
+      "size": 1591501,
+      "dimensions": "3840x2160",
       "channels": 3
     },
-    "album": "Naturals",
-    "added_at": "2026-01-05T23:25:17.388620",
-    "has_features": false
+    "album": "Động vật",
+    "added_at": "2026-01-06T15:26:29.646606",
+    "has_features": true
   },
-  "nuilua_20260105232517408578": {
-    "path": "uploads\\images\\nuilua.jpg",
+  "img_20260106_152629647604_20260106152629750195": {
+    "path": "uploads\\images\\img_20260106_152629647604.png",
     "metadata": {
-      "filename": "nuilua.jpg",
-      "size": 19367,
-      "dimensions": "800x450",
+      "filename": "img_20260106_152629647604.png",
+      "size": 1305068,
+      "dimensions": "2500x2500",
       "channels": 3
     },
-    "album": "Naturals",
-    "added_at": "2026-01-05T23:25:17.415664",
-    "has_features": false
+    "album": "Động vật",
+    "added_at": "2026-01-06T15:26:29.820808",
+    "has_features": true
   },
-  "nui2_20260105232517441305": {
-    "path": "uploads\\images\\nui2.png",
+  "img_20260106_152642529005_20260106152642569028": {
+    "path": "uploads\\images\\img_20260106_152642529005.png",
     "metadata": {
-      "filename": "nui2.png",
-      "size": 727483,
-      "dimensions": "770x433",
-      "channels": 3
-    },
-    "album": "Naturals",
-    "added_at": "2026-01-05T23:25:17.453045",
-    "has_features": false
-  },
-  "nui1_20260105232517466480": {
-    "path": "uploads\\images\\nui1.jpg",
-    "metadata": {
-      "filename": "nui1.jpg",
-      "size": 32856,
-      "dimensions": "800x534",
-      "channels": 3
-    },
-    "album": "Naturals",
-    "added_at": "2026-01-05T23:25:17.472115",
-    "has_features": false
-  },
-  "bien3_20260105232517507995": {
-    "path": "uploads\\images\\bien3.png",
-    "metadata": {
-      "filename": "bien3.png",
-      "size": 879638,
-      "dimensions": "800x450",
-      "channels": 3
-    },
-    "album": "Naturals",
-    "added_at": "2026-01-05T23:25:17.526233",
-    "has_features": false
-  },
-  "bien2_20260105232517698651": {
-    "path": "uploads\\images\\bien2.png",
-    "metadata": {
-      "filename": "bien2.png",
-      "size": 6997111,
-      "dimensions": "2560x1707",
-      "channels": 3
-    },
-    "album": "Naturals",
-    "added_at": "2026-01-05T23:25:17.836213",
-    "has_features": false
-  },
-  "bien1_20260105232517903935": {
-    "path": "uploads\\images\\bien1.png",
-    "metadata": {
-      "filename": "bien1.png",
-      "size": 3467295,
-      "dimensions": "1624x1080",
-      "channels": 3
-    },
-    "album": "Naturals",
-    "added_at": "2026-01-05T23:25:17.953494",
-    "has_features": false
-  },
-  "trecon2_20260105233002667829": {
-    "path": "uploads\\images\\trecon2.jpg",
-    "metadata": {
-      "filename": "trecon2.jpg",
-      "size": 54961,
-      "dimensions": "1000x600",
-      "channels": 3
-    },
-    "album": "Humans",
-    "added_at": "2026-01-05T23:30:02.681592",
-    "has_features": false
-  },
-  "trecon1_20260105233002699109": {
-    "path": "uploads\\images\\trecon1.jpg",
-    "metadata": {
-      "filename": "trecon1.jpg",
-      "size": 114759,
-      "dimensions": "850x567",
-      "channels": 3
-    },
-    "album": "Humans",
-    "added_at": "2026-01-05T23:30:02.705220",
-    "has_features": false
-  },
-  "nguoigia2_20260105233002717058": {
-    "path": "uploads\\images\\nguoigia2.jpg",
-    "metadata": {
-      "filename": "nguoigia2.jpg",
-      "size": 48730,
-      "dimensions": "500x397",
-      "channels": 3
-    },
-    "album": "Humans",
-    "added_at": "2026-01-05T23:30:02.720121",
-    "has_features": false
-  },
-  "nguoigia1_20260105233002738143": {
-    "path": "uploads\\images\\nguoigia1.jpg",
-    "metadata": {
-      "filename": "nguoigia1.jpg",
-      "size": 109141,
-      "dimensions": "1111x737",
-      "channels": 3
-    },
-    "album": "Humans",
-    "added_at": "2026-01-05T23:30:02.747321",
-    "has_features": false
-  },
-  "bodoi2_20260105233002847452": {
-    "path": "uploads\\images\\bodoi2.png",
-    "metadata": {
-      "filename": "bodoi2.png",
-      "size": 6583079,
-      "dimensions": "2047x1365",
-      "channels": 3
-    },
-    "album": "Humans",
-    "added_at": "2026-01-05T23:30:02.931099",
-    "has_features": false
-  },
-  "bodoi1_20260105233002960240": {
-    "path": "uploads\\images\\bodoi1.png",
-    "metadata": {
-      "filename": "bodoi1.png",
-      "size": 1091479,
-      "dimensions": "820x565",
-      "channels": 3
-    },
-    "album": "Humans",
-    "added_at": "2026-01-05T23:30:02.975298",
-    "has_features": false
-  },
-  "bacsy2_20260105233003036559": {
-    "path": "uploads\\images\\bacsy2.png",
-    "metadata": {
-      "filename": "bacsy2.png",
-      "size": 2050584,
-      "dimensions": "1707x2560",
-      "channels": 3
-    },
-    "album": "Humans",
-    "added_at": "2026-01-05T23:30:03.085074",
-    "has_features": false
-  },
-  "bacsy1_20260105233003109080": {
-    "path": "uploads\\images\\bacsy1.png",
-    "metadata": {
-      "filename": "bacsy1.png",
+      "filename": "img_20260106_152642529005.png",
       "size": 628176,
       "dimensions": "800x600",
       "channels": 3
     },
-    "album": "Humans",
-    "added_at": "2026-01-05T23:30:03.121158",
+    "album": "Con người",
+    "added_at": "2026-01-06T15:26:42.584694",
+    "has_features": true
+  },
+  "img_20260106_152642584694_20260106152642663659": {
+    "path": "uploads\\images\\img_20260106_152642584694.png",
+    "metadata": {
+      "filename": "img_20260106_152642584694.png",
+      "size": 2050584,
+      "dimensions": "1707x2560",
+      "channels": 3
+    },
+    "album": "Con người",
+    "added_at": "2026-01-06T15:26:42.722781",
+    "has_features": true
+  },
+  "img_20260106_152642723801_20260106152642770385": {
+    "path": "uploads\\images\\img_20260106_152642723801.png",
+    "metadata": {
+      "filename": "img_20260106_152642723801.png",
+      "size": 1091479,
+      "dimensions": "820x565",
+      "channels": 3
+    },
+    "album": "Con người",
+    "added_at": "2026-01-06T15:26:42.789385",
+    "has_features": true
+  },
+  "img_20260106_152642790390_20260106152642905215": {
+    "path": "uploads\\images\\img_20260106_152642790390.png",
+    "metadata": {
+      "filename": "img_20260106_152642790390.png",
+      "size": 6583079,
+      "dimensions": "2047x1365",
+      "channels": 3
+    },
+    "album": "Con người",
+    "added_at": "2026-01-06T15:26:43.011250",
+    "has_features": true
+  },
+  "img_20260106_152643013263_20260106152643043154": {
+    "path": "uploads\\images\\img_20260106_152643013263.jpg",
+    "metadata": {
+      "filename": "img_20260106_152643013263.jpg",
+      "size": 109141,
+      "dimensions": "1111x737",
+      "channels": 3
+    },
+    "album": "Con người",
+    "added_at": "2026-01-06T15:26:43.054708",
+    "has_features": true
+  },
+  "img_20260106_152643055259_20260106152643085893": {
+    "path": "uploads\\images\\img_20260106_152643055259.jpg",
+    "metadata": {
+      "filename": "img_20260106_152643055259.jpg",
+      "size": 48730,
+      "dimensions": "500x397",
+      "channels": 3
+    },
+    "album": "Con người",
+    "added_at": "2026-01-06T15:26:43.089900",
+    "has_features": true
+  },
+  "img_20260106_152643089900_20260106152643125149": {
+    "path": "uploads\\images\\img_20260106_152643089900.jpg",
+    "metadata": {
+      "filename": "img_20260106_152643089900.jpg",
+      "size": 114759,
+      "dimensions": "850x567",
+      "channels": 3
+    },
+    "album": "Con người",
+    "added_at": "2026-01-06T15:26:43.137044",
+    "has_features": true
+  },
+  "img_20260106_152643137044_20260106152643168233": {
+    "path": "uploads\\images\\img_20260106_152643137044.jpg",
+    "metadata": {
+      "filename": "img_20260106_152643137044.jpg",
+      "size": 54961,
+      "dimensions": "1000x600",
+      "channels": 3
+    },
+    "album": "Con người",
+    "added_at": "2026-01-06T15:26:43.182690",
+    "has_features": true
+  },
+  "img_20260106_152854809562_20260106152854878096": {
+    "path": "uploads\\images\\img_20260106_152854809562.png",
+    "metadata": {
+      "filename": "img_20260106_152854809562.png",
+      "size": 3467295,
+      "dimensions": "1624x1080",
+      "channels": 3
+    },
+    "album": "Phong cảnh",
+    "added_at": "2026-01-06T15:28:54.922027",
+    "has_features": false
+  },
+  "img_20260106_152854923051_20260106152855055792": {
+    "path": "uploads\\images\\img_20260106_152854923051.png",
+    "metadata": {
+      "filename": "img_20260106_152854923051.png",
+      "size": 6997111,
+      "dimensions": "2560x1707",
+      "channels": 3
+    },
+    "album": "Phong cảnh",
+    "added_at": "2026-01-06T15:28:55.151087",
+    "has_features": false
+  },
+  "img_20260106_152855152087_20260106152855185913": {
+    "path": "uploads\\images\\img_20260106_152855152087.png",
+    "metadata": {
+      "filename": "img_20260106_152855152087.png",
+      "size": 879638,
+      "dimensions": "800x450",
+      "channels": 3
+    },
+    "album": "Phong cảnh",
+    "added_at": "2026-01-06T15:28:55.197993",
+    "has_features": false
+  },
+  "img_20260106_152855199009_20260106152855215703": {
+    "path": "uploads\\images\\img_20260106_152855199009.jpg",
+    "metadata": {
+      "filename": "img_20260106_152855199009.jpg",
+      "size": 32856,
+      "dimensions": "800x534",
+      "channels": 3
+    },
+    "album": "Phong cảnh",
+    "added_at": "2026-01-06T15:28:55.220241",
+    "has_features": false
+  },
+  "img_20260106_152855220241_20260106152855258905": {
+    "path": "uploads\\images\\img_20260106_152855220241.png",
+    "metadata": {
+      "filename": "img_20260106_152855220241.png",
+      "size": 727483,
+      "dimensions": "770x433",
+      "channels": 3
+    },
+    "album": "Phong cảnh",
+    "added_at": "2026-01-06T15:28:55.269632",
+    "has_features": false
+  },
+  "img_20260106_152855269632_20260106152855296672": {
+    "path": "uploads\\images\\img_20260106_152855269632.jpg",
+    "metadata": {
+      "filename": "img_20260106_152855269632.jpg",
+      "size": 19367,
+      "dimensions": "800x450",
+      "channels": 3
+    },
+    "album": "Phong cảnh",
+    "added_at": "2026-01-06T15:28:55.302826",
+    "has_features": false
+  },
+  "img_20260106_152855303780_20260106152855635544": {
+    "path": "uploads\\images\\img_20260106_152855303780.jpg",
+    "metadata": {
+      "filename": "img_20260106_152855303780.jpg",
+      "size": 20253392,
+      "dimensions": "4928x3264",
+      "channels": 3
+    },
+    "album": "Phong cảnh",
+    "added_at": "2026-01-06T15:28:55.902846",
+    "has_features": false
+  },
+  "img_20260106_152855902846_20260106152855929634": {
+    "path": "uploads\\images\\img_20260106_152855902846.jpg",
+    "metadata": {
+      "filename": "img_20260106_152855902846.jpg",
+      "size": 14517,
+      "dimensions": "300x168",
+      "channels": 3
+    },
+    "album": "Phong cảnh",
+    "added_at": "2026-01-06T15:28:55.931621",
+    "has_features": false
+  },
+  "img_20260106_152912038043_20260106152912070275": {
+    "path": "uploads\\images\\img_20260106_152912038043.png",
+    "metadata": {
+      "filename": "img_20260106_152912038043.png",
+      "size": 925859,
+      "dimensions": "800x507",
+      "channels": 3
+    },
+    "album": "Xe",
+    "added_at": "2026-01-06T15:29:12.083934",
+    "has_features": false
+  },
+  "img_20260106_152912083934_20260106152912112794": {
+    "path": "uploads\\images\\img_20260106_152912083934.jpg",
+    "metadata": {
+      "filename": "img_20260106_152912083934.jpg",
+      "size": 83900,
+      "dimensions": "889x500",
+      "channels": 3
+    },
+    "album": "Xe",
+    "added_at": "2026-01-06T15:29:12.123151",
+    "has_features": false
+  },
+  "img_20260106_152912124155_20260106152912146920": {
+    "path": "uploads\\images\\img_20260106_152912124155.jpg",
+    "metadata": {
+      "filename": "img_20260106_152912124155.jpg",
+      "size": 9998,
+      "dimensions": "298x169",
+      "channels": 3
+    },
+    "album": "Xe",
+    "added_at": "2026-01-06T15:29:12.149298",
+    "has_features": false
+  },
+  "img_20260106_152912149298_20260106152912185070": {
+    "path": "uploads\\images\\img_20260106_152912149298.png",
+    "metadata": {
+      "filename": "img_20260106_152912149298.png",
+      "size": 250090,
+      "dimensions": "619x450",
+      "channels": 3
+    },
+    "album": "Xe",
+    "added_at": "2026-01-06T15:29:12.190585",
+    "has_features": false
+  },
+  "img_20260106_152912191582_20260106152912254281": {
+    "path": "uploads\\images\\img_20260106_152912191582.png",
+    "metadata": {
+      "filename": "img_20260106_152912191582.png",
+      "size": 1483105,
+      "dimensions": "2048x1261",
+      "channels": 3
+    },
+    "album": "Xe",
+    "added_at": "2026-01-06T15:29:12.296413",
+    "has_features": false
+  },
+  "img_20260106_152912297416_20260106152912347332": {
+    "path": "uploads\\images\\img_20260106_152912297416.png",
+    "metadata": {
+      "filename": "img_20260106_152912297416.png",
+      "size": 432827,
+      "dimensions": "768x645",
+      "channels": 3
+    },
+    "album": "Xe",
+    "added_at": "2026-01-06T15:29:12.359826",
     "has_features": false
   }
 }

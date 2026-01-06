@@ -1,9 +1,17 @@
-{% extends "base.html" %} {% block title %}So sánh - Album System{% endblock %} {% block content %}
+{% extends "base.html" %} 
+{% block title %}So sánh - Album System{% endblock %} 
+{% block content %}
 <div class="max-w-7xl mx-auto space-y-8">
-  <header>
-    <h2 class="text-4xl font-black text-slate-900 tracking-tight">So sánh Thị giác</h2>
-    <p class="text-slate-500 mt-1">Phân tích đa chiều dựa trên không gian vector đặc trưng.</p>
-  </header>
+  <div class="flex flex-col md:flex-row justify-between items-end gap-4 mb-8">
+    <header>
+        <h2 class="text-4xl font-black text-slate-900 tracking-tight">So sánh Thị giác</h2>
+        <p class="text-slate-500 mt-1">Phân tích đa chiều dựa trên không gian vector đặc trưng.</p>
+    </header>
+    <a href="/compare" class="px-5 py-2.5 bg-white border border-slate-200 hover:bg-slate-50 text-slate-600 font-bold rounded-xl text-sm transition-colors flex items-center gap-2 shadow-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+        Làm mới / So sánh cặp khác
+    </a>
+  </div>
   
   {% if error %}
   <div class="bg-red-50 text-red-700 p-4 rounded-xl border border-red-200">
@@ -152,9 +160,7 @@
         </div>
     </div>
   </div>
-  {% endif %}
-
-</div>
+  {% endif %} </div>
 
 <div id="library-modal" class="fixed inset-0 z-50 hidden">
     <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeModal()"></div>

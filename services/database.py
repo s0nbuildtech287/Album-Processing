@@ -75,6 +75,47 @@ class ImageDatabase:
             return True
         return False
     
+    def delete_album(self, album_name):
+        """
+        Xóa toàn bộ album và các ảnh bên trong
+        Returns: True nếu xóa thành công (hoặc album không tồn tại), False nếu lỗi
+        """
+        if not album_name:
+            return False
+            
+        # 1. Tìm tất cả ảnh thuộc album này
+        images_to_delete = []
+        for image_id, image_data in self.images.items():
+            if image_data.get('album', 'Uncategorized') == album_name:
+                images_to_delete.append(image_id)
+        
+        if not images_to_delete:
+            return False
+
+        print(f"Deleting album '{album_name}' with {len(images_to_delete)} images...")
+        
+        # 2. Xóa từng ảnh (cả file vật lý và trong db)
+        count = 0
+        for image_id in images_to_delete:
+            try:
+                # Lấy đường dẫn tuyệt đối để xóa file
+                abs_path = self.get_absolute_path(image_id)
+                
+                # Xóa file vật lý nếu tồn tại
+                if abs_path and os.path.exists(abs_path):
+                    try:
+                        os.remove(abs_path)
+                    except OSError as e:
+                        print(f"Warning: Could not delete file {abs_path}: {e}")
+                
+                # Xóa khỏi dictionary
+                del self.images[image_id]
+                count += 1
+            except Exception as e:
+                print(f"Error deleting image {image_id}: {e}")
+            
+        return count > 0
+
     def get_image(self, image_id):
         """Lấy thông tin ảnh"""
         return self.images.get(image_id)
