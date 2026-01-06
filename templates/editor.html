@@ -7,237 +7,269 @@
 
   {% if error %}
   <div class="bg-red-50 text-red-700 p-4 rounded-xl border border-red-200 flex items-center gap-2">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-      <span class="font-bold">{{ error }}</span>
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+    </svg>
+    <span class="font-bold">{{ error }}</span>
   </div>
   {% endif %}
 
   <div class="grid lg:grid-cols-12 gap-8">
-    
     <div class="lg:col-span-8">
       <div class="bg-white rounded-[2.5rem] shadow-xl shadow-indigo-100 border border-slate-100 overflow-hidden min-h-[600px] relative group">
-        
         {% if result %}
         <div class="absolute inset-0 grid grid-cols-2">
-            <div class="relative border-r border-slate-100 bg-slate-50">
-                <span class="absolute top-4 left-4 z-10 bg-slate-900/80 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md">Gốc</span>
-                <img src="{{ result.original_path }}" class="w-full h-full object-contain p-4">
-                <div class="absolute bottom-4 left-4 bg-white/90 p-2 rounded-lg text-xs font-mono shadow-sm border">
-                    {{ result.original_size }} KB
-                </div>
-            </div>
-            <div class="relative bg-white">
-                <span class="absolute top-4 right-4 z-10 bg-indigo-600/90 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">Đã xử lý</span>
-                <img src="{{ result.processed_path }}" class="w-full h-full object-contain p-4">
-                 <div class="absolute bottom-4 right-4 bg-indigo-50 p-2 rounded-lg text-xs font-mono text-indigo-700 font-bold shadow-sm border border-indigo-100">
-                    {{ result.processed_size }} KB
-                </div>
-            </div>
+          <div class="relative border-r border-slate-100 bg-slate-50">
+            <span class="absolute top-4 left-4 z-10 bg-slate-900/80 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md">Gốc</span>
+            <img aria-label="xs" src="{{ result.original_path }}" class="w-full h-full object-contain p-4" />
+            <div class="absolute bottom-4 left-4 bg-white/90 p-2 rounded-lg text-xs font-mono shadow-sm border">{{ result.original_size }} KB</div>
+          </div>
+          <div class="relative bg-white">
+            <span class="absolute top-4 right-4 z-10 bg-indigo-600/90 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">Đã xử lý</span>
+            <img aria-label="xs" src="{{ result.processed_path }}" class="w-full h-full object-contain p-4" />
+            <div class="absolute bottom-4 right-4 bg-indigo-50 p-2 rounded-lg text-xs font-mono text-indigo-700 font-bold shadow-sm border border-indigo-100">{{ result.processed_size }} KB</div>
+          </div>
         </div>
-        
+
         {% else %}
         <div class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center" id="empty-state">
-            <div class="w-24 h-24 bg-indigo-50 text-indigo-300 rounded-3xl flex items-center justify-center mb-6">
-                <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-            </div>
-            <h3 class="text-xl font-bold text-slate-800">Chưa chọn ảnh nào</h3>
-            <p class="text-slate-400 mt-2 max-w-sm">Vui lòng chọn ảnh từ thư viện hoặc tải lên ảnh mới.</p>
-            
-            <img id="main-preview" class="hidden absolute inset-0 w-full h-full object-contain bg-slate-50 p-4 z-20" />
-            <button onclick="clearSelection()" id="clear-btn" class="hidden absolute top-4 right-4 z-30 bg-red-500 text-white p-2 rounded-full shadow-lg hover:bg-red-600 transition-colors">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
+          <div class="w-24 h-24 bg-indigo-50 text-indigo-300 rounded-3xl flex items-center justify-center mb-6">
+            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-slate-800">Chưa chọn ảnh nào</h3>
+          <p class="text-slate-400 mt-2 max-w-sm">Vui lòng chọn ảnh từ thư viện hoặc tải lên ảnh mới.</p>
+
+          <img aria-label="xs" id="main-preview" class="hidden absolute inset-0 w-full h-full object-contain bg-slate-50 p-4 z-20" />
+          <button
+            aria-label="xs"
+            onclick="clearSelection()"
+            id="clear-btn"
+            class="hidden absolute top-4 right-4 z-30 bg-red-500 text-white p-2 rounded-full shadow-lg hover:bg-red-600 transition-colors"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
         </div>
         {% endif %}
       </div>
     </div>
 
     <div class="lg:col-span-4 space-y-6">
-        
       <div class="bg-indigo-50/80 p-6 rounded-[2rem] border border-indigo-100">
         <h3 class="font-bold text-indigo-900 mb-4">Hướng dẫn sử dụng</h3>
         <ul class="space-y-3 text-sm text-indigo-800">
-            <li class="flex gap-3"><span class="bg-indigo-200 text-indigo-700 w-5 h-5 rounded-full flex items-center justify-center font-bold text-xs">1</span> Chọn ảnh nguồn.</li>
-            <li class="flex gap-3"><span class="bg-indigo-200 text-indigo-700 w-5 h-5 rounded-full flex items-center justify-center font-bold text-xs">2</span> Chọn bộ lọc xử lý.</li>
-            <li class="flex gap-3"><span class="bg-indigo-200 text-indigo-700 w-5 h-5 rounded-full flex items-center justify-center font-bold text-xs">3</span> Nhấn Áp dụng.</li>
+          <li class="flex gap-3"><span class="bg-indigo-200 text-indigo-700 w-5 h-5 rounded-full flex items-center justify-center font-bold text-xs">1</span> Chọn ảnh nguồn.</li>
+          <li class="flex gap-3"><span class="bg-indigo-200 text-indigo-700 w-5 h-5 rounded-full flex items-center justify-center font-bold text-xs">2</span> Chọn bộ lọc xử lý.</li>
+          <li class="flex gap-3"><span class="bg-indigo-200 text-indigo-700 w-5 h-5 rounded-full flex items-center justify-center font-bold text-xs">3</span> Nhấn Áp dụng.</li>
         </ul>
       </div>
 
       <form action="/editor/process" method="POST" enctype="multipart/form-data" class="bg-white p-6 rounded-[2rem] shadow-sm border border-slate-100 space-y-6" onsubmit="showLoading()">
-        
         <div class="space-y-3">
-            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider">1. Nguồn ảnh</label>
-            
-            <button type="button" onclick="openLibraryModal()" class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-colors">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                Chọn từ thư viện
-            </button>
-            
-            <div class="relative">
-                <input type="file" name="upload_image" id="upload_image" class="hidden" accept="image/*" onchange="handleFileSelect(this)">
-                <label for="upload_image" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl flex items-center justify-center gap-2 cursor-pointer transition-colors">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
-                    Hoặc tải ảnh lên
-                </label>
-            </div>
-            
-            <input type="hidden" name="image_id" id="selected_image_id">
-            
-            <div id="selection-status" class="hidden p-3 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-600 font-medium truncate">
-                Đã chọn: <span id="filename-display" class="text-slate-900 font-bold">...</span>
-            </div>
+          <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider">1. Nguồn ảnh</label>
+
+          <button
+            type="button"
+            onclick="openLibraryModal()"
+            class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-colors"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              ></path>
+            </svg>
+            Chọn từ thư viện
+          </button>
+
+          <div class="relative">
+            <input type="file" name="upload_image" id="upload_image" class="hidden" accept="image/*" onchange="handleFileSelect(this)" />
+            <label for="upload_image" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl flex items-center justify-center gap-2 cursor-pointer transition-colors">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+              </svg>
+              Hoặc tải ảnh lên
+            </label>
+          </div>
+
+          <input type="hidden" name="image_id" id="selected_image_id" />
+
+          <div id="selection-status" class="hidden p-3 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-600 font-medium truncate">
+            Đã chọn: <span id="filename-display" class="text-slate-900 font-bold">...</span>
+          </div>
         </div>
 
         <div>
-            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">2. Chức năng xử lý</label>
-            <div class="relative">
-                <select name="action" class="w-full appearance-none bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-indigo-500 focus:border-indigo-500 block p-4 pr-8 font-semibold">
-                    <optgroup label="Cơ bản">
-                        <option value="equalize">Cân bằng Histogram</option>
-                        <option value="contrast">Tăng độ tương phản</option>
-                        <option value="sharpen">Làm sắc nét ảnh</option>
-                        <option value="binary">Chuyển sang đen trắng</option>
-                    </optgroup>
-                    <optgroup label="Khử nhiễu">
-                        <option value="denoise_gaussian">Khử nhiễu Gaussian</option>
-                        <option value="denoise_median">Khử nhiễu Median</option>
-                        <option value="denoise_bilateral">Khử nhiễu Bilateral</option>
-                    </optgroup>
-                    <optgroup label="Nén & Tối ưu">
-                        <option value="compress_high">Nén chất lượng cao</option>
-                        <option value="compress_medium">Nén cân bằng</option>
-                        <option value="compress_low">Nén tối đa</option>
-                    </optgroup>
-                </select>
-                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </div>
+          <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">2. Chức năng xử lý</label>
+          <div class="relative">
+            <select
+              aria-label="xs"
+              name="action"
+              class="w-full appearance-none bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-indigo-500 focus:border-indigo-500 block p-4 pr-8 font-semibold"
+            >
+              <optgroup label="Cơ bản">
+                <option value="equalize">Cân bằng Histogram</option>
+                <option value="contrast">Tăng độ tương phản</option>
+                <option value="sharpen">Làm sắc nét ảnh</option>
+                <option value="binary">Chuyển sang đen trắng</option>
+              </optgroup>
+              <optgroup label="Khử nhiễu">
+                <option value="denoise_gaussian">Khử nhiễu Gaussian</option>
+                <option value="denoise_median">Khử nhiễu Median</option>
+                <option value="denoise_bilateral">Khử nhiễu Bilateral</option>
+              </optgroup>
+              <optgroup label="Nén & Tối ưu">
+                <option value="compress_high">Nén chất lượng cao</option>
+                <option value="compress_medium">Nén cân bằng</option>
+                <option value="compress_low">Nén tối đa</option>
+              </optgroup>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </div>
+          </div>
         </div>
 
         <div class="grid grid-cols-2 gap-3 mt-6">
-    <a href="/editor" class="flex items-center justify-center gap-2 py-4 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-colors">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z"></path></svg>
-        Chọn lại
-    </a>
-    
-    <button type="submit" class="bg-slate-900 hover:bg-slate-800 text-white font-black py-4 rounded-xl shadow-lg transition-transform active:scale-95 text-lg flex items-center justify-center gap-2">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-        Áp dụng
-    </button>
-</div>
+          <a href="/editor" class="flex items-center justify-center gap-2 py-4 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z"></path>
+            </svg>
+            Chọn lại
+          </a>
 
+          <button
+            type="submit"
+            class="bg-slate-900 hover:bg-slate-800 text-white font-black py-4 rounded-xl shadow-lg transition-transform active:scale-95 text-lg flex items-center justify-center gap-2"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+            Áp dụng
+          </button>
+        </div>
       </form>
     </div>
   </div>
 </div>
 
 <div id="library-modal" class="fixed inset-0 z-50 hidden">
-    <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeLibraryModal()"></div>
-    
-    <div class="absolute inset-0 flex items-center justify-center p-4">
-        <div class="bg-white w-full max-w-4xl rounded-[2rem] shadow-2xl flex flex-col max-h-[90vh] overflow-hidden animate-[scaleIn_0.2s_ease-out]">
-            
-            <div class="p-6 border-b border-slate-100 flex items-center justify-between bg-white z-10">
-                <h3 class="text-2xl font-black text-slate-800">Chọn ảnh từ thư viện</h3>
-                <button onclick="closeLibraryModal()" class="p-2 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors">
-                    <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
+  <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeLibraryModal()"></div>
+
+  <div class="absolute inset-0 flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-4xl rounded-[2rem] shadow-2xl flex flex-col max-h-[90vh] overflow-hidden animate-[scaleIn_0.2s_ease-out]">
+      <div class="p-6 border-b border-slate-100 flex items-center justify-between bg-white z-10">
+        <h3 class="text-2xl font-black text-slate-800">Chọn ảnh từ thư viện</h3>
+        <button aria-label="Close library modal" onclick="closeLibraryModal()" class="p-2 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors">
+          <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="flex-1 overflow-y-auto p-6 bg-slate-50 custom-scrollbar">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+          {% for id, img in images.items() %}
+          <div onclick="selectFromLibrary('{{ id }}', '/uploads/{{ img.metadata.filename }}', '{{ img.metadata.filename }}')" class="group cursor-pointer">
+            <div class="aspect-square rounded-2xl overflow-hidden border-2 border-transparent group-hover:border-indigo-500 shadow-sm bg-white relative transition-all">
+              <img aria-label="Library image" src="/uploads/{{ img.metadata.filename }}" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+              <div class="absolute inset-0 bg-indigo-900/0 group-hover:bg-indigo-900/20 transition-colors flex items-center justify-center">
+                <span
+                  class="opacity-0 group-hover:opacity-100 bg-white text-indigo-700 px-3 py-1 rounded-lg text-xs font-bold shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-all"
+                  >Chọn</span
+                >
+              </div>
             </div>
-            
-            <div class="flex-1 overflow-y-auto p-6 bg-slate-50 custom-scrollbar">
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-                    {% for id, img in images.items() %}
-                    <div onclick="selectFromLibrary('{{ id }}', '/uploads/{{ img.metadata.filename }}', '{{ img.metadata.filename }}')" 
-                         class="group cursor-pointer">
-                        <div class="aspect-square rounded-2xl overflow-hidden border-2 border-transparent group-hover:border-indigo-500 shadow-sm bg-white relative transition-all">
-                            <img src="/uploads/{{ img.metadata.filename }}" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-indigo-900/0 group-hover:bg-indigo-900/20 transition-colors flex items-center justify-center">
-                                <span class="opacity-0 group-hover:opacity-100 bg-white text-indigo-700 px-3 py-1 rounded-lg text-xs font-bold shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-all">Chọn</span>
-                            </div>
-                        </div>
-                        <p class="mt-2 text-xs font-bold text-slate-500 truncate text-center group-hover:text-indigo-600 px-2">{{ img.metadata.filename }}</p>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
+            <p class="mt-2 text-xs font-bold text-slate-500 truncate text-center group-hover:text-indigo-600 px-2">{{ img.metadata.filename }}</p>
+          </div>
+          {% endfor %}
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <script>
-    const modal = document.getElementById('library-modal');
-    const mainPreview = document.getElementById('main-preview');
-    const clearBtn = document.getElementById('clear-btn');
-    const statusBox = document.getElementById('selection-status');
-    const filenameDisplay = document.getElementById('filename-display');
-    const fileInput = document.getElementById('upload_image');
-    const hiddenInput = document.getElementById('selected_image_id');
+  const modal = document.getElementById("library-modal");
+  const mainPreview = document.getElementById("main-preview");
+  const clearBtn = document.getElementById("clear-btn");
+  const statusBox = document.getElementById("selection-status");
+  const filenameDisplay = document.getElementById("filename-display");
+  const fileInput = document.getElementById("upload_image");
+  const hiddenInput = document.getElementById("selected_image_id");
 
-    // Mở Modal
-    function openLibraryModal() {
-        modal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden'; // Khóa cuộn trang
-    }
+  // Mở Modal
+  function openLibraryModal() {
+    modal.classList.remove("hidden");
+    document.body.style.overflow = "hidden"; // Khóa cuộn trang
+  }
 
-    // Đóng Modal
-    function closeLibraryModal() {
-        modal.classList.add('hidden');
-        document.body.style.overflow = ''; 
-    }
+  // Đóng Modal
+  function closeLibraryModal() {
+    modal.classList.add("hidden");
+    document.body.style.overflow = "";
+  }
 
-    // Xử lý khi chọn từ thư viện
-    function selectFromLibrary(id, src, filename) {
-        // Reset file upload input
-        fileInput.value = "";
-        
-        // Cập nhật giá trị
-        hiddenInput.value = id;
-        
-        // Cập nhật UI Preview
-        updatePreview(src, filename);
-        
-        // Đóng modal
-        closeLibraryModal();
-    }
+  // Xử lý khi chọn từ thư viện
+  function selectFromLibrary(id, src, filename) {
+    // Reset file upload input
+    fileInput.value = "";
 
-    // Xử lý khi upload file
-    function handleFileSelect(input) {
-        if (input.files && input.files[0]) {
-            const file = input.files[0];
-            const reader = new FileReader();
-            
-            reader.onload = function(e) {
-                // Xóa ID thư viện (ưu tiên upload)
-                hiddenInput.value = "";
-                
-                // Cập nhật UI
-                updatePreview(e.target.result, file.name);
-            }
-            reader.readAsDataURL(file);
-        }
-    }
+    // Cập nhật giá trị
+    hiddenInput.value = id;
 
-    // Hàm cập nhật Preview chung
-    function updatePreview(src, filename) {
-        mainPreview.src = src;
-        mainPreview.classList.remove('hidden');
-        clearBtn.classList.remove('hidden');
-        
-        statusBox.classList.remove('hidden');
-        filenameDisplay.textContent = filename;
-        
-        // Ẩn placeholder (nếu cần xử lý thêm DOM, nhưng css z-index đã lo việc này)
-    }
+    // Cập nhật UI Preview
+    updatePreview(src, filename);
 
-    // Xóa lựa chọn
-    function clearSelection() {
-        fileInput.value = "";
+    // Đóng modal
+    closeLibraryModal();
+  }
+
+  // Xử lý khi upload file
+  function handleFileSelect(input) {
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        // Xóa ID thư viện (ưu tiên upload)
         hiddenInput.value = "";
-        
-        mainPreview.classList.add('hidden');
-        clearBtn.classList.add('hidden');
-        statusBox.classList.add('hidden');
+
+        // Cập nhật UI
+        updatePreview(e.target.result, file.name);
+      };
+      reader.readAsDataURL(file);
     }
+  }
+
+  // Hàm cập nhật Preview chung
+  function updatePreview(src, filename) {
+    mainPreview.src = src;
+    mainPreview.classList.remove("hidden");
+    clearBtn.classList.remove("hidden");
+
+    statusBox.classList.remove("hidden");
+    filenameDisplay.textContent = filename;
+
+    // Ẩn placeholder (nếu cần xử lý thêm DOM, nhưng css z-index đã lo việc này)
+  }
+
+  // Xóa lựa chọn
+  function clearSelection() {
+    fileInput.value = "";
+    hiddenInput.value = "";
+
+    mainPreview.classList.add("hidden");
+    clearBtn.classList.add("hidden");
+    statusBox.classList.add("hidden");
+  }
 </script>
 {% endblock %}
