@@ -430,5 +430,41 @@
     "album": "Animals",
     "added_at": "2026-01-06T23:28:44.735015",
     "has_features": true
+  },
+  "voi2_20260107202059156397": {
+    "path": "uploads\\images\\voi2.jpg",
+    "metadata": {
+      "filename": "voi2.jpg",
+      "size": 54440,
+      "dimensions": "800x533",
+      "channels": 3
+    },
+    "album": "Animals",
+    "added_at": "2026-01-07T20:20:59.160396",
+    "has_features": false
+  },
+  "voi4_20260107202210303963": {
+    "path": "uploads\\images\\voi4.png",
+    "metadata": {
+      "filename": "voi4.png",
+      "size": 849406,
+      "dimensions": "1020x571",
+      "channels": 3
+    },
+    "album": "Animals",
+    "added_at": "2026-01-07T20:22:10.318093",
+    "has_features": false
+  },
+  "voi3_20260107202210330084": {
+    "path": "uploads\\images\\voi3.jpg",
+    "metadata": {
+      "filename": "voi3.jpg",
+      "size": 113795,
+      "dimensions": "800x533",
+      "channels": 3
+    },
+    "album": "Animals",
+    "added_at": "2026-01-07T20:22:10.333094",
+    "has_features": false
   }
 }
