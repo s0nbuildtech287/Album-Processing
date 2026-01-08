@@ -152,15 +152,10 @@ class ImageDatabase:
         return image['features']
     
     def get_all_features(self):
-        """
-        Lấy đặc trưng của tất cả ảnh - LAZY LOADING
-        Returns: dict {image_id: features}
-        """
         features_dict = {}
         total = len(self.images)
         
         for idx, (img_id, img_data) in enumerate(self.images.items(), 1):
-            # Lazy load nếu chưa có
             if img_data['features'] is None:
                 print(f"[{idx}/{total}] Extracting features for {img_id}...")
                 self.update_features(img_id)
@@ -189,18 +184,15 @@ class ImageDatabase:
             return False
     
     def search(self, query_path, top_k=Config.TOP_K_RESULTS):
-        """
-        Tìm kiếm ảnh tương tự - ĐÂY MỚI LÀ LÚC EXTRACT!
-        """
+       
         from services.similarity import SimilarityCalculator
         
-        # Trích xuất đặc trưng của query
         query_features = self.feature_extractor.extract_all_features(query_path)
         
-        # Lấy đặc trưng của tất cả ảnh (sẽ tự động extract nếu chưa có)
+       
         db_features = self.get_all_features()
         
-        # Tìm ảnh tương tự
+        
         results = SimilarityCalculator.find_similar_images(
             query_features, 
             db_features, 

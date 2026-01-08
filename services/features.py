@@ -88,26 +88,54 @@ class FeatureExtractor:
             self.deep_extractor = None
     
     def extract_color_histogram(self, hsv_image, bins=(6, 8, 3)):
-        """
-        Trích xuất histogram màu HSV - giảm bins để nhanh hơn
-        """
         h_bins, s_bins, v_bins = bins
-        
-        # Tính histogram cho mỗi kênh
+          
         hist_h = cv2.calcHist([hsv_image], [0], None, [h_bins], [0, 180])
         hist_s = cv2.calcHist([hsv_image], [1], None, [s_bins], [0, 256])
         hist_v = cv2.calcHist([hsv_image], [2], None, [v_bins], [0, 256])
         
-        # Chuẩn hóa
         hist_h = cv2.normalize(hist_h, hist_h).flatten()
         hist_s = cv2.normalize(hist_s, hist_s).flatten()
         hist_v = cv2.normalize(hist_v, hist_v).flatten()
         
-        # Ghép thành vector
         color_features = np.concatenate([hist_h, hist_s, hist_v])
         
         return color_features
-    
+    def extract_color_histogram_manual(hsv_image, bins=(6, 8, 3)):
+        h_bins, s_bins, v_bins = bins
+
+        # Tạo histogram rỗng
+        hist_h = np.zeros(h_bins, dtype=np.float32)
+        hist_s = np.zeros(s_bins, dtype=np.float32)
+        hist_v = np.zeros(v_bins, dtype=np.float32)
+
+        height, width, _ = hsv_image.shape
+        total_pixels = height * width
+
+        for y in range(height):
+            for x in range(width):
+                h, s, v = hsv_image[y, x]
+
+                h_idx = int(h * h_bins / 180)
+                s_idx = int(s * s_bins / 256)
+                v_idx = int(v * v_bins / 256)
+
+                h_idx = min(h_idx, h_bins - 1)
+                s_idx = min(s_idx, s_bins - 1)
+                v_idx = min(v_idx, v_bins - 1)
+
+                hist_h[h_idx] += 1
+                hist_s[s_idx] += 1
+                hist_v[v_idx] += 1
+
+        hist_h /= total_pixels
+        hist_s /= total_pixels
+        hist_v /= total_pixels
+
+        color_features = np.concatenate([hist_h, hist_s, hist_v])
+
+        return color_features
+
     def extract_lbp_features(self, gray_image):
         """Trích xuất đặc trưng LBP"""
         return self.lbp_extractor.extract_features(gray_image)
@@ -134,19 +162,11 @@ class FeatureExtractor:
         return features
     
     def extract_all_features(self, image_path, verbose=False):
-        """
-        Trích xuất tất cả đặc trưng - TỐI ƯU với Deep Learning
-        Args:
-            image_path: đường dẫn ảnh
-            verbose: in log chi tiết
-        """
         from services.preprocessing import ImagePreprocessor
         
         try:
             if verbose:
-                print(f"    📸 Extracting traditional features...")
-            
-            # Trích xuất traditional features
+                print(f"  Extracting traditional features...")
             image, hsv, gray = ImagePreprocessor.preprocess_pipeline(image_path)
             color_features = self.extract_color_histogram(hsv)
             texture_features = self.extract_lbp_features(gray)
@@ -157,34 +177,32 @@ class FeatureExtractor:
                 print(f"       ✓ Texture: {len(texture_features)} dims")
                 print(f"       ✓ Shape: {len(shape_features)} dims")
             
-            # Trích xuất deep features nếu có
             if self.use_deep_features and self.deep_extractor:
                 if verbose:
-                    print(f"    🧠 Extracting DEEP features (ResNet50)...")
+                    print(f"     Extracting DEEP features (ResNet50)...")
                 deep_features = self.deep_extractor.extract_features(image_path)
                 if verbose:
                     print(f"       ✓ Deep: {len(deep_features)} dims (semantic features!)")
             else:
-                deep_features = np.zeros(2048)  # Placeholder
+                deep_features = np.zeros(2048) 
                 if verbose:
-                    print(f"    ⚠️  Deep features disabled")
+                    print(f"      Deep features disabled")
             
             return {
                 'color': color_features,
                 'texture': texture_features,
                 'shape': shape_features,
-                'deep': deep_features,  # NEW: Deep learning features
+                'deep': deep_features,  
                 'combined': self.combine_features(color_features, texture_features, shape_features, deep_features)
             }
         except Exception as e:
-            print(f"❌ Error extracting features from {image_path}: {e}")
-            # Return dummy features if error
+            print(f" Error extracting features from {image_path}: {e}")
             return {
                 'color': np.zeros(17),
                 'texture': np.zeros(256),
                 'shape': np.zeros(324),
                 'deep': np.zeros(2048),
-                'combined': np.zeros(2645)  # Updated size
+                'combined': np.zeros(2645)
             }
     
     def combine_features(self, color_feat, texture_feat, shape_feat, deep_feat):

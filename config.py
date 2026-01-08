@@ -6,37 +6,35 @@ class Config:
     # Thư mục
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     UPLOAD_FOLDER = os.path.join(BASE_DIR, 'uploads')
-    IMAGES_FOLDER = os.path.join(BASE_DIR, 'uploads', 'images')  # Ảnh thư viện
-    QUERIES_FOLDER = os.path.join(BASE_DIR, 'uploads', 'queries')  # Ảnh truy vấn
+    IMAGES_FOLDER = os.path.join(BASE_DIR, 'uploads', 'images')  
+    QUERIES_FOLDER = os.path.join(BASE_DIR, 'uploads', 'queries')  
     STATIC_FOLDER = os.path.join(BASE_DIR, 'static')
     TEMPLATE_FOLDER = os.path.join(BASE_DIR, 'templates')
     
-    # Cấu hình ảnh
-    MAX_IMAGE_SIZE = (256, 256)  # Giảm kích thước để xử lý nhanh hơn
+ 
+    MAX_IMAGE_SIZE = (256, 256)  
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'bmp', 'tiff'}
     
-    # Cấu hình trích xuất đặc trưng (TỐI ƯU)
-    HSV_BINS = (6, 8, 3)  # Giảm bins để nhanh hơn
-    LBP_RADIUS = 1  # Giảm radius
-    LBP_POINTS = 8  # Giảm points (từ 24 -> 8)
+
+    HSV_BINS = (6, 8, 3)  
+    LBP_RADIUS = 1  
+    LBP_POINTS = 8  
     HOG_ORIENTATIONS = 9
-    HOG_PIXELS_PER_CELL = (16, 16)  # Tăng cell size để nhanh hơn
+    HOG_PIXELS_PER_CELL = (16, 16)  
     HOG_CELLS_PER_BLOCK = (2, 2)
     
-    # Cấu hình Deep Learning
-    USE_DEEP_FEATURES = True  # Bật/tắt deep learning features
-    DEEP_MODEL = 'resnet50'  # Model sử dụng (hiện tại chỉ hỗ trợ resnet50)
     
-    # Trọng số tính similarity (CẬP NHẬT cho deep learning)
-    WEIGHT_COLOR = 0.15     # α - Giảm trọng số màu
-    WEIGHT_TEXTURE = 0.15   # β - Giảm trọng số texture
-    WEIGHT_SHAPE = 0.15     # γ - Giảm trọng số shape
-    WEIGHT_DEEP = 0.55      # δ - Tăng trọng số deep features (quan trọng nhất!)
+    USE_DEEP_FEATURES = True  
+    DEEP_MODEL = 'resnet50' 
+    
+    WEIGHT_COLOR = 0.15     
+    WEIGHT_TEXTURE = 0.15   
+    WEIGHT_SHAPE = 0.15     
+    WEIGHT_DEEP = 0.55      
     
     # Cấu hình truy vấn
     TOP_K_RESULTS = 4
-    DUPLICATE_THRESHOLD = 0.85  # Giảm từ 0.95 để deep features phát huy tác dụng - phân biệt voi vs sư tử
-    
+    DUPLICATE_THRESHOLD = 0.85  
     # Cấu hình nén ảnh
     COMPRESSION_QUALITY = {
         'high': 95,
@@ -46,7 +44,7 @@ class Config:
     
     # Flask config
     SECRET_KEY = 'your-secret-key-here'
-    MAX_CONTENT_LENGTH = 100 * 1024 * 1024  # 100MB max file size (cho phép upload nhiều ảnh cùng lúc)
+    MAX_CONTENT_LENGTH = 100 * 1024 * 1024  
     
     @staticmethod
     def init_app():

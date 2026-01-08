@@ -105,11 +105,6 @@ class SimilarityCalculator:
     
     @staticmethod
     def find_similar_images(query_features, database_features, top_k=Config.TOP_K_RESULTS):
-        """
-        Tìm top-K ảnh tương tự nhất
-        query_features: đặc trưng ảnh truy vấn
-        database_features: dict {image_id: features}
-        """
         similarities = []
         
         for image_id, db_features in database_features.items():
@@ -118,11 +113,8 @@ class SimilarityCalculator:
                 'image_id': image_id,
                 **sim
             })
-        
-        # Sắp xếp theo combined_similarity giảm dần
+
         similarities.sort(key=lambda x: x['combined_similarity'], reverse=True)
-        
-        # Lấy top-K
         return similarities[:top_k]
     
     @staticmethod

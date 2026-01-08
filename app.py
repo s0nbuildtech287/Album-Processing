@@ -188,19 +188,17 @@ def query():
     if request.method == 'POST':
         query_path = None
         
-        # 1. ƯU TIÊN KIỂM TRA FILE UPLOAD (Đã sửa lỗi tiếng Việt)
         file = request.files.get('query_image')
         
         if file and file.filename:
             try:
-                # Tạo tên file query an toàn và lưu vào QUERIES_FOLDER
+
                 filename = 'query_' + generate_safe_filename(file.filename)
                 query_path = os.path.join(Config.QUERIES_FOLDER, filename)
                 file.save(query_path)
             except Exception as e:
                 print(f"Query upload error: {e}")
-                
-        # 2. NẾU KHÔNG CÓ UPLOAD, KIỂM TRA THƯ VIỆN
+  
         elif request.form.get('image_id'):
             image_id = request.form.get('image_id')
             image_data = db.get_image(image_id)
@@ -208,11 +206,9 @@ def query():
                 query_path = db.get_absolute_path(image_id)
             
         if query_path and os.path.exists(query_path):
-            # Thực hiện tìm kiếm
+
             results = db.search(query_path, top_k=Config.TOP_K_RESULTS)
             
-            # Chuẩn bị đường dẫn hiển thị
-            # Xác định xem ảnh nằm trong thư mục nào
             if 'images' in query_path:
                 display_query = '/uploads/images/' + os.path.basename(query_path)
             elif 'queries' in query_path:
