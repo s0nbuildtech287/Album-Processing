@@ -8,26 +8,20 @@ class LBPExtractorOptimized:
     def __init__(self, radius=Config.LBP_RADIUS, points=Config.LBP_POINTS):
         self.radius = radius
         self.points = points
-        # Giảm số bins để xử lý nhanh hơn
         self.n_bins = min(256, 2 ** points)
     
     def compute_lbp_simple(self, image):
-        """
-        LBP đơn giản hóa - Chỉ dùng 8 neighbors (nhanh hơn 24 points)
-        """
         if len(image.shape) == 3:
             image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         
         h, w = image.shape
         lbp = np.zeros((h-2, w-2), dtype=np.uint8)
         
-        # 8 neighbors: top-left, top, top-right, right, bottom-right, bottom, bottom-left, left
         for i in range(1, h-1):
             for j in range(1, w-1):
                 center = image[i, j]
                 code = 0
                 
-                # Tính LBP code cho 8 neighbors
                 code |= (image[i-1, j-1] >= center) << 7
                 code |= (image[i-1, j] >= center) << 6
                 code |= (image[i-1, j+1] >= center) << 5
@@ -45,9 +39,8 @@ class LBPExtractorOptimized:
         """Tính histogram LBP nhanh"""
         lbp_image = self.compute_lbp_simple(image)
         
-        # Tính histogram
         hist, _ = np.histogram(lbp_image.ravel(), 
-                               bins=256,  # Cố định 256 bins cho LBP 8-point
+                               bins=256,  
                                range=(0, 256))
         
         if normalize:

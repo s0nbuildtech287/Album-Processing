@@ -104,7 +104,6 @@ class FeatureExtractor:
     def extract_color_histogram_manual(hsv_image, bins=(6, 8, 3)):
         h_bins, s_bins, v_bins = bins
 
-        # Tạo histogram rỗng
         hist_h = np.zeros(h_bins, dtype=np.float32)
         hist_s = np.zeros(s_bins, dtype=np.float32)
         hist_v = np.zeros(v_bins, dtype=np.float32)
@@ -137,7 +136,6 @@ class FeatureExtractor:
         return color_features
 
     def extract_lbp_features(self, gray_image):
-        """Trích xuất đặc trưng LBP"""
         return self.lbp_extractor.extract_features(gray_image)
     
     def extract_hog_features(self, gray_image):
